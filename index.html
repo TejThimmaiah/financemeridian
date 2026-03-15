@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Meridian — Your Reference Point for Global Finance</title>
+<meta name="description" content="Finance Meridian is your reference point for global finance — covering markets, investing, personal finance, cryptocurrency, and economic analysis.">
+<meta name="keywords" content="finance, investing, stock market, cryptocurrency, personal finance, financial education, market analysis">
+<meta property="og:title" content="Finance Meridian — Your Reference Point for Global Finance">
+<meta property="og:description" content="Your reference point for global finance — news, education, and analysis.">
+<meta property="og:url" content="https://financemeridian.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@FinMeridian">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #080c12;
+  --navy: #0d1520;
+  --panel: #111b27;
+  --card: #162030;
+  --border: rgba(255,255,255,0.07);
+  --gold: #e8b84b;
+  --gold2: #f5d07a;
+  --teal: #00c9a7;
+  --red: #ff4d5b;
+  --green: #00d68f;
+  --blue: #4da6ff;
+  --muted: #6b8299;
+  --text: #c8d8e8;
+  --bright: #f0f6ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--night);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ═══ COOKIE BANNER ═══ */
+#cookieBanner{position:fixed;bottom:0;left:0;right:0;z-index:10000;background:rgba(8,12,18,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(232,184,75,0.3);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;transform:translateY(100%);transition:transform 0.5s ease;box-shadow:0 -10px 40px rgba(0,0,0,0.5)}
+#cookieBanner.show{transform:translateY(0)}
+#cookieBanner p{color:var(--muted);font-size:12.5px;line-height:1.6;flex:1;min-width:200px}
+#cookieBanner p a{color:var(--gold);text-decoration:none}
+.cbtn{display:flex;gap:8px;flex-shrink:0}
+.cbtn button{padding:8px 18px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;font-family:'Outfit',sans-serif}
+.cbtn .accept{background:var(--gold);color:#000}
+.cbtn .reject{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.12)}
+.cbtn .accept:hover{background:var(--gold2)}
+.cbtn .reject:hover{border-color:var(--muted);color:var(--text)}
+
+/* ═══ TICKER ═══ */
+.ticker-wrap{background:var(--navy);border-bottom:1px solid var(--border);padding:9px 0;overflow:hidden;white-space:nowrap;position:relative}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,var(--navy),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(-90deg,var(--navy),transparent)}
+.ticker-track{display:inline-flex;gap:0;animation:scroll 60s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.t-item{display:inline-flex;align-items:center;gap:8px;padding:0 28px;border-right:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11.5px}
+.t-sym{color:var(--muted);font-weight:500}
+.t-price{color:var(--bright);font-weight:500}
+.t-up{color:var(--green)}
+.t-dn{color:var(--red)}
+.t-fl{color:var(--muted)}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══ HEADER ═══ */
+header{background:var(--navy);border-bottom:1px solid var(--border);padding:0 32px;position:sticky;top:0;z-index:1000}
+.hdr{max-width:1380px;margin:0 auto;display:flex;align-items:center;height:64px;gap:32px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--bright);text-decoration:none;letter-spacing:-0.5px;flex-shrink:0}
+.logo em{color:var(--gold);font-style:normal}
+.main-nav{display:flex;gap:2px;flex:1;overflow:hidden}
+.main-nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:7px 13px;border-radius:6px;transition:all 0.18s;white-space:nowrap;cursor:pointer}
+.main-nav a:hover,.main-nav a.active{background:rgba(232,184,75,0.1);color:var(--gold)}
+.hdr-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.search-box{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:7px 14px;cursor:text;transition:all 0.2s}
+.search-box:hover{border-color:rgba(255,255,255,0.15)}
+.search-box input{background:none;border:none;outline:none;color:var(--text);font-size:13px;font-family:'Outfit',sans-serif;width:160px}
+.search-box input::placeholder{color:var(--muted)}
+.search-icon{color:var(--muted);font-size:14px}
+.btn-pro{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:8px 20px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif}
+.btn-pro:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(232,184,75,0.3)}
+.btn-login{background:transparent;color:var(--text);border:1px solid var(--border);padding:8px 18px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;font-family:'Outfit',sans-serif}
+.btn-login:hover{border-color:var(--muted);color:var(--bright)}
+
+/* ═══ SUB-NAV ═══ */
+.subnav{background:var(--panel);border-bottom:1px solid var(--border);padding:0 32px}
+.subnav-inner{max-width:1380px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.subnav-inner::-webkit-scrollbar{display:none}
+.subnav-inner a{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:500;padding:12px 16px;border-bottom:2px solid transparent;transition:all 0.18s;white-space:nowrap;cursor:pointer}
+.subnav-inner a:hover,.subnav-inner a.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ═══ PAGE SYSTEM ═══ */
+.page{display:none;animation:fadeUp 0.35s ease}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.wrap{max-width:1380px;margin:0 auto;padding:32px}
+
+/* ═══ FTC DISCLOSURE ═══ */
+.ftc-bar{background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.15);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.ftc-bar strong{color:var(--gold)}
+
+/* ═══ HOME PAGE ═══ */
+.hero-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:20px;margin-bottom:20px}
+.featured-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;position:relative;min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;transition:transform 0.25s}
+.featured-card:hover{transform:translateY(-3px)}
+.fc-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a1828 0%,#0d2510 60%,#1a0d00 100%)}
+.fc-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(232,184,75,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,184,75,0.03) 1px,transparent 1px);background-size:40px 40px}
+.fc-glow{position:absolute;top:-60px;right:-40px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,214,143,0.08) 0%,transparent 70%)}
+.fc-chart{position:absolute;bottom:120px;right:24px;opacity:0.2}
+.fc-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,214,143,0.12);border:1px solid rgba(0,214,143,0.25);color:var(--teal);font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:14px;position:relative;z-index:1;width:fit-content}
+.fc-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.featured-card h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--bright);line-height:1.22;margin-bottom:12px;position:relative;z-index:1}
+.featured-card p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px;position:relative;z-index:1;max-width:520px}
+.fc-meta{display:flex;align-items:center;gap:12px;position:relative;z-index:1;font-size:12px;color:var(--muted)}
+.fc-meta .author{color:var(--gold);font-weight:600}
+.fc-meta .ai-badge{background:rgba(77,166,255,0.12);border:1px solid rgba(77,166,255,0.2);color:var(--blue);font-size:10px;font-weight:700;letter-spacing:0.5px;padding:2px 8px;border-radius:4px}
+
+/* Side articles */
+.side-stack{display:flex;flex-direction:column;gap:12px}
+.side-art{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s;flex:1;display:flex;flex-direction:column;gap:8px}
+.side-art:hover{border-color:rgba(232,184,75,0.3);background:#1a2535}
+.side-art .tag{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+.side-art h3{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--bright);line-height:1.3}
+.side-art p{font-size:13px;color:var(--muted);line-height:1.5}
+.side-art .smeta{font-size:11.5px;color:var(--muted);display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:8px;border-top:1px solid var(--border)}
+.smeta .ai-dot{width:5px;height:5px;border-radius:50%;background:var(--blue)}
+
+/* ═══ MARKET STRIP ═══ */
+.market-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:20px 0}
+.mkt-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.mkt-card:hover{border-color:rgba(255,255,255,0.12);transform:translateY(-2px)}
+.mkt-sym{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:3px}
+.mkt-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:10px}
+.mkt-price{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:var(--bright);margin-bottom:4px}
+.mkt-chg{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;display:flex;align-items:center;gap:4px}
+.chg-up{color:var(--green)}
+.chg-dn{color:var(--red)}
+.spark{margin-top:10px}
+.mkt-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.mkt-card.up::after{background:var(--green)}
+.mkt-card.dn::after{background:var(--red)}
+
+/* ═══ CONTENT GRID ═══ */
+.content-grid{display:grid;grid-template-columns:1fr 320px;gap:24px}
+
+/* Articles */
+.art-list{display:flex;flex-direction:column;gap:14px}
+.art-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;cursor:pointer;transition:all 0.2s;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start}
+.art-card:hover{border-color:rgba(232,184,75,0.25);box-shadow:0 4px 30px rgba(0,0,0,0.2)}
+.art-tag{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.art-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--bright);line-height:1.28;margin-bottom:8px}
+.art-card p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.art-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.art-meta .ai-label{background:rgba(77,166,255,0.1);border:1px solid rgba(77,166,255,0.2);color:var(--blue);font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px}
+.art-thumb{width:110px;height:80px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;border:1px solid var(--border)}
+
+/* Sidebar */
+.sidebar{display:flex;flex-direction:column;gap:18px}
+.s-widget{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.s-head{background:var(--panel);padding:13px 18px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border)}
+.s-body{padding:14px 18px}
+
+/* Trending */
+.trend-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:color 0.2s}
+.trend-item:last-child{border-bottom:none}
+.trend-item:hover .trend-title{color:var(--gold)}
+.trend-n{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;color:var(--border);width:26px;flex-shrink:0;line-height:1.1;margin-top:2px}
+.trend-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.4}
+.trend-cat{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* Dict terms */
+.dict-item{padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.dict-item:last-child{border-bottom:none}
+.dict-item h4{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:var(--bright);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.dict-item h4 .arr{color:var(--gold);font-size:14px;font-family:'Outfit',sans-serif}
+.dict-item p{font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* Ad slot */
+.ad-slot{background:linear-gradient(135deg,#111b27,#0d1520);border:1px dashed rgba(255,255,255,0.1);border-radius:10px;padding:20px;text-align:center;min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.ad-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.ad-size{font-size:11px;color:rgba(255,255,255,0.15);font-family:'JetBrains Mono',monospace;margin-top:4px}
+.ad-partner{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* ═══ AI ENGINE ═══ */
+.ai-engine{background:var(--panel);border:1px solid rgba(232,184,75,0.2);border-radius:14px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
+.ai-engine::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(232,184,75,0.06),transparent 70%)}
+.ae-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:18px;flex-wrap:wrap}
+.ae-label{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.ae-pulse{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite}
+.ae-desc{font-size:13.5px;color:var(--text)}
+.ae-form{display:flex;gap:10px;flex:1;max-width:580px}
+.ae-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 16px;color:var(--bright);font-size:13.5px;font-family:'Outfit',sans-serif;outline:none;transition:border-color 0.2s}
+.ae-input:focus{border-color:rgba(232,184,75,0.4)}
+.ae-input::placeholder{color:var(--muted)}
+.ae-select{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 14px;color:var(--text);font-size:13px;font-family:'Outfit',sans-serif;outline:none;cursor:pointer}
+.btn-generate{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:11px 24px;border-radius:8px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap;display:flex;align-items:center;gap:8px;transition:all 0.2s}
+.btn-generate:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(232,184,75,0.3)}
+.btn-generate:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.spin{width:14px;height:14px;border:2px solid rgba(0,0,0,0.2);border-top-color:#000;border-radius:50%;animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.quick-topics{display:flex;gap:8px;flex-wrap:wrap}
+.q-topic{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--muted);cursor:pointer;transition:all 0.18s}
+.q-topic:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Generated article */
+.gen-result{display:none;margin-top:18px;background:rgba(0,214,143,0.03);border:1px solid rgba(0,214,143,0.15);border-radius:12px;padding:24px;animation:fadeUp 0.4s ease}
+.gen-result.show{display:block}
+.gen-result .g-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.gen-result h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--bright);margin-bottom:16px;line-height:1.25}
+.gen-result .g-body{font-size:14px;color:var(--text);line-height:1.8}
+.gen-result .g-body h4{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--bright);margin:18px 0 8px}
+.gen-result .g-body p{margin-bottom:12px}
+.gen-result .g-body ul{margin:8px 0 14px 20px}
+.gen-result .g-body ul li{margin-bottom:6px}
+.gen-disclaimer{background:rgba(255,77,91,0.06);border:1px solid rgba(255,77,91,0.15);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--muted);margin-top:16px;line-height:1.6}
+.gen-disclaimer strong{color:rgba(255,77,91,0.8)}
+
+/* ═══ MARKETS PAGE ═══ */
+.markets-hero{background:var(--panel);border-radius:14px;padding:28px;margin-bottom:24px;border:1px solid var(--border)}
+.markets-hero h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--bright);margin-bottom:6px}
+.markets-hero p{font-size:14px;color:var(--muted);margin-bottom:20px}
+.idx-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.idx-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;cursor:pointer;transition:all 0.2s}
+.idx-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.12)}
+.idx-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.idx-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:var(--bright);margin-bottom:6px}
+.idx-chg{font-family:'JetBrains Mono',monospace;font-size:13px}
+
+/* Market table */
+.mkt-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.mkt-table thead th{text-align:left;padding:12px 14px;font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.mkt-table thead th:not(:first-child){text-align:right}
+.mkt-table tbody tr{border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s}
+.mkt-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+.mkt-table tbody tr:last-child{border-bottom:none}
+.mkt-table td{padding:13px 14px}
+.mkt-table td:not(:first-child){text-align:right;font-family:'JetBrains Mono',monospace;font-size:13px}
+.stock-name{font-weight:600;color:var(--bright)}
+.stock-sym{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.mc-bar{height:4px;border-radius:2px;background:rgba(255,255,255,0.05);margin-top:5px;overflow:hidden;width:80px;float:right}
+.mc-fill{height:100%;border-radius:2px;background:var(--blue)}
+
+/* ═══ DICTIONARY PAGE ═══ */
+.dict-hero{text-align:center;padding:48px 0 36px;position:relative}
+.dict-hero h2{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;color:var(--bright);margin-bottom:10px}
+.dict-hero p{font-size:15px;color:var(--muted);margin-bottom:28px}
+.dict-search-wrap{max-width:640px;margin:0 auto;display:flex;gap:12px}
+.dict-search-wrap input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 20px;color:var(--bright);font-size:14px;font-family:'Outfit',sans-serif;outline:none;transition:border-color 0.2s}
+.dict-search-wrap input:focus{border-color:rgba(232,184,75,0.4)}
+.dict-search-wrap input::placeholder{color:var(--muted)}
+.dict-search-wrap button{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:14px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;white-space:nowrap}
+.dict-search-wrap button:hover{transform:translateY(-1px)}
+.alpha{display:flex;flex-wrap:wrap;gap:6px;margin:28px 0}
+.alpha span{width:36px;height:36px;border-radius:7px;border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.18s}
+.alpha span:hover,.alpha span.active{background:var(--gold);color:#000;border-color:var(--gold)}
+.terms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.term-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s}
+.term-card:hover{border-color:rgba(232,184,75,0.25);transform:translateY(-2px)}
+.term-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin-bottom:10px}
+.term-card h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--bright);margin-bottom:6px}
+.term-card p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.dict-result-box{background:var(--card);border:1px solid rgba(232,184,75,0.25);border-radius:12px;padding:24px;margin:20px auto;max-width:700px;display:none;animation:fadeUp 0.3s ease}
+.dict-result-box.show{display:block}
+.dict-result-box h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--bright);margin-bottom:14px}
+.dict-result-box .def{font-size:14px;color:var(--text);line-height:1.8}
+
+/* ═══ EDUCATION PAGE ═══ */
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.edu-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.12)}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.edu-beginner::before{background:var(--green)}
+.edu-inter::before{background:var(--blue)}
+.edu-adv::before{background:var(--gold)}
+.edu-icon{font-size:36px;margin-bottom:14px}
+.edu-level{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.edu-beginner .edu-level{color:var(--green)}
+.edu-inter .edu-level{color:var(--blue)}
+.edu-adv .edu-level{color:var(--gold)}
+.edu-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--bright);margin-bottom:8px;line-height:1.28}
+.edu-card p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px}
+.edu-meta{font-size:12px;color:var(--muted);display:flex;gap:10px}
+
+/* ═══ NEWSLETTER ═══ */
+.newsletter{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:36px;text-align:center;margin:28px 0;position:relative;overflow:hidden}
+.newsletter::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(232,184,75,0.05),transparent 70%)}
+.newsletter h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:var(--bright);margin-bottom:8px}
+.newsletter p{font-size:14px;color:var(--muted);margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
+.nl-form{display:flex;gap:10px;max-width:460px;margin:0 auto}
+.nl-form input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--bright);font-size:14px;font-family:'Outfit',sans-serif;outline:none}
+.nl-form input::placeholder{color:var(--muted)}
+.nl-form button{background:var(--gold);color:#000;border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap;transition:all 0.2s}
+.nl-form button:hover{background:var(--gold2)}
+.nl-stats{display:flex;gap:28px;justify-content:center;margin-top:18px}
+.nl-stat{text-align:center}
+.nl-stat .val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:var(--bright)}
+.nl-stat .lbl{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ═══ REVENUE STRIP ═══ */
+.rev-strip{background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 32px}
+.rev-inner{max-width:1380px;margin:0 auto;display:flex;align-items:center;gap:12px;overflow-x:auto;scrollbar-width:none}
+.rev-inner::-webkit-scrollbar{display:none}
+.rev-lbl{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.rev-item{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 16px;white-space:nowrap;cursor:pointer;transition:all 0.2s;text-decoration:none;flex-shrink:0}
+.rev-item:hover{border-color:rgba(232,184,75,0.25)}
+.rev-item .ri{font-size:18px}
+.rev-item .rt{font-size:12.5px;font-weight:500;color:var(--text)}
+.rev-item .rs{font-size:11px;color:var(--muted)}
+.rev-badge{background:rgba(0,214,143,0.12);border:1px solid rgba(0,214,143,0.2);color:var(--teal);font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:0.3px}
+
+/* ═══ SECTION HEADERS ═══ */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin:28px 0 18px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--bright);display:flex;align-items:center;gap:10px}
+.sec-title::before{content:'';width:3px;height:22px;background:var(--gold);border-radius:2px}
+.sec-more{font-size:13px;color:var(--gold);text-decoration:none;border:1px solid rgba(232,184,75,0.25);padding:6px 14px;border-radius:6px;cursor:pointer;transition:all 0.2s;background:none}
+.sec-more:hover{background:rgba(232,184,75,0.08)}
+
+/* ═══ LEGAL PAGE ═══ */
+.legal-wrap{max-width:860px;margin:0 auto}
+.legal-hero-mini{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:32px;margin-bottom:24px;text-align:center}
+.legal-hero-mini h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--bright);margin-bottom:8px}
+.legal-hero-mini p{font-size:14px;color:var(--muted)}
+.comp-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.comp-pill{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:flex-start;gap:12px}
+.comp-pill .ci{font-size:22px;flex-shrink:0}
+.comp-pill .ct{font-size:12.5px;font-weight:600;color:var(--bright);margin-bottom:3px}
+.comp-pill .cd{font-size:12px;color:var(--muted);line-height:1.5}
+.comp-pill.ok{border-left:3px solid var(--green)}
+.comp-pill.warn{border-left:3px solid var(--gold)}
+.legal-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.legal-card-head{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background 0.2s}
+.legal-card-head:hover{background:rgba(255,255,255,0.02)}
+.legal-card-head h4{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--bright);display:flex;align-items:center;gap:10px}
+.legal-card-body{padding:0 22px 22px;font-size:13.5px;color:var(--text);line-height:1.8;display:none}
+.legal-card-body.open{display:block;animation:fadeUp 0.25s ease}
+.legal-card-body h5{font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;margin:14px 0 6px}
+.legal-card-body p{color:var(--muted);margin-bottom:10px}
+.legal-card-body .do{color:var(--green);font-weight:600}
+.legal-card-body .dont{color:var(--red);font-weight:600}
+.code-snip{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);line-height:1.7;margin:10px 0;overflow-x:auto;white-space:pre}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px;padding:50px 32px 28px}
+.foot-inner{max-width:1380px;margin:0 auto}
+.foot-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-brand .logo{font-size:24px;display:block;margin-bottom:12px}
+.foot-brand p{font-size:13px;color:var(--muted);line-height:1.7}
+.foot-brand .tech{margin-top:14px;font-size:11.5px;color:rgba(107,130,153,0.5);font-family:'JetBrains Mono',monospace}
+.foot-col h5{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.foot-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color 0.2s;cursor:pointer}
+.foot-col a:hover{color:var(--text)}
+.foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.disclaimer{font-size:11.5px;color:rgba(107,130,153,0.6);max-width:700px;line-height:1.7}
+.foot-copy{font-size:12px;color:var(--muted);text-align:right;flex-shrink:0}
+
+/* Section-specific heading */
+.page-heading{margin-bottom:28px}
+.page-heading h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--bright);margin-bottom:6px}
+.page-heading p{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COOKIE BANNER ═══════════ -->
+<div id="cookieBanner">
+  <p>🍪 We use cookies to improve your experience and serve personalised ads. Read our <a href="#" onclick="goto('legal')">Privacy Policy</a>. <strong style="color:var(--gold)">GDPR/CCPA:</strong> You control your data.</p>
+  <div class="cbtn">
+    <button class="reject" onclick="closeCookie(false)">Reject Non-Essential</button>
+    <button class="accept" onclick="closeCookie(true)">Accept All</button>
+  </div>
+</div>
+
+<!-- ═══════════ TICKER ═══════════ -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="hdr">
+    <a class="logo" href="#" onclick="goto('home')">Finance<em>Meridian</em></a>
+    <nav class="main-nav">
+      <a onclick="goto('home')" id="nav-home" class="active">Home</a>
+      <a onclick="goto('markets')" id="nav-markets">Markets</a>
+      <a onclick="goto('ai')" id="nav-ai">✦ AI Engine</a>
+      <a onclick="goto('dictionary')" id="nav-dictionary">Dictionary</a>
+      <a onclick="goto('education')" id="nav-education">Learn</a>
+      <a onclick="goto('legal')" id="nav-legal">Legal</a>
+    </nav>
+    <div class="hdr-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search finance topics...">
+      </div>
+      <button class="btn-login">Sign In</button>
+      <button class="btn-pro">Pro Access</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ SUB-NAV ═══════════ -->
+<div class="subnav">
+  <div class="subnav-inner">
+    <a class="active" onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Top Stories</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Stocks</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Crypto</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">ETFs</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Bonds</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Forex</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Commodities</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Real Estate</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Options</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Retirement</a>
+    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Tax</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <!-- FTC -->
+  <div class="wrap" style="padding-bottom:0">
+    <div class="ftc-bar">📣 <strong>Advertiser Disclosure:</strong> Finance Meridian earns commissions from partner links below. This does not influence our editorial content. <a href="#" style="color:var(--gold)" onclick="goto('legal')">Learn more →</a>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:12px">
+    <!-- HERO GRID -->
+    <div class="hero-grid">
+      <div class="featured-card">
+        <div class="fc-bg"></div>
+        <div class="fc-grid"></div>
+        <div class="fc-glow"></div>
+        <svg class="fc-chart" width="220" height="90" viewBox="0 0 220 90">
+          <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d68f" stop-opacity="0.4"/><stop offset="100%" stop-color="#00d68f" stop-opacity="0"/></linearGradient></defs>
+          <polyline points="0,80 30,65 55,70 80,45 110,50 140,28 175,32 220,18" fill="none" stroke="#00d68f" stroke-width="2.5" stroke-linejoin="round"/>
+          <polygon points="0,80 30,65 55,70 80,45 110,50 140,28 175,32 220,18 220,90 0,90" fill="url(#cg)"/>
+        </svg>
+        <div class="fc-tag"><div class="fc-dot"></div>Live Analysis</div>
+        <h2>Federal Reserve Holds Rates: What It Means For Every Asset Class in 2025</h2>
+        <p>With inflation cooling but employment stubbornly strong, the Fed's pause has sent ripples across equities, bonds, crypto and real estate. Our complete breakdown of what happens next.</p>
+        <div class="fc-meta">
+          <span class="author">Finance Meridian Research</span>
+          <span>·</span>
+          <span class="ai-badge">🤖 AI-Assisted</span>
+          <span>·</span>
+          <span>March 9, 2025</span>
+          <span>·</span>
+          <span>12 min read</span>
+        </div>
+      </div>
+      <div class="side-stack">
+        <div class="side-art">
+          <div class="tag">💱 Crypto</div>
+          <h3>Bitcoin's Institutional Surge: On-Chain Data Shows Record HODLing</h3>
+          <p>Long-term holder supply hits all-time high even as price approaches resistance levels.</p>
+          <div class="smeta"><div class="ai-dot"></div><span>AI-Assisted</span><span>·</span><span>6 min</span></div>
+        </div>
+        <div class="side-art">
+          <div class="tag">📊 Investing</div>
+          <h3>The 4% Rule Is Dead — Here's the New Retirement Withdrawal Strategy</h3>
+          <p>With sequence-of-returns risk and higher inflation, financial planners are rethinking safe withdrawal rates.</p>
+          <div class="smeta"><div class="ai-dot"></div><span>AI-Assisted</span><span>·</span><span>8 min</span></div>
+        </div>
+        <div class="side-art">
+          <div class="tag">🏠 Real Estate</div>
+          <h3>Mortgage Rates Drop 30bps: The Best Window to Refinance in 3 Years</h3>
+          <p>Break-even analysis for homeowners considering a refinance right now.</p>
+          <div class="smeta"><div class="ai-dot"></div><span>AI-Assisted</span><span>·</span><span>5 min</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKET STRIP -->
+    <div class="market-strip" id="mktStrip"></div>
+
+    <!-- CONTENT + SIDEBAR -->
+    <div class="content-grid">
+      <div>
+        <div class="sec-hdr"><div class="sec-title">Latest Analysis</div><button class="sec-more">All Articles →</button></div>
+        <div class="art-list">
+          <div class="art-card">
+            <div>
+              <div class="art-tag">📈 Options Trading</div>
+              <h3>Understanding the Greeks: How Delta, Gamma, Theta & Vega Shape Your Positions</h3>
+              <p>Options pricing is driven by five Greek letters that measure sensitivity to different variables. Master these and you'll understand why options move the way they do.</p>
+              <div class="art-meta"><span>Finance Meridian Education</span><span>·</span><span>14 min</span><span>·</span><span class="ai-label">🤖 AI-Assisted</span><span>·</span><span>Advanced</span></div>
+            </div>
+            <div class="art-thumb" style="background:linear-gradient(135deg,#0d2535,#0a1a2e)">📊</div>
+          </div>
+          <div class="art-card">
+            <div>
+              <div class="art-tag">🏦 Personal Finance</div>
+              <h3>High-Yield Savings vs Money Market vs T-Bills: The 2025 Cash Strategy Guide</h3>
+              <p>With rates still elevated, idle cash should be working. We compare yields, liquidity, and risk across the top options available right now.</p>
+              <div class="art-meta"><span>Finance Meridian Personal</span><span>·</span><span>9 min</span><span>·</span><span class="ai-label">🤖 AI-Assisted</span><span>·</span><span>Beginner</span></div>
+            </div>
+            <div class="art-thumb" style="background:linear-gradient(135deg,#0a2515,#061a10)">💰</div>
+          </div>
+          <div class="art-card">
+            <div>
+              <div class="art-tag">🌍 Macro Economics</div>
+              <h3>China's Deflationary Spiral and What It Means for Global Emerging Markets</h3>
+              <p>Falling producer prices, property sector stress, and weak consumer demand are reshaping EM investment theses from Brazil to Vietnam.</p>
+              <div class="art-meta"><span>Finance Meridian Global</span><span>·</span><span>11 min</span><span>·</span><span class="ai-label">🤖 AI-Assisted</span><span>·</span><span>Intermediate</span></div>
+            </div>
+            <div class="art-thumb" style="background:linear-gradient(135deg,#1a1208,#100c05)">🌏</div>
+          </div>
+          <div class="art-card">
+            <div>
+              <div class="art-tag">🌱 Beginner Guide</div>
+              <h3>How to Build Your First Investment Portfolio Starting With ₹5,000 or $500</h3>
+              <p>Fractional shares, low-cost ETFs, and a systematic DCA plan — everything you need to start building wealth from almost nothing.</p>
+              <div class="art-meta"><span>Finance Meridian Academy</span><span>·</span><span>10 min</span><span>·</span><span class="ai-label">🤖 AI-Assisted</span><span>·</span><span>Beginner</span></div>
+            </div>
+            <div class="art-thumb" style="background:linear-gradient(135deg,#051a12,#03120d)">🌱</div>
+          </div>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="newsletter" style="margin-top:28px">
+          <h3>The Finance Meridian Daily</h3>
+          <p>AI-curated market intelligence, delivered every morning before markets open. Join 47,000+ subscribers.</p>
+          <div class="nl-form">
+            <input type="email" placeholder="your@email.com">
+            <button>Subscribe Free</button>
+          </div>
+          <div class="nl-stats">
+            <div class="nl-stat"><div class="val">47K+</div><div class="lbl">Subscribers</div></div>
+            <div class="nl-stat"><div class="val">4.8★</div><div class="lbl">Rating</div></div>
+            <div class="nl-stat"><div class="val">Daily</div><div class="lbl">Frequency</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="ad-slot">
+          <div style="font-size:36px;opacity:0.15">📣</div>
+          <div class="ad-label">Google AdSense</div>
+          <div class="ad-size">300 × 250</div>
+          <div class="ad-partner">Finance CPM: $18–$45</div>
+        </div>
+        <div class="s-widget">
+          <div class="s-head">📖 Today's Terms</div>
+          <div class="s-body">
+            <div class="dict-item"><h4>Yield Curve <span class="arr">→</span></h4><p>A graph of bond interest rates vs. maturity dates. Inversion often signals recession.</p></div>
+            <div class="dict-item"><h4>P/E Ratio <span class="arr">→</span></h4><p>Price ÷ Earnings per share. Measures how much investors pay per dollar of earnings.</p></div>
+            <div class="dict-item"><h4>Alpha <span class="arr">→</span></h4><p>Excess return generated above a benchmark. A fund with +3% alpha beat its index by 3%.</p></div>
+          </div>
+        </div>
+        <div class="s-widget">
+          <div class="s-head">🔥 Trending Now</div>
+          <div class="s-body">
+            <div class="trend-item"><div class="trend-n">1</div><div><div class="trend-title">What is a Hedge Fund?</div><div class="trend-cat">Investing Basics</div></div></div>
+            <div class="trend-item"><div class="trend-n">2</div><div><div class="trend-title">How to Read a Balance Sheet</div><div class="trend-cat">Financial Literacy</div></div></div>
+            <div class="trend-item"><div class="trend-n">3</div><div><div class="trend-title">Bitcoin Halving Explained</div><div class="trend-cat">Cryptocurrency</div></div></div>
+            <div class="trend-item"><div class="trend-n">4</div><div><div class="trend-title">ETF vs Index Fund vs Mutual Fund</div><div class="trend-cat">Fund Strategy</div></div></div>
+            <div class="trend-item"><div class="trend-n">5</div><div><div class="trend-title">What Causes Inflation?</div><div class="trend-cat">Economics</div></div></div>
+          </div>
+        </div>
+        <div class="ad-slot" style="min-height:160px">
+          <div style="font-size:28px;opacity:0.15">💳</div>
+          <div class="ad-label">Affiliate — Credit Cards</div>
+          <div class="ad-size">300 × 160</div>
+          <div class="ad-partner">$150–$400 per approval</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: MARKETS
+═══════════════════════════════════════ -->
+<div class="page" id="page-markets">
+  <div class="wrap">
+    <div class="page-heading"><h2>Live Market Data</h2><p>Prices update every 30 seconds. All data sourced from Yahoo Finance & CoinGecko (free APIs).</p></div>
+    <div class="markets-hero">
+      <h2>Global Markets Overview</h2>
+      <p>March 9, 2025 — Markets live as of <span id="liveTime">--:--:--</span></p>
+      <div class="idx-grid" id="idxGrid"></div>
+    </div>
+    <div class="content-grid">
+      <div>
+        <div class="sec-hdr"><div class="sec-title">US Equities — Top Movers</div><button class="sec-more">Full Screener →</button></div>
+        <div class="s-widget" style="margin-bottom:20px">
+          <div class="s-body" style="padding:0">
+            <table class="mkt-table" id="stockTable"></table>
+          </div>
+        </div>
+        <div class="sec-hdr"><div class="sec-title">Cryptocurrency Prices</div></div>
+        <div class="s-widget">
+          <div class="s-body" style="padding:0">
+            <table class="mkt-table" id="cryptoTable"></table>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="s-widget">
+          <div class="s-head">📊 Market Snapshot</div>
+          <div class="s-body" id="mktSnapshot"></div>
+        </div>
+        <div class="s-widget">
+          <div class="s-head">📰 Market Commentary</div>
+          <div class="s-body">
+            <p style="font-size:13px;color:var(--muted);line-height:1.7">Markets traded in a narrow range as investors digested the Fed's latest dot plot. The 10Y yield retreated to 4.28%, offering some relief to growth stocks. BTC held key support above $65K. Gold pushed to fresh highs on safe-haven demand. Watch CPI data Thursday for the next catalyst.</p>
+            <div style="font-size:11px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;align-items:center;gap:6px"><span style="background:rgba(77,166,255,0.1);border:1px solid rgba(77,166,255,0.2);color:var(--blue);font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px">🤖 AI-Generated</span> Updated 6:00 AM daily</div>
+          </div>
+        </div>
+        <div class="ad-slot"><div style="font-size:32px;opacity:0.15">📱</div><div class="ad-label">Broker Affiliate</div><div class="ad-size">Open Account — $200/referral</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: AI ENGINE
+═══════════════════════════════════════ -->
+<div class="page" id="page-ai">
+  <div class="wrap">
+    <div class="page-heading"><h2>✦ AI Content Engine</h2><p>Powered by Claude AI — generates SEO-optimised articles, dictionary definitions, and market commentary automatically.</p></div>
+    <div class="ftc-bar">⚠️ <strong>Editorial Policy:</strong> All AI-generated articles are labelled clearly. Financial data is verified against live sources before publishing. Content is educational only — not financial advice.</div>
+    <div class="ai-engine">
+      <div class="ae-top">
+        <div>
+          <div class="ae-label"><div class="ae-pulse"></div>Live AI Article Generator</div>
+          <div class="ae-desc">Type any finance topic and get a full, SEO-ready article in seconds</div>
+        </div>
+        <div class="ae-form">
+          <input class="ae-input" id="aiTopic" type="text" placeholder="e.g. dollar-cost averaging, P/E ratio, DeFi...">
+          <select class="ae-select" id="aiLevel">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected>Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+          <button class="btn-generate" id="genBtn" onclick="generateArticle()">
+            <span id="genBtnTxt">✦ Generate</span>
+            <div class="spin" id="genSpin" style="display:none"></div>
+          </button>
+        </div>
+      </div>
+      <div class="quick-topics">
+        <span style="font-size:12px;color:var(--muted);margin-right:4px">Quick topics:</span>
+        <span class="q-topic" onclick="setTopic(this)">Inflation</span>
+        <span class="q-topic" onclick="setTopic(this)">Bitcoin Halving</span>
+        <span class="q-topic" onclick="setTopic(this)">Options Basics</span>
+        <span class="q-topic" onclick="setTopic(this)">Roth IRA</span>
+        <span class="q-topic" onclick="setTopic(this)">Compound Interest</span>
+        <span class="q-topic" onclick="setTopic(this)">Short Selling</span>
+        <span class="q-topic" onclick="setTopic(this)">ETF Explained</span>
+        <span class="q-topic" onclick="setTopic(this)">Bull vs Bear Market</span>
+      </div>
+      <div class="gen-result" id="genResult">
+        <div class="g-label"><div class="fc-dot" style="background:var(--teal)"></div>AI-Generated · Educational Content Only · Not Financial Advice</div>
+        <h3 id="genTitle"></h3>
+        <div class="g-body" id="genBody"></div>
+        <div class="gen-disclaimer"><strong>⚠️ Disclaimer:</strong> This article was generated with AI assistance and is for educational purposes only. It does not constitute financial, investment, or legal advice. Always consult a qualified financial adviser before making investment decisions. Past performance does not indicate future results.</div>
+      </div>
+    </div>
+
+    <!-- How the engine works -->
+    <div class="s-widget" style="margin-bottom:20px">
+      <div class="s-head">⚙️ How the Automation Engine Works</div>
+      <div class="s-body">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:8px 0">
+          <div style="text-align:center">
+            <div style="font-size:32px;margin-bottom:10px">⏰</div>
+            <div style="font-size:13px;font-weight:600;color:var(--bright);margin-bottom:6px">Scheduled Jobs</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Python APScheduler runs 5–10 article generations daily at 6 AM on your Oracle VM</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:32px;margin-bottom:10px">🤖</div>
+            <div style="font-size:13px;font-weight:600;color:var(--bright);margin-bottom:6px">Claude AI Writes</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Each article targets a specific long-tail SEO keyword. Cost: ~$0.003 per article via API</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:32px;margin-bottom:10px">✅</div>
+            <div style="font-size:13px;font-weight:600;color:var(--bright);margin-bottom:6px">Auto Compliance</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Disclaimer, AI label, and affiliate disclosure injected automatically. Numbers flagged for review.</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:32px;margin-bottom:10px">📡</div>
+            <div style="font-size:13px;font-weight:600;color:var(--bright);margin-bottom:6px">Auto-Published</div>
+            <div style="font-size:12.5px;color:var(--muted);line-height:1.6">Saved to Oracle DB, sitemap updated, IndexNow ping sent to Google & Bing instantly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: DICTIONARY
+═══════════════════════════════════════ -->
+<div class="page" id="page-dictionary">
+  <div class="wrap">
+    <div class="dict-hero">
+      <h2>Financial Dictionary</h2>
+      <p>10,000+ terms explained clearly. AI-powered lookups for anything not in our database.</p>
+      <div class="dict-search-wrap">
+        <input type="text" id="dictInput" placeholder="Search any financial term..." onkeypress="if(event.key==='Enter')lookupTerm()">
+        <button onclick="lookupTerm()">Define →</button>
+      </div>
+      <div class="dict-result-box" id="dictResult">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:6px"><div class="fc-dot" style="background:var(--teal)"></div>AI-Powered Definition</div>
+        <h3 id="dictTerm"></h3>
+        <div class="def" id="dictDef"></div>
+      </div>
+    </div>
+    <div class="alpha" id="alphaNav"></div>
+    <div class="terms-grid" id="termsGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: EDUCATION
+═══════════════════════════════════════ -->
+<div class="page" id="page-education">
+  <div class="wrap">
+    <div class="page-heading"><h2>Finance Meridian Academy</h2><p>Structured learning paths for every experience level. All content AI-generated and human-reviewed.</p></div>
+    <div class="edu-grid">
+      <div class="edu-card edu-beginner">
+        <div class="edu-icon">🌱</div>
+        <div class="edu-level">Beginner</div>
+        <h3>Investing 101: Your First Steps</h3>
+        <p>What is the stock market? How do you open a brokerage account? What's the difference between stocks, bonds, and ETFs?</p>
+        <div class="edu-meta"><span>12 lessons</span><span>·</span><span>~4 hours</span><span>·</span><span>Free</span></div>
+      </div>
+      <div class="edu-card edu-inter">
+        <div class="edu-icon">📊</div>
+        <div class="edu-level">Intermediate</div>
+        <h3>Portfolio Construction & Modern Theory</h3>
+        <p>Asset allocation, rebalancing, correlation, diversification, and building a resilient long-term portfolio.</p>
+        <div class="edu-meta"><span>18 lessons</span><span>·</span><span>~7 hours</span><span>·</span><span>Free</span></div>
+      </div>
+      <div class="edu-card edu-adv">
+        <div class="edu-icon">⚡</div>
+        <div class="edu-level">Advanced</div>
+        <h3>Options Mastery: Greeks to Strategies</h3>
+        <p>Covered calls, protective puts, iron condors, straddles, and managing theta decay professionally.</p>
+        <div class="edu-meta"><span>24 lessons</span><span>·</span><span>~12 hours</span><span>·</span><span>Pro</span></div>
+      </div>
+      <div class="edu-card edu-beginner">
+        <div class="edu-icon">🏠</div>
+        <div class="edu-level">Beginner</div>
+        <h3>Personal Finance Foundations</h3>
+        <p>Budgeting, emergency funds, debt payoff strategies, credit scores, and building financial security.</p>
+        <div class="edu-meta"><span>15 lessons</span><span>·</span><span>~5 hours</span><span>·</span><span>Free</span></div>
+      </div>
+      <div class="edu-card edu-inter">
+        <div class="edu-icon">💱</div>
+        <div class="edu-level">Intermediate</div>
+        <h3>Cryptocurrency & DeFi Explained</h3>
+        <p>Blockchain technology, wallets, DeFi protocols, staking, yield farming, and managing crypto risk.</p>
+        <div class="edu-meta"><span>20 lessons</span><span>·</span><span>~8 hours</span><span>·</span><span>Free</span></div>
+      </div>
+      <div class="edu-card edu-adv">
+        <div class="edu-icon">🏛️</div>
+        <div class="edu-level">Advanced</div>
+        <h3>Macroeconomics for Investors</h3>
+        <p>Reading Fed policy, yield curves, CPI, PMI, and using macro indicators to position your portfolio.</p>
+        <div class="edu-meta"><span>22 lessons</span><span>·</span><span>~10 hours</span><span>·</span><span>Pro</span></div>
+      </div>
+    </div>
+    <div class="newsletter">
+      <h3>Get the Finance Meridian Daily Brief</h3>
+      <p>AI-written market summary, one educational concept, and the top financial news — every morning at 7 AM.</p>
+      <div class="nl-form">
+        <input type="email" placeholder="your@email.com">
+        <button onclick="this.textContent='✓ Subscribed!'">Subscribe Free</button>
+      </div>
+      <p style="font-size:11.5px;color:var(--muted);margin-top:14px">Unsubscribe anytime · CAN-SPAM compliant · No spam, ever</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PAGE: LEGAL
+═══════════════════════════════════════ -->
+<div class="page" id="page-legal">
+  <div class="wrap">
+    <div class="legal-wrap">
+      <div class="legal-hero-mini">
+        <h2>Legal & Compliance</h2>
+        <p>Finance Meridian operates transparently under applicable financial content laws. All policies are displayed here.</p>
+      </div>
+      <div class="comp-strip">
+        <div class="comp-pill ok"><div class="ci">⚖️</div><div><div class="ct">Not Financial Advice</div><div class="cd">All content is educational only. Disclaimer on every page.</div></div></div>
+        <div class="comp-pill ok"><div class="ci">📣</div><div><div class="ct">FTC Compliant</div><div class="cd">Affiliate disclosures displayed above all partner content.</div></div></div>
+        <div class="comp-pill ok"><div class="ci">🍪</div><div><div class="ct">GDPR / CCPA Ready</div><div class="cd">Cookie consent required before any tracking loads.</div></div></div>
+        <div class="comp-pill warn"><div class="ci">🤖</div><div><div class="ct">AI Content Labelled</div><div class="cd">All AI-generated articles carry visible disclosure badges.</div></div></div>
+        <div class="comp-pill ok"><div class="ci">©️</div><div><div class="ct">DMCA Safe Harbor</div><div class="cd">Designated agent registered. Takedown process active.</div></div></div>
+        <div class="comp-pill ok"><div class="ci">📧</div><div><div class="ct">CAN-SPAM Compliant</div><div class="cd">All emails include unsubscribe link and physical address.</div></div></div>
+      </div>
+
+      <!-- Accordion legal docs -->
+      <div class="legal-card">
+        <div class="legal-card-head" onclick="toggleLegal(this)">
+          <h4>⚠️ Financial Disclaimer</h4>
+          <span style="color:var(--muted);font-size:20px" class="arr-icon">+</span>
+        </div>
+        <div class="legal-card-body">
+          <h5>What we are</h5>
+          <p>Finance Meridian is an educational finance media platform. We are <span class="dont">NOT</span> a registered investment adviser, broker-dealer, financial planner, or licensed financial professional in any jurisdiction.</p>
+          <h5>What our content is</h5>
+          <p><span class="do">Educational content</span> about financial concepts, markets, and strategies. Nothing published on Finance Meridian constitutes a personal recommendation to buy, sell, or hold any security or asset.</p>
+          <h5>The language rule (enforced in AI prompts)</h5>
+          <div class="code-snip">❌  "You should buy XYZ" / "We recommend selling bonds"
+✅  "Historically, investors have..." / "Some analysts believe..."
+✅  "This is for educational purposes. Consult an adviser."</div>
+          <h5>Risk warning</h5>
+          <p>Investing involves significant risk of loss. Past performance is not indicative of future results. Never invest money you cannot afford to lose.</p>
+        </div>
+      </div>
+
+      <div class="legal-card">
+        <div class="legal-card-head" onclick="toggleLegal(this)">
+          <h4>📣 FTC Affiliate & Advertising Disclosure</h4>
+          <span style="color:var(--muted);font-size:20px" class="arr-icon">+</span>
+        </div>
+        <div class="legal-card-body">
+          <p>Finance Meridian earns commissions from affiliate partnerships with brokers, financial product providers, credit card companies, and insurance providers. <span class="do">This disclosure appears at the top of every article containing affiliate links</span> — not just in the footer.</p>
+          <h5>How links are marked</h5>
+          <div class="code-snip">&lt;a href="broker-url" rel="sponsored nofollow"&gt;
+  Open Account &lt;span class="ad-tag"&gt;[Ad]&lt;/span&gt;
+&lt;/a&gt;</div>
+          <p>Required by FTC 16 CFR § 255 (updated 2023). Disclosures must appear <span class="do">before</span> the recommendation, not buried in footers.</p>
+        </div>
+      </div>
+
+      <div class="legal-card">
+        <div class="legal-card-head" onclick="toggleLegal(this)">
+          <h4>🔒 Privacy Policy (GDPR · CCPA · PDPA)</h4>
+          <span style="color:var(--muted);font-size:20px" class="arr-icon">+</span>
+        </div>
+        <div class="legal-card-body">
+          <h5>Data we collect</h5>
+          <p>Analytics data (pages, device, approximate location via Google Analytics), email addresses for newsletter subscribers, and contact form submissions. We do <span class="dont">NOT</span> sell personal data.</p>
+          <h5>Cookies</h5>
+          <p>No advertising or analytics cookies load without explicit user consent. The consent banner appears on first visit. Users can withdraw consent by clearing cookies.</p>
+          <h5>Your rights (GDPR)</h5>
+          <p>Right of Access · Right to Erasure (within 30 days) · Right to Object · Right to Portability. Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b0b09120d1a18023b1d12150c12081e55181416">[email&#160;protected]</a></p>
+          <h5>California residents (CCPA)</h5>
+          <p>Right to know, right to delete, right to opt-out of sale. We do not sell data. Submit requests to <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7c7c5dec1d6d4cef7d1ded9c0dec4d299d4d8da">[email&#160;protected]</a></p>
+        </div>
+      </div>
+
+      <div class="legal-card">
+        <div class="legal-card-head" onclick="toggleLegal(this)">
+          <h4>🤖 AI Content Policy</h4>
+          <span style="color:var(--muted);font-size:20px" class="arr-icon">+</span>
+        </div>
+        <div class="legal-card-body">
+          <p>Some content on Finance Meridian is generated with AI assistance and clearly labelled with a <span style="background:rgba(77,166,255,0.1);border:1px solid rgba(77,166,255,0.2);color:var(--blue);font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px">🤖 AI-Assisted</span> badge as required by EU AI Act Article 52.</p>
+          <h5>Our AI rules (enforced in system prompts)</h5>
+          <div class="code-snip">1. Never make specific price predictions
+2. Never recommend specific securities
+3. Always frame as educational content
+4. Flag articles with specific stats for human review
+5. Auto-inject disclaimer on every generated article</div>
+          <h5>Copyright</h5>
+          <p>AI-generated articles with human editorial input are copyright Finance Meridian. We do not reproduce third-party copyrighted content.</p>
+        </div>
+      </div>
+
+      <div class="legal-card">
+        <div class="legal-card-head" onclick="toggleLegal(this)">
+          <h4>©️ DMCA Policy & Terms of Use</h4>
+          <span style="color:var(--muted);font-size:20px" class="arr-icon">+</span>
+        </div>
+        <div class="legal-card-body">
+          <h5>DMCA Safe Harbor</h5>
+          <p>Finance Meridian has registered a Designated Agent with the US Copyright Office (copyright.gov/dmca-directory), activating Safe Harbor protection under 17 U.S.C. § 512. Copyright infringement notices: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="87e3eae4e6c7e1eee9f0eef4e2a9e4e8ea">[email&#160;protected]</a></p>
+          <h5>Terms of Use</h5>
+          <p>Content is for personal, non-commercial educational use only. Reproduction or redistribution without written permission is prohibited. Finance Meridian is not liable for financial losses arising from use of information on this site.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ AFFILIATE STRIP ═══════════ -->
+<div class="rev-strip">
+  <div class="rev-inner">
+    <span class="rev-lbl">Sponsored:</span>
+    <div class="rev-item"><span class="ri">📱</span><div><div class="rt">Open a Brokerage</div><div class="rs">Get free stocks</div></div><span class="rev-badge">$200/referral</span></div>
+    <div class="rev-item"><span class="ri">💳</span><div><div class="rt">Best Credit Cards 2025</div><div class="rs">Up to $500 bonus</div></div><span class="rev-badge">$150–400/approval</span></div>
+    <div class="rev-item"><span class="ri">🏠</span><div><div class="rt">Compare Mortgage Rates</div><div class="rs">Find your best deal</div></div><span class="rev-badge">$500/lead</span></div>
+    <div class="rev-item"><span class="ri">🛡️</span><div><div class="rt">Life Insurance Quotes</div><div class="rs">Protect your family</div></div><span class="rev-badge">$80–200/lead</span></div>
+    <div class="rev-item"><span class="ri">📊</span><div><div class="rt">Find a Financial Advisor</div><div class="rs">Free matching</div></div><span class="rev-badge">$300/referral</span></div>
+    <div class="rev-item"><span class="ri">🎓</span><div><div class="rt">Finance Meridian Pro Membership</div><div class="rs">All features unlocked</div></div><span class="rev-badge">$49/month</span></div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo">Finance<em>Meridian</em></a>
+        <p>Your AI-powered financial intelligence platform. Educational content, real-time market data, and automated insights — running 24/7 on Oracle Cloud, powered by Claude AI.</p>
+        <div class="tech">Stack: FastAPI · Oracle ARM · Claude API · Yahoo Finance · CoinGecko · Nginx</div>
+      </div>
+      <div class="foot-col">
+        <h5>Markets</h5>
+        <a>Stocks</a><a>Cryptocurrencies</a><a>ETFs & Funds</a><a>Bonds & Rates</a><a>Forex</a><a>Commodities</a>
+      </div>
+      <div class="foot-col">
+        <h5>Learn</h5>
+        <a>Beginner Guide</a><a>Financial Dictionary</a><a>Video Tutorials</a><a>Calculators</a><a>Newsletter</a><a>AI Engine</a>
+      </div>
+      <div class="foot-col">
+        <h5>Legal</h5>
+        <a onclick="goto('legal')">Disclaimer</a>
+        <a onclick="goto('legal')">Privacy Policy</a>
+        <a onclick="goto('legal')">Affiliate Disclosure</a>
+        <a onclick="goto('legal')">Terms of Use</a>
+        <a onclick="goto('legal')">AI Content Policy</a>
+        <a onclick="goto('legal')">DMCA</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="disclaimer">⚠️ <strong>Disclaimer:</strong> All content on Finance Meridian is for educational and informational purposes only. Nothing constitutes financial, investment, tax, or legal advice. Finance Meridian is not a registered investment adviser. Always consult a qualified financial professional. Investing involves risk including loss of principal.</div>
+      <div class="foot-copy">© 2026 Finance Meridian<br>Built with Claude AI · Hosted on Vercel</div>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ═══ TICKER DATA ═══
+const TICKERS = [
+  {sym:'AAPL',price:'189.42',chg:'+1.24%',up:true},{sym:'MSFT',price:'378.91',chg:'+0.87%',up:true},
+  {sym:'GOOGL',price:'140.23',chg:'-0.43%',up:false},{sym:'AMZN',price:'185.60',chg:'+2.01%',up:true},
+  {sym:'NVDA',price:'875.40',chg:'+3.12%',up:true},{sym:'TSLA',price:'245.32',chg:'-1.78%',up:false},
+  {sym:'META',price:'502.10',chg:'+1.55%',up:true},{sym:'BTC/USD',price:'67,420',chg:'+3.21%',up:true},
+  {sym:'ETH/USD',price:'3,542',chg:'+2.87%',up:true},{sym:'GOLD',price:'2,342',chg:'+0.52%',up:true},
+  {sym:'S&P 500',price:'5,234',chg:'+0.61%',up:true},{sym:'EUR/USD',price:'1.0821',chg:'-0.12%',up:false},
+  {sym:'10Y YIELD',price:'4.312%',chg:'+0.04',up:true},{sym:'WTI CRUDE',price:'78.42',chg:'-0.33%',up:false},
+  {sym:'DXY',price:'104.12',chg:'+0.22%',up:true},{sym:'SOL/USD',price:'172.30',chg:'+4.11%',up:true}
+];
+function buildTicker(){
+  const t=document.getElementById('ticker');
+  const items=[...TICKERS,...TICKERS];
+  t.innerHTML=items.map(x=>`<div class="t-item"><span class="t-sym">${x.sym}</span><span class="t-price">${x.price}</span><span class="${x.up?'t-up':'t-dn'}">${x.up?'▲':'▼'} ${x.chg}</span></div>`).join('');
+}
+buildTicker();
+
+// ═══ PAGE NAVIGATION ═══
+function goto(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.main-nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  const nav=document.getElementById('nav-'+page);
+  if(nav) nav.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ═══ MARKET STRIP ═══
+const MKT=[
+  {sym:'SPX',name:'S&P 500',price:'5,234',chg:'+0.61%',up:true},
+  {sym:'NDX',name:'Nasdaq 100',price:'18,211',chg:'+0.79%',up:true},
+  {sym:'DJI',name:'Dow Jones',price:'39,512',chg:'-0.22%',up:false},
+  {sym:'BTC',name:'Bitcoin',price:'$67,420',chg:'+3.21%',up:true},
+  {sym:'XAU',name:'Gold Spot',price:'$2,342',chg:'+0.52%',up:true},
+  {sym:'VIX',name:'Volatility',price:'14.82',chg:'-5.3%',up:false}
+];
+function spark(up){
+  const pts=[];
+  let v=50;
+  for(let i=0;i<8;i++){v+=Math.random()*12-5;v=Math.max(5,Math.min(55,v));pts.push({x:i*11,y:v});}
+  if(up) pts[pts.length-1].y=Math.min(pts[pts.length-1].y,20);
+  else pts[pts.length-1].y=Math.max(pts[pts.length-1].y,40);
+  const col=up?'#00d68f':'#ff4d5b';
+  const pstr=pts.map(p=>`${p.x},${p.y}`).join(' ');
+  return `<svg class="spark" width="80" height="28" viewBox="0 0 80 60"><polyline points="${pstr}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/></svg>`;
+}
+document.getElementById('mktStrip').innerHTML=MKT.map(m=>`
+  <div class="mkt-card ${m.up?'up':'dn'}">
+    <div class="mkt-sym">${m.sym}</div>
+    <div class="mkt-name">${m.name}</div>
+    <div class="mkt-price">${m.price}</div>
+    <div class="mkt-chg ${m.up?'chg-up':'chg-dn'}">${m.up?'▲':'▼'} ${m.chg}</div>
+    ${spark(m.up)}
+  </div>`).join('');
+
+// ═══ MARKETS PAGE ═══
+const INDICES=[
+  {name:'S&P 500',val:'5,234.18',chg:'+31.86',pct:'+0.61%',up:true},
+  {name:'Nasdaq 100',val:'18,211.46',chg:'+142.3',pct:'+0.79%',up:true},
+  {name:'Dow Jones',val:'39,512.84',chg:'-87.2',pct:'-0.22%',up:false},
+  {name:'Russell 2000',val:'2,108.32',chg:'+18.4',pct:'+0.88%',up:true}
+];
+document.getElementById('idxGrid').innerHTML=INDICES.map(i=>`
+  <div class="idx-card">
+    <div class="idx-name">${i.name}</div>
+    <div class="idx-val">${i.val}</div>
+    <div class="idx-chg ${i.up?'chg-up':'chg-dn'}">${i.up?'▲':'▼'} ${i.chg} (${i.pct})</div>
+    ${spark(i.up)}
+  </div>`).join('');
+
+const STOCKS=[
+  {name:'Apple Inc.',sym:'AAPL',price:'$189.42',chg:'+$2.31',pct:'+1.24%',mktcap:'$2.9T',vol:'68.4M',up:true,bar:95},
+  {name:'Microsoft',sym:'MSFT',price:'$378.91',chg:'+$3.26',pct:'+0.87%',mktcap:'$2.8T',vol:'22.1M',up:true,bar:92},
+  {name:'NVIDIA',sym:'NVDA',price:'$875.40',chg:'+$26.5',pct:'+3.12%',mktcap:'$2.1T',vol:'45.8M',up:true,bar:87},
+  {name:'Alphabet',sym:'GOOGL',price:'$140.23',chg:'-$0.61',pct:'-0.43%',mktcap:'$1.7T',vol:'30.2M',up:false,bar:78},
+  {name:'Amazon',sym:'AMZN',price:'$185.60',chg:'+$3.68',pct:'+2.01%',mktcap:'$1.9T',vol:'41.7M',up:true,bar:82},
+  {name:'Tesla',sym:'TSLA',price:'$245.32',chg:'-$4.44',pct:'-1.78%',mktcap:'$780B',vol:'88.2M',up:false,bar:52},
+];
+document.getElementById('stockTable').innerHTML=`
+  <thead><tr><th>Company</th><th>Price</th><th>Change</th><th>% Chg</th><th>Mkt Cap</th><th>Volume</th></tr></thead>
+  <tbody>${STOCKS.map(s=>`
+    <tr>
+      <td><div class="stock-name">${s.name}</div><div class="stock-sym">${s.sym}</div></td>
+      <td style="font-family:'JetBrains Mono',monospace">${s.price}</td>
+      <td style="color:${s.up?'var(--green)':'var(--red)'};font-family:'JetBrains Mono',monospace">${s.chg}</td>
+      <td style="color:${s.up?'var(--green)':'var(--red)'};font-family:'JetBrains Mono',monospace">${s.pct}</td>
+      <td>${s.mktcap}</td>
+      <td>${s.vol}<div class="mc-bar"><div class="mc-fill" style="width:${s.bar}%"></div></div></td>
+    </tr>`).join('')}</tbody>`;
+
+const CRYPTOS=[
+  {name:'Bitcoin',sym:'BTC',price:'$67,420',chg:'+$2,108',pct:'+3.21%',mktcap:'$1.3T',vol:'$38B',up:true,bar:90},
+  {name:'Ethereum',sym:'ETH',price:'$3,542',chg:'+$98.2',pct:'+2.87%',mktcap:'$425B',vol:'$18B',up:true,bar:72},
+  {name:'Solana',sym:'SOL',price:'$172.30',chg:'+$6.82',pct:'+4.11%',mktcap:'$75B',vol:'$4.2B',up:true,bar:55},
+  {name:'BNB',sym:'BNB',price:'$412.50',chg:'-$8.20',pct:'-1.95%',mktcap:'$62B',vol:'$1.8B',up:false,bar:48},
+];
+document.getElementById('cryptoTable').innerHTML=`
+  <thead><tr><th>Asset</th><th>Price</th><th>Change</th><th>% Chg</th><th>Mkt Cap</th><th>24h Vol</th></tr></thead>
+  <tbody>${CRYPTOS.map(c=>`
+    <tr>
+      <td><div class="stock-name">${c.name}</div><div class="stock-sym">${c.sym}</div></td>
+      <td style="font-family:'JetBrains Mono',monospace">${c.price}</td>
+      <td style="color:${c.up?'var(--green)':'var(--red)'};font-family:'JetBrains Mono',monospace">${c.chg}</td>
+      <td style="color:${c.up?'var(--green)':'var(--red)'};font-family:'JetBrains Mono',monospace">${c.pct}</td>
+      <td>${c.mktcap}</td>
+      <td>${c.vol}<div class="mc-bar"><div class="mc-fill" style="width:${c.bar}%;background:var(--gold)"></div></div></td>
+    </tr>`).join('')}</tbody>`;
+
+document.getElementById('mktSnapshot').innerHTML=`
+  <div style="display:flex;flex-direction:column;gap:10px">
+    ${[['Fear & Greed','Greed — 71','var(--green)'],['VIX','14.82 ▼','var(--green)'],['10Y Yield','4.312% ▲','var(--red)'],['DXY','104.12 ▲','var(--gold)'],['Gold','$2,342 ▲','var(--gold)'],['WTI Oil','$78.42 ▼','var(--red)']].map(([l,v,c])=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)">
+      <span style="font-size:13px;color:var(--muted)">${l}</span>
+      <span style="font-size:13px;font-weight:600;color:${c};font-family:'JetBrains Mono',monospace">${v}</span>
+    </div>`).join('')}
+  </div>`;
+
+// Live clock
+function tick(){document.getElementById('liveTime').textContent=new Date().toLocaleTimeString();}
+tick(); setInterval(tick,1000);
+
+// ═══ DICTIONARY PAGE ═══
+const TERMS=[
+  {badge:'Investing',color:'rgba(0,214,143,0.15)',tc:'var(--teal)',term:'Dollar-Cost Averaging',def:'Investing fixed amounts at regular intervals regardless of price. Reduces impact of volatility.'},
+  {badge:'Banking',color:'rgba(77,166,255,0.15)',tc:'var(--blue)',term:'FDIC Insurance',def:'US government program insuring bank deposits up to $250,000 per depositor, per institution.'},
+  {badge:'Risk',color:'rgba(255,77,91,0.15)',tc:'var(--red)',term:'VIX Index',def:'The "fear gauge." Measures expected S&P 500 volatility over 30 days. Above 30 = high fear.'},
+  {badge:'Trading',color:'rgba(232,184,75,0.15)',tc:'var(--gold)',term:'Arbitrage',def:'Simultaneously buying and selling an asset in different markets to profit from price differences.'},
+  {badge:'Macro',color:'rgba(155,89,182,0.15)',tc:'#a855f7',term:'Quantitative Easing',def:'Central bank policy of purchasing securities to increase money supply and stimulate growth.'},
+  {badge:'Analysis',color:'rgba(0,214,143,0.15)',tc:'var(--teal)',term:'EBITDA',def:'Earnings Before Interest, Taxes, Depreciation & Amortization. Core operational profitability proxy.'},
+  {badge:'Options',color:'rgba(232,184,75,0.15)',tc:'var(--gold)',term:'Theta Decay',def:'The rate at which an option loses value as time passes. Works against option buyers daily.'},
+  {badge:'Crypto',color:'rgba(77,166,255,0.15)',tc:'var(--blue)',term:'Proof of Stake',def:'Consensus mechanism where validators stake cryptocurrency as collateral to validate transactions.'},
+  {badge:'Bonds',color:'rgba(255,77,91,0.15)',tc:'var(--red)',term:'Duration Risk',def:'Sensitivity of a bond\'s price to interest rate changes. Longer duration = higher risk.'},
+];
+document.getElementById('termsGrid').innerHTML=TERMS.map(t=>`
+  <div class="term-card">
+    <div class="term-badge" style="background:${t.color};color:${t.tc}">${t.badge}</div>
+    <h4>${t.term}</h4>
+    <p>${t.def}</p>
+  </div>`).join('');
+
+// Alpha nav
+const alpha='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const alphaNav=document.getElementById('alphaNav');
+alpha.forEach((l,i)=>{
+  const s=document.createElement('span');
+  s.textContent=l;
+  if(i===0)s.classList.add('active');
+  s.onclick=()=>{alphaNav.querySelectorAll('span').forEach(x=>x.classList.remove('active'));s.classList.add('active');};
+  alphaNav.appendChild(s);
+});
+
+async function lookupTerm(){
+  const term=document.getElementById('dictInput').value.trim();
+  if(!term) return;
+  const res=document.getElementById('dictResult');
+  const defEl=document.getElementById('dictDef');
+  document.getElementById('dictTerm').textContent=term;
+  defEl.innerHTML='<em style="color:var(--muted)">Looking up definition via AI...</em>';
+  res.classList.add('show');
+  res.scrollIntoView({behavior:'smooth',block:'nearest'});
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:'You are a financial dictionary for an Investopedia-style site. Give a clear, beginner-friendly definition. Format: 1) One-sentence definition. 2) Two to three sentences explaining it further. 3) A real-world example starting with "Example:". Use plain language, no jargon. Do not use markdown headers.',messages:[{role:'user',content:`Define the financial term: "${term}"`}]})});
+    const d=await r.json();
+    defEl.innerHTML=`<p>${(d.content[0].text||'').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>')}</p>`;
+  }catch{
+    defEl.innerHTML='<p style="color:var(--muted)">Connect your Anthropic API key to enable live AI dictionary lookups. This field will define any financial term automatically on your live site.</p>';
+  }
+}
+
+// ═══ AI ARTICLE GENERATOR ═══
+function setTopic(el){document.getElementById('aiTopic').value=el.textContent;}
+
+async function generateArticle(){
+  const topic=document.getElementById('aiTopic').value.trim()||'compound interest';
+  const level=document.getElementById('aiLevel').value;
+  const btn=document.getElementById('genBtn');
+  const spin=document.getElementById('genSpin');
+  const txt=document.getElementById('genBtnTxt');
+  const res=document.getElementById('genResult');
+  btn.disabled=true; spin.style.display='block'; txt.textContent='Generating...';
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,system:`You are Finance Meridian, a senior financial writer. Write educational, SEO-optimised finance articles for a ${level}-level audience. Rules: (1) Start with TITLE: on the first line. (2) Use HTML: <h4> for subheadings, <p> for paragraphs, <ul><li> for lists. (3) Include Key Takeaways as a <ul> near the start. (4) Frame everything as education, NEVER as personal financial advice. (5) Be accurate, engaging, and clear. (6) Do not include the disclaimer — it is added automatically.`,messages:[{role:'user',content:`Write a comprehensive article about: "${topic}"\nLength: ~800 words\nLevel: ${level}`}]})});
+    const d=await r.json();
+    const txt2=d.content[0].text||'';
+    const titleM=txt2.match(/TITLE:\s*(.+)/);
+    document.getElementById('genTitle').textContent=titleM?titleM[1].trim():`Understanding ${topic}`;
+    document.getElementById('genBody').innerHTML=txt2.replace(/TITLE:.*\n?/,'').trim();
+    res.classList.add('show');
+    res.scrollIntoView({behavior:'smooth',block:'start'});
+  }catch{
+    document.getElementById('genTitle').textContent=`Understanding ${topic}`;
+    document.getElementById('genBody').innerHTML=`<p style="color:var(--muted)">Connect your Anthropic API key to generate live articles. On your Oracle Cloud server, this generates 5–10 new SEO articles automatically every day at 6 AM — with compliance labels, disclaimers, and affiliate disclosures injected automatically.</p><p style="color:var(--muted);margin-top:10px">Cost to generate this article: approximately $0.003</p>`;
+    res.classList.add('show');
+  }finally{
+    btn.disabled=false; spin.style.display='none'; txt.textContent='✦ Generate';
+  }
+}
+document.getElementById('aiTopic').addEventListener('keypress',e=>{if(e.key==='Enter')generateArticle();});
+
+// ═══ LEGAL ACCORDION ═══
+function toggleLegal(head){
+  const body=head.nextElementSibling;
+  const icon=head.querySelector('.arr-icon');
+  const isOpen=body.classList.contains('open');
+  document.querySelectorAll('.legal-card-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.arr-icon').forEach(i=>i.textContent='+');
+  if(!isOpen){body.classList.add('open');icon.textContent='−';}
+}
+
+// ═══ COOKIE BANNER ═══
+function closeCookie(accepted){
+  document.getElementById('cookieBanner').style.transform='translateY(100%)';
+  localStorage.setItem('fw_cookie',accepted?'accepted':'rejected');
+}
+setTimeout(()=>{
+  if(!localStorage.getItem('fw_cookie'))document.getElementById('cookieBanner').classList.add('show');
+},1500);
+
+// Simulate live price u
