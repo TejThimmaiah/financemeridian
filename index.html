@@ -93,6 +93,36 @@ header{background:var(--navy);border-bottom:1px solid var(--border);padding:0 32
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .wrap{max-width:1380px;margin:0 auto;padding:32px}
 
+/* ═══ ARTICLE PAGES ═══ */
+.art-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px;transition:color 0.2s}
+.art-back:hover{color:var(--gold)}
+.art-full{max-width:820px;margin:0 auto}
+.art-full-tag{display:inline-block;background:rgba(232,184,75,0.12);color:var(--gold);border:1px solid rgba(232,184,75,0.25);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px}
+.art-full h1{font-family:'Cormorant Garamond',serif;font-size:2.4em;font-weight:700;color:var(--bright);line-height:1.2;margin-bottom:12px}
+.art-full-sub{font-size:16px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.art-full-meta{display:flex;gap:16px;align-items:center;font-size:13px;color:var(--muted);padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:28px;flex-wrap:wrap}
+.art-full-meta .ai-badge{background:rgba(77,166,255,0.12);color:var(--blue);border:1px solid rgba(77,166,255,0.2);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.art-full-body{font-size:16px;line-height:1.85;color:var(--text)}
+.art-full-body h3{font-family:'Cormorant Garamond',serif;font-size:1.5em;color:var(--bright);margin:32px 0 12px;font-weight:700}
+.art-full-body p{margin:14px 0;color:var(--text)}
+.art-full-body ul,.art-full-body ol{margin:14px 0;padding-left:24px}
+.art-full-body li{margin:8px 0;color:var(--text)}
+.art-full-body strong{color:var(--bright)}
+.art-keypoint{background:rgba(77,166,255,0.07);border-left:3px solid var(--blue);padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px;color:var(--text)}
+.art-summary{background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:var(--muted)}
+.art-summary strong{color:var(--gold)}
+.art-disclaimer{font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;margin-top:28px;line-height:1.6}
+.art-data-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.art-data-row:last-child{border-bottom:none}
+.art-data-val-up{color:var(--green);font-weight:600;font-family:'JetBrains Mono',monospace}
+.art-data-val-dn{color:var(--red);font-weight:600;font-family:'JetBrains Mono',monospace}
+.art-data-box{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:16px 0}
+.art-card{cursor:pointer;transition:border-color 0.2s}
+.art-card:hover{border-color:rgba(232,184,75,0.3)}
+.featured-card{cursor:pointer}
+.side-art{cursor:pointer;transition:background 0.2s}
+.side-art:hover{background:rgba(255,255,255,0.04)}
+
 /* ═══ FTC DISCLOSURE ═══ */
 .ftc-bar{background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.15);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:10px}
 .ftc-bar strong{color:var(--gold)}
@@ -1128,7 +1158,37 @@ async function generateArticle(){
 }
 document.getElementById('aiTopic').addEventListener('keypress',e=>{if(e.key==='Enter')generateArticle();});
 
-// ═══ LEGAL ACCORDION ═══
+// ═══ ARTICLE CLICK HANDLERS ═══
+function openArticle(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.main-nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('art-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Wire up all clickable article cards
+document.querySelectorAll('.art-card').forEach((card,i)=>{
+  const ids=['a1','a2','a3','a4','a5','a6','a7'];
+  const titles=card.querySelector('h3')?.textContent||'';
+  if(titles.includes('Stock Market'))card.onclick=()=>openArticle('a1');
+  else if(titles.includes('Bitcoin'))card.onclick=()=>openArticle('a2');
+  else if(titles.includes('50/30/20')||titles.includes('Budgeting'))card.onclick=()=>openArticle('a3');
+  else if(titles.includes('Interest Rates')||titles.includes('interest rate'))card.onclick=()=>openArticle('a4');
+  else if(titles.includes('Dollar Cost')||titles.includes('DCA')||titles.includes('Emotion'))card.onclick=()=>openArticle('a5');
+  else if(titles.includes('Strait')||titles.includes('Oil Hits'))card.onclick=()=>openArticle('a6');
+  else if(titles.includes('Global Stock Markets')||titles.includes('World Shifts'))card.onclick=()=>openArticle('a7');
+});
+
+// Wire featured card
+document.querySelector('.featured-card').onclick=()=>openArticle('a6');
+
+// Wire side arts
+document.querySelectorAll('.side-art').forEach(card=>{
+  const t=card.querySelector('h3')?.textContent||'';
+  if(t.includes('Bitcoin'))card.onclick=()=>openArticle('a2');
+  else if(t.includes('Global Stock'))card.onclick=()=>openArticle('a7');
+  else if(t.includes('50/30/20'))card.onclick=()=>openArticle('a3');
+});
 function toggleLegal(head){
   const body=head.nextElementSibling;
   const icon=head.querySelector('.arr-icon');
@@ -1148,3 +1208,212 @@ setTimeout(()=>{
 },1500);
 
 // Simulate live price u
+// ═══ ARTICLE CLICK HANDLERS ═══
+function openArticle(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.main-nav a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('art-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.art-card').forEach(function(card){
+    var t=card.querySelector('h3')?.textContent||'';
+    if(t.includes('Stock Market'))card.onclick=function(){openArticle('a1');};
+    else if(t.includes('Bitcoin'))card.onclick=function(){openArticle('a2');};
+    else if(t.includes('50/30/20')||t.includes('Budgeting'))card.onclick=function(){openArticle('a3');};
+    else if(t.includes('Interest Rates'))card.onclick=function(){openArticle('a4');};
+    else if(t.includes('Dollar Cost')||t.includes('Emotion'))card.onclick=function(){openArticle('a5');};
+    else if(t.includes('Global Stock Markets')||t.includes('World Shifts'))card.onclick=function(){openArticle('a7');};
+  });
+  var fc=document.querySelector('.featured-card');
+  if(fc)fc.onclick=function(){openArticle('a6');};
+  document.querySelectorAll('.side-art').forEach(function(card){
+    var t=card.querySelector('h3')?.textContent||'';
+    if(t.includes('Bitcoin'))card.onclick=function(){openArticle('a2');};
+    else if(t.includes('Global Stock'))card.onclick=function(){openArticle('a7');};
+    else if(t.includes('50/30/20'))card.onclick=function(){openArticle('a3');};
+  });
+});
+</script>
+
+<!-- ARTICLE PAGES -->
+<div class="page" id="art-a6">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="display:inline-flex;align-items:center;gap:8px;color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(255,77,91,0.15);color:#ff4d5b;border:1px solid rgba(255,77,91,0.3);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px;display:block">🔴 BREAKING NEWS · GLOBAL MARKETS</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">Oil Hits $95 as Strait of Hormuz Crisis Rattles Global Markets</h1>
+<p style="font-size:16px;color:#6b8299;margin-bottom:18px;line-height:1.6">A geopolitical shock involving US, Israeli and Iranian military operations has disrupted the world's most critical oil chokepoint. Here's what every investor needs to know.</p>
+<div style="display:flex;gap:16px;align-items:center;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Research</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;border:1px solid rgba(77,166,255,0.2);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>8 min read</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> Brent crude has surged from $66 to $95/barrel. Global stocks sold off, gold hit $5,300+. Indian markets are particularly exposed due to our 85%+ crude import dependence.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">What's happening right now</h3>
+<p>In early March 2026, the United States and Israel launched military strikes on Iran, targeting oil infrastructure and strategic facilities. The Strait of Hormuz — through which roughly <strong style="color:#f0f6ff">20% of the world's daily oil supply</strong> passes — was effectively shut down.</p>
+<div style="background:#111b27;border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;margin:16px 0">
+  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:14px"><span style="color:#6b8299">Brent Crude Oil</span><span style="color:#00d68f;font-weight:600;font-family:'JetBrains Mono',monospace">$95/barrel ↑ (was $66)</span></div>
+  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:14px"><span style="color:#6b8299">Gold</span><span style="color:#00d68f;font-weight:600;font-family:'JetBrains Mono',monospace">$5,317/oz — record high</span></div>
+  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:14px"><span style="color:#6b8299">S&P 500</span><span style="color:#ff4d5b;font-weight:600;font-family:'JetBrains Mono',monospace">-1.2%</span></div>
+  <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:14px"><span style="color:#6b8299">India Nifty 50</span><span style="color:#ff4d5b;font-weight:600;font-family:'JetBrains Mono',monospace">-1.2%</span></div>
+  <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:14px"><span style="color:#6b8299">Bitcoin</span><span style="color:#f0f6ff;font-weight:600;font-family:'JetBrains Mono',monospace">~$66,400</span></div>
+</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">What this means for India</h3>
+<p>India imports over <strong style="color:#f0f6ff">85% of its crude oil</strong> — a higher oil price directly widens India's trade deficit, weakens the rupee, and adds inflationary pressure. The RBI may delay rate cuts if oil-driven inflation picks up.</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">What investors should do</h3>
+<ul style="margin:14px 0;padding-left:24px">
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Don't panic sell</strong> — geopolitical crises have historically resolved and markets recovered</li>
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Energy stocks may outperform</strong> — ONGC, Reliance benefit from higher oil prices</li>
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Gold as a hedge</strong> — Sovereign Gold Bonds or gold ETFs offer tax-efficient exposure</li>
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Continue your SIPs</strong> — a dip means your SIP buys more units at lower prices</li>
+</ul>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">💡 <strong style="color:#f0f6ff">Historical context:</strong> The S&P 500 rallied 16% in the months following the Gulf War and 14% in the first three months of Gulf War 2. Short-term volatility, long-term recovery.</div>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px;line-height:1.6">⚠️ For educational purposes only. Not financial advice. Sources: S&P Global, Bloomberg, BlackRock Investment Institute, Goldman Sachs. Finance Meridian is not a registered investment adviser.</p>
+</div></div></div>
+</div>
+
+<div class="page" id="art-a7">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(77,166,255,0.12);color:#4da6ff;border:1px solid rgba(77,166,255,0.2);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px">🌍 GLOBAL MARKETS · INVESTING</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">Global Stock Markets in 2026: Where to Invest as the World Shifts</h1>
+<div style="display:flex;gap:16px;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Global</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>9 min read</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> Three forces drive global markets in 2026 — the AI supercycle in the US, Europe's fiscal revival, and India's structural growth story. Stay invested and diversify globally.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">1. The AI supercycle — still the dominant story</h3>
+<p>J.P. Morgan analysts estimate the AI supercycle is driving above-trend earnings growth of <strong style="color:#f0f6ff">13-15% for US equities</strong> over the next two years. AI is now spreading beyond technology into banking, healthcare, logistics, and utilities. The S&P 500's remaining 493 stocks posted their best earnings growth in years at 12% in Q3 2025.</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">2. Europe's unexpected revival</h3>
+<p>Germany's manufacturing PMI hit its best reading in nearly four years in early 2026. J.P. Morgan expects European earnings to grow <strong style="color:#f0f6ff">13%+</strong> in 2026, supported by fiscal stimulus and reduced tariff headwinds.</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">3. India — the structural growth story</h3>
+<ul style="margin:14px 0;padding-left:24px">
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Demographics</strong> — 65% of India's population is under 35</li>
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Digitalisation</strong> — UPI processed over 10 billion transactions/month in 2025</li>
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Manufacturing shift</strong> — global supply chain diversification away from China benefits India</li>
+</ul>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">💡 <strong style="color:#f0f6ff">Bottom line for 2026:</strong> Stay invested, diversify globally across US index funds, European ETFs, and gold hedges. Use geopolitical dips as buying opportunities — not reasons to exit.</div>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px;line-height:1.6">⚠️ For educational purposes only. Sources: J.P. Morgan Global Research, Goldman Sachs Asset Management, BlackRock Investment Institute. Not financial advice.</p>
+</div></div></div>
+</div>
+
+<div class="page" id="art-a1">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(0,214,143,0.12);color:#00d68f;border:1px solid rgba(0,214,143,0.2);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px">📈 INVESTING · BEGINNER GUIDE</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">What is the Stock Market? A Complete Beginner's Guide</h1>
+<div style="display:flex;gap:16px;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Education</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>8 min read · Beginner</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> The stock market is a marketplace where buyers and sellers trade ownership shares in companies. Understanding it is the first step to building long-term wealth.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">What exactly is the stock market?</h3>
+<p>The stock market is a collection of exchanges — like the NYSE, NASDAQ, or India's BSE and NSE — where shares of publicly listed companies are bought and sold every trading day. When you buy a share of a company, you literally own a tiny piece of it.</p>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">💡 <strong style="color:#f0f6ff">Simple analogy:</strong> Imagine a pizza shop worth ₹10 lakhs split into 10,000 shares at ₹100 each. You buy 100 shares = you own 1% and get 1% of profits.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">How do investors make money?</h3>
+<ul style="margin:14px 0;padding-left:24px">
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Capital appreciation</strong> — buying at ₹100, selling at ₹200</li>
+<li style="margin:8px 0"><strong style="color:#f0f6ff">Dividends</strong> — regular cash payments from company profits</li>
+</ul>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">How to start investing in India</h3>
+<p>Open a Demat + trading account with Zerodha, Groww, or Upstox. Takes 30 minutes with your PAN card and Aadhaar. Link your bank account and you're ready to invest.</p>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">📊 <strong style="color:#f0f6ff">Historical fact:</strong> The Sensex has returned ~12-15% per year over 30 years. ₹1 lakh invested in 1990 would be worth over ₹2 crore today.</div>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px">⚠️ Educational purposes only. Investing involves risk. Consult a qualified financial adviser.</p>
+</div></div></div>
+</div>
+
+<div class="page" id="art-a2">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(77,166,255,0.12);color:#4da6ff;border:1px solid rgba(77,166,255,0.2);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px">💱 CRYPTOCURRENCY · BEGINNER</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">How to Buy Bitcoin in India (2026 Guide)</h1>
+<div style="display:flex;gap:16px;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Crypto</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>7 min read · Beginner</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> Buying Bitcoin in India is legal. Gains are taxed at 30%. Use regulated exchanges like CoinDCX, WazirX, or Coinbase. You can start with as little as ₹100.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">Is Bitcoin legal in India?</h3>
+<p>Yes. Crypto trading is legal in India as of 2026. Gains are taxed at <strong style="color:#f0f6ff">30%</strong> with 1% TDS on transactions above ₹10,000. You must report crypto holdings in your income tax return.</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">How to buy — step by step</h3>
+<ol style="margin:14px 0;padding-left:24px">
+<li style="margin:10px 0"><strong style="color:#f0f6ff">Choose an exchange</strong> — CoinDCX (India's largest), WazirX (beginner-friendly), or Coinbase (global)</li>
+<li style="margin:10px 0"><strong style="color:#f0f6ff">Complete KYC</strong> — PAN card, Aadhaar, selfie, bank details. Takes 10-30 minutes</li>
+<li style="margin:10px 0"><strong style="color:#f0f6ff">Deposit funds</strong> — via UPI, NEFT, or IMPS. Minimum ₹100</li>
+<li style="margin:10px 0"><strong style="color:#f0f6ff">Buy BTC/INR</strong> — search for Bitcoin, enter your amount, place a market order</li>
+</ol>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">💡 <strong style="color:#f0f6ff">Pro tip:</strong> Never invest more than you can afford to lose in crypto. Most advisers suggest limiting crypto to 5-10% of your total portfolio.</div>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px">⚠️ Cryptocurrency is highly volatile. Not financial advice. Tax rules may change — consult a tax professional.</p>
+</div></div></div>
+</div>
+
+<div class="page" id="art-a3">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(0,214,143,0.12);color:#00d68f;border:1px solid rgba(0,214,143,0.2);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px">🏦 PERSONAL FINANCE · ALL LEVELS</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">The 50/30/20 Rule: The Simplest Budgeting Framework That Actually Works</h1>
+<div style="display:flex;gap:16px;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Personal</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>9 min read</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> Split your income into 50% needs, 30% wants, 20% savings. It's the most effective simple budgeting system for most people.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">The three buckets</h3>
+<ul style="margin:14px 0;padding-left:24px">
+<li style="margin:10px 0"><strong style="color:#f0f6ff">50% — Needs:</strong> Rent, groceries, utilities, transport, EMIs, insurance</li>
+<li style="margin:10px 0"><strong style="color:#f0f6ff">30% — Wants:</strong> Dining out, entertainment, subscriptions, shopping, holidays</li>
+<li style="margin:10px 0"><strong style="color:#f0f6ff">20% — Savings:</strong> Emergency fund, SIPs, fixed deposits, NPS, investments</li>
+</ul>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">💡 <strong style="color:#f0f6ff">Example — ₹60,000 salary:</strong> Needs ₹30,000 | Wants ₹18,000 | Savings ₹12,000 → invested in a SIP at 12% annual returns, ₹12,000/month becomes <strong style="color:#00d68f">₹4 crore in 25 years</strong>.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">How to start today</h3>
+<ol style="margin:14px 0;padding-left:24px">
+<li style="margin:8px 0">Calculate your monthly take-home income</li>
+<li style="margin:8px 0">Set up an automatic SIP for 20% on salary day — before you spend anything</li>
+<li style="margin:8px 0">Pay all fixed bills immediately</li>
+<li style="margin:8px 0">Spend the rest guilt-free</li>
+</ol>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px">⚠️ Educational purposes only. Individual circumstances vary. Consult a certified financial planner.</p>
+</div></div></div>
+</div>
+
+<div class="page" id="art-a4">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(232,184,75,0.12);color:#e8b84b;border:1px solid rgba(232,184,75,0.2);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px">🏦 ECONOMICS · INTERMEDIATE</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">How Interest Rates Affect Your Investments (And What to Do About It)</h1>
+<div style="display:flex;gap:16px;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Analysis</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>6 min read · Intermediate</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> When rates rise, bonds fall and growth stocks get hit hardest. When rates fall, the opposite happens. Understanding this helps you position your portfolio intelligently.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">Who sets interest rates?</h3>
+<p>The <strong style="color:#f0f6ff">repo rate</strong> in India (set by the RBI) and the <strong style="color:#f0f6ff">federal funds rate</strong> in the US (set by the Fed) are the baseline rates for their economies. When central banks raise rates, borrowing becomes more expensive everywhere.</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">Effect on stocks</h3>
+<p>Higher rates hurt stocks via higher borrowing costs (reducing profits) and higher discount rates (making future earnings worth less today). <strong style="color:#f0f6ff">Growth stocks</strong> (tech, startups) are hit hardest.</p>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">Effect on bonds</h3>
+<p>This is the most direct relationship in finance: <strong style="color:#f0f6ff">when interest rates rise, existing bond prices fall</strong>. A bond paying 6% is worth less when new bonds pay 8%.</p>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px">📊 <strong style="color:#f0f6ff">Practical strategy:</strong> Rising rates → shorter-duration bonds, dividend stocks, floating rate funds. Falling rates → long-duration bonds and growth stocks tend to outperform.</div>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px">⚠️ Educational purposes only. Not financial advice. Consult a financial adviser before making investment decisions.</p>
+</div></div></div>
+</div>
+
+<div class="page" id="art-a5">
+<div class="wrap"><div style="max-width:820px;margin:0 auto">
+<div style="color:#6b8299;font-size:13px;cursor:pointer;padding:8px 0;margin-bottom:20px" onclick="goto('home')">← Back to Home</div>
+<div style="display:inline-block;background:rgba(0,214,143,0.12);color:#00d68f;border:1px solid rgba(0,214,143,0.2);padding:4px 12px;border-radius:4px;font-size:12px;font-weight:600;margin-bottom:14px">💹 INVESTING STRATEGY · BEGINNER</div>
+<h1 style="font-family:'Cormorant Garamond',serif;font-size:2.2em;font-weight:700;color:#f0f6ff;line-height:1.2;margin-bottom:12px">What is Dollar Cost Averaging? The Strategy That Removes Emotion from Investing</h1>
+<div style="display:flex;gap:16px;font-size:13px;color:#6b8299;padding:14px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;flex-wrap:wrap">
+  <span>Finance Meridian Education</span><span>·</span><span style="background:rgba(77,166,255,0.12);color:#4da6ff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">🤖 AI-Assisted</span><span>·</span><span>March 20, 2026</span><span>·</span><span>7 min read · Beginner</span>
+</div>
+<div style="font-size:16px;line-height:1.85;color:#c8d8e8">
+<div style="background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2);border-radius:8px;padding:14px 18px;margin:20px 0;font-size:14px;color:#6b8299"><strong style="color:#e8b84b">📌 Key takeaway:</strong> DCA means investing a fixed amount at regular intervals regardless of price. It eliminates the need to time the market and naturally buys more units when prices are low.</div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">How DCA works</h3>
+<p>You invest a fixed amount — say ₹5,000 — every month, regardless of whether the market is up or down.</p>
+<div style="background:rgba(77,166,255,0.07);border-left:3px solid #4da6ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14px;line-height:1.8">📊 <strong style="color:#f0f6ff">Example over 3 months:</strong><br>
+Month 1: ₹100/unit → ₹5,000 buys <strong style="color:#00d68f">50 units</strong><br>
+Month 2: Market crashes to ₹50/unit → ₹5,000 buys <strong style="color:#00d68f">100 units</strong><br>
+Month 3: Recovers to ₹80/unit → ₹5,000 buys <strong style="color:#00d68f">62.5 units</strong><br><br>
+Total invested: ₹15,000 | Total units: 212.5 | Average cost: ₹70.59<br>
+Value at ₹80: <strong style="color:#00d68f">₹17,000 — a gain despite the crash!</strong></div>
+<h3 style="font-family:'Cormorant Garamond',serif;font-size:1.5em;color:#f0f6ff;margin:32px 0 12px;font-weight:700">DCA in India — SIPs</h3>
+<p>India's <strong style="color:#f0f6ff">Systematic Investment Plans (SIPs)</strong> are the world's best DCA implementation. Indians invest over ₹20,000 crore per month via SIPs. Start one with any amount — even ₹500/month — set to auto-debit on salary day and never stop it during market crashes.</p>
+<p style="font-size:12px;color:#6b8299;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;margin-top:28px">⚠️ Mutual fund investments are subject to market risk. Past performance is not indicative of future results. Not financial advice.</p>
+</div></div></div>
+</div>
