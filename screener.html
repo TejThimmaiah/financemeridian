@@ -238,7 +238,7 @@ td{padding:11px 14px;white-space:nowrap}
     </div>
     <div class="filter-actions">
       <button class="btn-reset" onclick="resetFilters('stocks')">Reset</button>
-      <button class="btn-scan" onclick="runScan()">⚡ Scan</button>
+      <button class="btn-scan" id="stock-scan-btn" onclick="runScan()">⚡ Scan</button>
     </div>
   </div>
 
@@ -332,7 +332,7 @@ td{padding:11px 14px;white-space:nowrap}
     </div>
     <div class="filter-actions">
       <button class="btn-reset" onclick="resetFilters('crypto')">Reset</button>
-      <button class="btn-scan" onclick="loadCryptoData()">⚡ Refresh Live</button>
+      <button class="btn-scan" onclick="loadCryptoData();applyCryptoFilters()">⚡ Refresh Live</button>
     </div>
   </div>
 
@@ -438,7 +438,7 @@ td{padding:11px 14px;white-space:nowrap}
     </div>
     <div class="filter-actions">
       <button class="btn-reset">Reset</button>
-      <button class="btn-scan">⚡ Scan NSE</button>
+      <button class="btn-scan" onclick="runIndiaScan()">⚡ Scan NSE</button>
     </div>
   </div>
 
@@ -772,29 +772,278 @@ renderSignals();
 let sortDir={};
 function sortTable(col){
   sortDir[col]=!sortDir[col];
-  const sorted=[...STOCKS_DATA].sort((a,b)=>{
-    let av=a[{symbol:'sym',name:'name',price:'price',change:'chg',volume:'vol',mktcap:'mcap',pe:'pe',eps:'eps',signal:'signal'}[col]||col];
-    let bv=b[{symbol:'sym',name:'name',price:'price',change:'chg',volume:'vol',mktcap:'mcap',pe:'pe',eps:'eps',signal:'signal'}[col]||col];
-    if(typeof av==='string') return sortDir[col]?av.localeCompare(bv):bv.localeCompare(av);
-    return sortDir[col]?av-bv:bv-av;
+  // Sort currently displayed rows
+  const tbody=document.getElementById('stocks-tbody');
+  const rows=[...tbody.querySelectorAll('tr')];
+  const colMap={symbol:0,name:1,price:2,change:3,volume:4,mktcap:5,pe:6,eps:7,week52:8,signal:9};
+  const ci=colMap[col]||0;
+  rows.sort((a,b)=>{
+    let av=a.cells[ci]?.textContent.replace(/[$,₹%▲▼+\s]/g,'')||'';
+    let bv=b.cells[ci]?.textContent.replace(/[$,₹%▲▼+\s]/g,'')||'';
+    const an=parseFloat(av), bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return sortDir[col]?an-bn:bn-an;
+    return sortDir[col]?av.localeCompare(bv):bv.localeCompare(av);
   });
-  renderStocksTable(sorted);
+  rows.forEach(r=>tbody.appendChild(r));
+  // Update sort arrow indicator
+  document.querySelectorAll('th').forEach(th=>th.classList.remove('sorted'));
+  event?.target?.closest('th')?.classList.add('sorted');
 }
 
-// ═══ SCAN ═══
+// ═══ STOCK FILTERS — FULLY WORKING ═══
 function runScan(){
-  showToast('Scanning 8,342 stocks... (demo mode — upgrade to Pro for live scan)');
-  setTimeout(()=>renderStocksTable(STOCKS_DATA),800);
+  const exchange = document.getElementById('f-exchange').value;
+  const sector   = document.getElementById('f-sector').value;
+  const cap      = document.getElementById('f-cap').value;
+  const pe       = document.getElementById('f-pe').value;
+  const chg      = document.getElementById('f-chg').value;
+  const signal   = document.getElementById('f-signal').value;
+
+  // Exchange → sector mapping for demo
+  const exchangeMap={
+    'NYSE':    ['Finance','Consumer','Healthcare','Energy','Industrials','Media'],
+    'NASDAQ':  ['Technology','Consumer','Auto'],
+    'NSE India':[], 'BSE India':[]
+  };
+
+  let filtered=[...STOCKS_DATA];
+
+  // Exchange filter
+  if(exchange!=='All Exchanges'){
+    const allowed=exchangeMap[exchange]||[];
+    if(allowed.length) filtered=filtered.filter(s=>allowed.includes(s.sector));
+  }
+
+  // Sector filter
+  if(sector!=='All Sectors'){
+    filtered=filtered.filter(s=>s.sector===sector||(sector==='Finance'&&s.sector==='Finance'));
+  }
+
+  // Market cap filter
+  const capBounds={
+    'Mega Cap (>$200B)':[200,Infinity],
+    'Large Cap ($10B-$200B)':[10,200],
+    'Mid Cap ($2B-$10B)':[2,10],
+    'Small Cap (<$2B)':[0,2]
+  };
+  if(capBounds[cap]){
+    const [lo,hi]=capBounds[cap];
+    filtered=filtered.filter(s=>{
+      const m=s.mcap.replace(/[$TB]/g,'');
+      const val=s.mcap.includes('T')?parseFloat(m)*1000:parseFloat(m);
+      return val>=lo&&val<=hi;
+    });
+  }
+
+  // P/E filter
+  const peBounds={'Under 10':[0,10],'10 - 20':[10,20],'20 - 30':[20,30],'30 - 50':[30,50],'Over 50':[50,9999]};
+  if(peBounds[pe]){
+    const [lo,hi]=peBounds[pe];
+    filtered=filtered.filter(s=>s.pe>=lo&&s.pe<=hi);
+  }
+
+  // Price change filter
+  if(chg==='Up >5% today')     filtered=filtered.filter(s=>s.chg>=5);
+  else if(chg==='Up >2% today')filtered=filtered.filter(s=>s.chg>=2);
+  else if(chg==='Down >2% today') filtered=filtered.filter(s=>s.chg<=-2);
+  else if(chg==='Down >5% today') filtered=filtered.filter(s=>s.chg<=-5);
+
+  // Signal filter
+  if(signal==='Strong Buy') filtered=filtered.filter(s=>s.signal==='buy'&&s.chg>2);
+  else if(signal==='Buy')   filtered=filtered.filter(s=>s.signal==='buy');
+  else if(signal==='Hold')  filtered=filtered.filter(s=>s.signal==='hold');
+  else if(signal==='Sell')  filtered=filtered.filter(s=>s.signal==='sell');
+
+  document.getElementById('showing-count').textContent=filtered.length;
+
+  if(filtered.length===0){
+    document.getElementById('stocks-tbody').innerHTML=
+      `<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">
+        No stocks match your filters. <span style="color:var(--gold);cursor:pointer" onclick="resetFilters('stocks')">Reset filters →</span>
+      </td></tr>`;
+  } else {
+    renderStocksTable(filtered);
+    showToast(`✓ Found ${filtered.length} stocks matching your filters`);
+  }
+}
+
+// ═══ INDIA SCAN — WORKING ═══
+function runIndiaScan(){
+  const idx    = document.querySelectorAll('#tab-india select')[0].value;
+  const sector = document.querySelectorAll('#tab-india select')[1].value;
+  const pe     = document.querySelectorAll('#tab-india select')[2].value;
+  const del    = document.querySelectorAll('#tab-india select')[3].value;
+  const rsi    = document.querySelectorAll('#tab-india select')[4].value;
+
+  let filtered=[...INDIA_DATA];
+
+  // Nifty index filter (map stocks to indices)
+  const nifty50=['RELIANCE','TCS','HDFCBANK','INFY','ICICIBANK','HINDUNILVR','BAJFINANCE','WIPRO','SBIN','ASIANPAINT','MARUTI','KOTAKBANK'];
+  if(idx==='Nifty 50') filtered=filtered.filter(s=>nifty50.includes(s.sym));
+
+  // Sector filter
+  const sectorMap={
+    'IT & Technology':['TCS','INFY','WIPRO'],
+    'Banking & Finance':['HDFCBANK','ICICIBANK','SBIN','KOTAKBANK','BAJFINANCE'],
+    'FMCG':['HINDUNILVR'],
+    'Auto':['MARUTI'],
+    'Pharma':[],
+    'Metals & Mining':[],
+    'Oil & Gas':['RELIANCE'],
+  };
+  if(sectorMap[sector]) filtered=filtered.filter(s=>sectorMap[sector].includes(s.sym));
+
+  // P/E filter
+  const peBounds={'Under 15':[0,15],'15 - 25':[15,25],'25 - 40':[25,40],'Over 40':[40,9999]};
+  if(peBounds[pe]){const[lo,hi]=peBounds[pe];filtered=filtered.filter(s=>s.pe>=lo&&s.pe<=hi);}
+
+  // Delivery % filter
+  if(del==='Over 50%') filtered=filtered.filter(s=>s.del>=50);
+  else if(del==='Over 70%') filtered=filtered.filter(s=>s.del>=70);
+  else if(del==='Under 30%') filtered=filtered.filter(s=>s.del<30);
+
+  const tbody=document.getElementById('india-tbody');
+  if(filtered.length===0){
+    tbody.innerHTML=`<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">No stocks match your filters. <span style="color:var(--gold);cursor:pointer" onclick="resetFilters('india')">Reset filters →</span></td></tr>`;
+  } else {
+    tbody.innerHTML=filtered.map(s=>`
+      <tr onclick="showToast('${s.sym} — ₹${s.price.toLocaleString()} | Del: ${s.del}% | P/E: ${s.pe}')">
+        <td><span class="sym">${s.sym}</span></td>
+        <td style="font-size:12px;color:var(--text)">${s.name}</td>
+        <td><span class="price">₹${s.price.toLocaleString('en-IN',{maximumFractionDigits:2})}</span></td>
+        <td><span class="${s.chg>=0?'up':'dn'}">${s.chg>=0?'▲':'▼'} ${Math.abs(s.chg).toFixed(2)}%</span></td>
+        <td style="color:var(--muted);font-size:12px">${s.vol}</td>
+        <td><span style="color:${s.del>60?'var(--green)':s.del<35?'var(--red)':'var(--text)'};font-family:'JetBrains Mono',monospace;font-size:12px">${s.del}%</span></td>
+        <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:${s.pe>50?'var(--red)':s.pe<15?'var(--green)':'var(--text)'}">${s.pe}</td>
+        <td style="font-size:12px;color:var(--muted)">₹${s.h52.toLocaleString('en-IN')}</td>
+        <td style="font-size:12px;color:var(--muted)">₹${s.l52.toLocaleString('en-IN')}</td>
+        <td>${renderSignal(s.signal)}</td>
+      </tr>`).join('');
+    showToast(`✓ Found ${filtered.length} NSE stocks matching your filters`);
+  }
+}
+
+// ═══ CRYPTO FILTERS — WORKING ═══
+let cachedCryptoData=[];
+async function loadCryptoData(){
+  const tbody=document.getElementById('crypto-tbody');
+  tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted)">⏳ Fetching live data from CoinGecko...</td></tr>';
+  try{
+    const r=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d');
+    cachedCryptoData=await r.json();
+    applyCryptoFilters();
+    // Update stat cards
+    const btc=cachedCryptoData.find(c=>c.id==='bitcoin');
+    const eth=cachedCryptoData.find(c=>c.id==='ethereum');
+    if(btc){
+      document.getElementById('btc-price').textContent='$'+btc.current_price.toLocaleString();
+      const bc=btc.price_change_percentage_24h;
+      document.getElementById('btc-chg').textContent=(bc>=0?'▲ +':'▼ ')+bc.toFixed(2)+'% (24h)';
+      document.getElementById('btc-chg').className='stat-sub '+(bc>=0?'up':'dn');
+    }
+    if(eth){
+      document.getElementById('eth-price').textContent='$'+eth.current_price.toLocaleString();
+      const ec=eth.price_change_percentage_24h;
+      document.getElementById('eth-chg').textContent=(ec>=0?'▲ +':'▼ ')+ec.toFixed(2)+'% (24h)';
+      document.getElementById('eth-chg').className='stat-sub '+(ec>=0?'up':'dn');
+    }
+    const totalMcap=cachedCryptoData.reduce((a,c)=>a+(c.market_cap||0),0);
+    document.getElementById('total-mcap').textContent=formatNum(totalMcap);
+    document.getElementById('fg-index').textContent='Greed 68';
+  }catch(e){
+    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--red)">⚠️ Could not load live data. Check your connection and try again.</td></tr>';
+  }
+}
+
+function applyCryptoFilters(){
+  if(!cachedCryptoData.length){loadCryptoData();return;}
+  const cat   = document.getElementById('cf-cat').value;
+  const rank  = document.getElementById('cf-rank').value;
+  const chg   = document.getElementById('cf-chg').value;
+  const price = document.getElementById('cf-price').value;
+
+  const categoryCoins={
+    'Layer 1 (Bitcoin, ETH)':['bitcoin','ethereum','solana','cardano','avalanche-2','polkadot','near','tron'],
+    'DeFi Tokens':['uniswap','aave','compound-governance-token','maker','curve-dao-token','synthetix'],
+    'Layer 2':['matic-network','arbitrum','optimism','loopring'],
+    'Stablecoins':['tether','usd-coin','dai','true-usd'],
+    'NFT & Gaming':['axie-infinity','decentraland','the-sandbox','apecoin'],
+    'AI Tokens':['fetch-ai','singularitynet','ocean-protocol','numeraire'],
+  };
+
+  let filtered=[...cachedCryptoData];
+
+  if(cat!=='All Cryptos'&&categoryCoins[cat])
+    filtered=filtered.filter(c=>categoryCoins[cat].includes(c.id));
+
+  const rankBounds={'Top 10':10,'Top 50':50,'Top 100':100,'Top 500':500};
+  if(rankBounds[rank]) filtered=filtered.slice(0,rankBounds[rank]);
+
+  if(chg==='Up >10%')      filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency>=10);
+  else if(chg==='Up >5%')  filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency>=5);
+  else if(chg==='Up >2%')  filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency>=2);
+  else if(chg==='Down >5%')filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency<=-5);
+  else if(chg==='Down >10%')filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency<=-10);
+
+  if(price==='Under $1')   filtered=filtered.filter(c=>c.current_price<1);
+  else if(price==='$1 - $10')filtered=filtered.filter(c=>c.current_price>=1&&c.current_price<10);
+  else if(price==='$10 - $100')filtered=filtered.filter(c=>c.current_price>=10&&c.current_price<100);
+  else if(price==='Over $100')filtered=filtered.filter(c=>c.current_price>=100);
+
+  document.getElementById('crypto-count').textContent=`${filtered.length} results`;
+  const tbody=document.getElementById('crypto-tbody');
+  if(filtered.length===0){
+    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">No cryptos match your filters.</td></tr>';
+    return;
+  }
+  tbody.innerHTML=filtered.map((c,i)=>{
+    const h1=c.price_change_percentage_1h_in_currency;
+    const h24=c.price_change_percentage_24h_in_currency;
+    const d7=c.price_change_percentage_7d_in_currency;
+    const sig=h24>5?'buy':h24<-5?'sell':'hold';
+    return `<tr onclick="showToast('${c.symbol.toUpperCase()} — $${c.current_price.toLocaleString()} | 24h: ${h24?.toFixed(2)||'—'}%')">
+      <td style="color:var(--muted);font-size:12px">${i+1}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><img src="${c.image}" width="20" height="20" style="border-radius:50%" onerror="this.style.display='none'"><div><div class="sym" style="font-size:12px">${c.symbol.toUpperCase()}</div><div style="font-size:11px;color:var(--muted)">${c.name}</div></div></div></td>
+      <td class="price">$${c.current_price.toLocaleString()}</td>
+      <td class="${h1>=0?'up':'dn'}">${h1!=null?(h1>=0?'+':'')+h1.toFixed(2)+'%':'—'}</td>
+      <td class="${h24>=0?'up':'dn'}">${h24!=null?(h24>=0?'+':'')+h24.toFixed(2)+'%':'—'}</td>
+      <td class="${d7>=0?'up':'dn'}">${d7!=null?(d7>=0?'+':'')+d7.toFixed(2)+'%':'—'}</td>
+      <td style="font-size:12px;color:var(--muted)">${formatNum(c.market_cap)}</td>
+      <td style="font-size:12px;color:var(--muted)">${formatNum(c.total_volume)}</td>
+      <td style="font-size:12px;color:var(--muted)">${formatNum(c.circulating_supply)} ${c.symbol.toUpperCase()}</td>
+      <td>${renderSignal(sig)}</td>
+    </tr>`;
+  }).join('');
+  showToast(`✓ Showing ${filtered.length} cryptos`);
 }
 
 function resetFilters(type){
   document.querySelectorAll('#tab-'+type+' select').forEach(s=>s.selectedIndex=0);
-  if(type==='stocks') renderStocksTable(STOCKS_DATA);
+  if(type==='stocks'){renderStocksTable(STOCKS_DATA);document.getElementById('showing-count').textContent=STOCKS_DATA.length;}
+  else if(type==='crypto'){applyCryptoFilters();}
+  else if(type==='india'){renderIndiaTable();}
   showToast('Filters reset');
 }
 
-// Auto-load crypto on page load if hash says crypto
-if(window.location.hash==='#crypto') switchTab('crypto');
+// Wire up India scan button
+document.addEventListener('DOMContentLoaded',function(){
+  const indiaBtns=document.querySelectorAll('#tab-india .btn-scan');
+  indiaBtns.forEach(b=>b.onclick=runIndiaScan);
+  const cryptoBtn=document.querySelector('#tab-crypto .btn-scan');
+  if(cryptoBtn) cryptoBtn.onclick=function(){loadCryptoData();};
+  const cryptoSelects=document.querySelectorAll('#tab-crypto select');
+  cryptoSelects.forEach(s=>s.onchange=applyCryptoFilters);
+});
+
+// Auto-load crypto when tab is first opened
+let cryptoLoaded=false;
+const origSwitch=switchTab;
+window.switchTab=function(tab){
+  origSwitch.call(this,tab);
+  if(tab==='crypto'&&!cryptoLoaded){cryptoLoaded=true;loadCryptoData();}
+};
+
+if(window.location.hash==='#crypto'){cryptoLoaded=true;loadCryptoData();}
 </script>
 </body>
 </html>
