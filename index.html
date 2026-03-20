@@ -430,17 +430,17 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
 <!-- ═══════════ SUB-NAV ═══════════ -->
 <div class="subnav">
   <div class="subnav-inner">
-    <a class="active" onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Top Stories</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Stocks</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Crypto</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">ETFs</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Bonds</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Forex</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Commodities</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Real Estate</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Options</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Retirement</a>
-    <a onclick="this.parentNode.querySelectorAll('a').forEach(x=>x.classList.remove('active'));this.classList.add('active')">Tax</a>
+    <a class="active" id="sn-all"    onclick="filterCat('all',this)">Top Stories</a>
+    <a id="sn-stocks"  onclick="filterCat('stocks',this)">Stocks</a>
+    <a id="sn-crypto"  onclick="filterCat('crypto',this)">Crypto</a>
+    <a id="sn-etf"     onclick="filterCat('etf',this)">ETFs</a>
+    <a id="sn-bonds"   onclick="filterCat('bonds',this)">Bonds</a>
+    <a id="sn-forex"   onclick="filterCat('forex',this)">Forex</a>
+    <a id="sn-commodity" onclick="filterCat('commodity',this)">Commodities</a>
+    <a id="sn-realestate" onclick="filterCat('realestate',this)">Real Estate</a>
+    <a id="sn-options" onclick="filterCat('options',this)">Options</a>
+    <a id="sn-retire"  onclick="filterCat('retire',this)">Retirement</a>
+    <a id="sn-screener" onclick="window.location.href='screener.html'" style="color:var(--gold)">⚡ Screener</a>
   </div>
 </div>
 
@@ -509,7 +509,7 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
       <div>
         <div class="sec-hdr"><div class="sec-title">Latest Analysis</div><button class="sec-more">All Articles →</button></div>
         <div class="art-list">
-          <div class="art-card">
+          <div class="art-card" data-cat="stocks">
             <div>
               <div class="art-tag">📈 Investing</div>
               <h3>What is the Stock Market? A Complete Beginner's Guide</h3>
@@ -518,7 +518,7 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
             </div>
             <div class="art-thumb" style="background:linear-gradient(135deg,#0d2535,#0a1a2e)">📈</div>
           </div>
-          <div class="art-card">
+          <div class="art-card" data-cat="stocks">
             <div>
               <div class="art-tag">💹 Investing Strategy</div>
               <h3>What is Dollar Cost Averaging? The Strategy That Removes Emotion from Investing</h3>
@@ -527,7 +527,7 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
             </div>
             <div class="art-thumb" style="background:linear-gradient(135deg,#0a2515,#061a10)">💹</div>
           </div>
-          <div class="art-card">
+          <div class="art-card" data-cat="bonds">
             <div>
               <div class="art-tag">🏦 Economics</div>
               <h3>How Interest Rates Affect Your Investments (And What to Do About It)</h3>
@@ -536,7 +536,7 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
             </div>
             <div class="art-thumb" style="background:linear-gradient(135deg,#1a1208,#100c05)">🏦</div>
           </div>
-          <div class="art-card">
+          <div class="art-card" data-cat="stocks">
             <div>
               <div class="art-tag">🌍 Global Markets</div>
               <h3>Global Stock Markets in 2026: Where to Invest as the World Shifts</h3>
@@ -915,11 +915,11 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
   <div class="rev-inner">
     <span class="rev-lbl">Sponsored:</span>
     <div class="rev-item"><span class="ri">📱</span><div><div class="rt">Open a Brokerage</div><div class="rs">Get free stocks</div></div><span class="rev-badge">$200/referral</span></div>
-    <div class="rev-item"><span class="ri">💳</span><div><div class="rt">Best Credit Cards 2025</div><div class="rs">Up to $500 bonus</div></div><span class="rev-badge">$150–400/approval</span></div>
+    <div class="rev-item"><span class="ri">💳</span><div><div class="rt">Best Credit Cards 2026</div><div class="rs">Up to $500 bonus</div></div><span class="rev-badge">$150–400/approval</span></div>
     <div class="rev-item"><span class="ri">🏠</span><div><div class="rt">Compare Mortgage Rates</div><div class="rs">Find your best deal</div></div><span class="rev-badge">$500/lead</span></div>
     <div class="rev-item"><span class="ri">🛡️</span><div><div class="rt">Life Insurance Quotes</div><div class="rs">Protect your family</div></div><span class="rev-badge">$80–200/lead</span></div>
     <div class="rev-item"><span class="ri">📊</span><div><div class="rt">Find a Financial Advisor</div><div class="rs">Free matching</div></div><span class="rev-badge">$300/referral</span></div>
-    <div class="rev-item"><span class="ri">🎓</span><div><div class="rt">Finance Meridian Pro Membership</div><div class="rs">All features unlocked</div></div><span class="rev-badge">$49/month</span></div>
+    <div class="rev-item" onclick="window.open('/screener.html','_self')" style="cursor:pointer"><span class="ri">📊</span><div><div class="rt">FM Screener — Free</div><div class="rs">Stock & Crypto scanner</div></div><span class="rev-badge" style="background:rgba(0,214,143,0.15);color:#00d68f;border-color:rgba(0,214,143,0.3)">Try Free →</span></div>
   </div>
 </div>
 
@@ -929,8 +929,8 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="logo">Finance<em>Meridian</em></a>
-        <p>Your AI-powered financial intelligence platform. Educational content, real-time market data, and automated insights — running 24/7 on Oracle Cloud, powered by Claude AI.</p>
-        <div class="tech">Stack: FastAPI · Oracle ARM · Claude API · Yahoo Finance · CoinGecko · Nginx</div>
+        <p>Your reference point for global finance — news, education, market data, and AI-powered analysis. Free to read, always independent.</p>
+        <div class="tech">Stack: Claude API · CoinGecko · Cloudflare Pages · GitHub</div>
       </div>
       <div class="foot-col">
         <h5>Markets</h5>
@@ -952,7 +952,7 @@ footer{background:var(--navy);border-top:1px solid var(--border);margin-top:60px
     </div>
     <div class="foot-bottom">
       <div class="disclaimer">⚠️ <strong>Disclaimer:</strong> All content on Finance Meridian is for educational and informational purposes only. Nothing constitutes financial, investment, tax, or legal advice. Finance Meridian is not a registered investment adviser. Always consult a qualified financial professional. Investing involves risk including loss of principal.</div>
-      <div class="foot-copy">© 2026 Finance Meridian<br>Built with Claude AI · Hosted on Vercel</div>
+      <div class="foot-copy">© 2026 Finance Meridian<br>Built with Claude AI · Hosted on Cloudflare Pages</div>
     </div>
   </div>
 </footer>
@@ -1196,6 +1196,52 @@ function toggleLegal(head){
   document.querySelectorAll('.legal-card-body').forEach(b=>b.classList.remove('open'));
   document.querySelectorAll('.arr-icon').forEach(i=>i.textContent='+');
   if(!isOpen){body.classList.add('open');icon.textContent='−';}
+}
+
+// ═══ CATEGORY FILTER ═══
+function filterCat(cat, el){
+  document.querySelectorAll('.subnav-inner a').forEach(a=>a.classList.remove('active'));
+  el.classList.add('active');
+  const cards=document.querySelectorAll('.art-card');
+  const catData={
+    all:    {hero:true, arts:['stocks','bonds','crypto','global']},
+    stocks: {tag:'📈', arts:['stocks']},
+    crypto: {tag:'💱', arts:['crypto']},
+    bonds:  {tag:'🏦', arts:['bonds']},
+    etf:    {tag:'📊', arts:['etf']},
+    forex:  {tag:'💱', arts:['forex']},
+    commodity:{tag:'🌾',arts:['commodity']},
+    realestate:{tag:'🏠',arts:['realestate']},
+    options:{tag:'📉',arts:['options']},
+    retire: {tag:'🎓',arts:['retire']},
+  };
+  if(cat==='all'){
+    cards.forEach(c=>c.style.display='');
+    return;
+  }
+  // Show/hide based on data-cat attribute
+  cards.forEach(card=>{
+    const dc=card.getAttribute('data-cat')||'stocks';
+    card.style.display=(dc===cat||cat==='all')?'':'none';
+  });
+  // For categories with no articles yet, show message
+  const visible=[...cards].filter(c=>c.style.display!=='none').length;
+  if(visible===0){
+    const list=document.querySelector('.art-list');
+    if(list){
+      const existing=list.querySelector('.no-cat-msg');
+      if(!existing){
+        const msg=document.createElement('div');
+        msg.className='no-cat-msg';
+        msg.style.cssText='padding:40px;text-align:center;color:var(--muted);font-size:14px;background:var(--panel);border-radius:10px;border:1px solid var(--border)';
+        msg.innerHTML='📝 Articles in this category are being added. <br><a onclick="filterCat(\'all\',document.getElementById(\'sn-all\'))" style="color:var(--gold);cursor:pointer">← View all articles</a>';
+        list.appendChild(msg);
+      }
+    }
+  } else {
+    const msg=document.querySelector('.no-cat-msg');
+    if(msg) msg.remove();
+  }
 }
 
 // ═══ COOKIE BANNER ═══
