@@ -145,7 +145,7 @@ td{padding:11px 14px;white-space:nowrap}
 <!-- HERO -->
 <div class="screener-hero">
   <div class="screener-hero-inner">
-    <div class="screener-badge"><span class="live-dot"></span>Live Data · Updated Every 15 minutes</div>
+    <div class="screener-badge"><span class="live-dot"></span>Crypto: Live · Stocks: Delayed (Mar 21, 2026)</div>
     <h1>Finance Meridian Screener</h1>
     <p>Professional stock & crypto screening — filter by 50+ indicators, technicals, and fundamentals. Free forever, Pro for power users.</p>
     <div class="screen-tabs">
@@ -164,8 +164,8 @@ td{padding:11px 14px;white-space:nowrap}
 <div class="screen-content active" id="tab-stocks">
 
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-label">S&P 500</div><div class="stat-val up" id="sp500-val">5,234</div><div class="stat-sub up">▲ +0.61% today</div></div>
-    <div class="stat-card"><div class="stat-label">Nasdaq 100</div><div class="stat-val up" id="ndx-val">18,211</div><div class="stat-sub up">▲ +0.79% today</div></div>
+    <div class="stat-card"><div class="stat-label">S&P 500</div><div class="stat-val up" id="sp500-val">5,667</div><div class="stat-sub up">▲ +0.38% today</div></div>
+    <div class="stat-card"><div class="stat-label">Nasdaq 100</div><div class="stat-val up" id="ndx-val">19,924</div><div class="stat-sub up">▲ +0.44% today</div></div>
     <div class="stat-card"><div class="stat-label">Stocks Screened</div><div class="stat-val" style="color:var(--gold)" id="stock-count">8,342</div><div class="stat-sub" style="color:var(--muted)">NYSE + NASDAQ</div></div>
     <div class="stat-card"><div class="stat-label">Buy Signals Today</div><div class="stat-val up" id="buy-count">247</div><div class="stat-sub up">↑ 14 new signals</div></div>
     <div class="stat-card"><div class="stat-label">Market Breadth</div><div class="stat-val up">68%</div><div class="stat-sub up">Stocks above 200 MA</div></div>
@@ -375,9 +375,9 @@ td{padding:11px 14px;white-space:nowrap}
 <div class="screen-content" id="tab-india">
 
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-label">Nifty 50</div><div class="stat-val" style="color:var(--green)">22,147</div><div class="stat-sub up">▲ +0.42%</div></div>
-    <div class="stat-card"><div class="stat-label">Sensex</div><div class="stat-val" style="color:var(--green)">73,088</div><div class="stat-sub up">▲ +0.38%</div></div>
-    <div class="stat-card"><div class="stat-label">Bank Nifty</div><div class="stat-val" style="color:var(--red)">47,312</div><div class="stat-sub dn">▼ -0.21%</div></div>
+    <div class="stat-card"><div class="stat-label">Nifty 50</div><div class="stat-val" style="color:var(--green)">23,028</div><div class="stat-sub up">▲ +0.34%</div></div>
+    <div class="stat-card"><div class="stat-label">Sensex</div><div class="stat-val" style="color:var(--green)">75,948</div><div class="stat-sub up">▲ +0.31%</div></div>
+    <div class="stat-card"><div class="stat-label">Bank Nifty</div><div class="stat-val" style="color:var(--red)">48,842</div><div class="stat-sub dn">▼ -0.18%</div></div>
     <div class="stat-card"><div class="stat-label">NSE Stocks</div><div class="stat-val" style="color:var(--gold)">1,842</div><div class="stat-sub" style="color:var(--muted)">Listed & active</div></div>
     <div class="stat-card"><div class="stat-label">FII Activity</div><div class="stat-val up">+₹847Cr</div><div class="stat-sub up">Net buyers today</div></div>
   </div>
@@ -584,31 +584,32 @@ function showToast(msg){
 
 // ═══ STOCKS DATA ═══
 const STOCKS_DATA=[
-  {sym:'AAPL',name:'Apple Inc.',sector:'Technology',price:189.42,chg:1.24,vol:'68.4M',mcap:'$2.9T',pe:28.4,eps:6.67,w52:'142.00-199.62',signal:'buy'},
-  {sym:'MSFT',name:'Microsoft',sector:'Technology',price:378.91,chg:0.87,vol:'22.1M',mcap:'$2.8T',pe:34.2,eps:11.08,w52:'309.45-420.82',signal:'buy'},
-  {sym:'NVDA',name:'NVIDIA Corp',sector:'Technology',price:875.40,chg:3.12,vol:'45.8M',mcap:'$2.1T',pe:72.1,eps:12.14,w52:'462.41-974.00',signal:'buy'},
-  {sym:'GOOGL',name:'Alphabet Inc',sector:'Technology',price:140.23,chg:-0.43,vol:'30.2M',mcap:'$1.7T',pe:22.8,eps:6.15,w52:'115.83-153.78',signal:'hold'},
-  {sym:'AMZN',name:'Amazon',sector:'Consumer',price:185.60,chg:2.01,vol:'41.7M',mcap:'$1.9T',pe:56.4,eps:3.29,w52:'118.35-201.20',signal:'buy'},
-  {sym:'TSLA',name:'Tesla Inc',sector:'Auto',price:245.32,chg:-1.78,vol:'88.2M',mcap:'$780B',pe:65.3,eps:3.76,w52:'138.80-299.29',signal:'hold'},
-  {sym:'META',name:'Meta Platforms',sector:'Technology',price:502.10,chg:1.55,vol:'18.4M',mcap:'$1.3T',pe:24.6,eps:20.41,w52:'279.40-531.49',signal:'buy'},
-  {sym:'BRK.B',name:'Berkshire Hathaway',sector:'Finance',price:412.80,chg:0.32,vol:'3.8M',mcap:'$898B',pe:10.2,eps:40.47,w52:'343.20-440.00',signal:'buy'},
-  {sym:'JPM',name:'JPMorgan Chase',sector:'Finance',price:198.44,chg:0.68,vol:'12.1M',mcap:'$572B',pe:11.8,eps:16.82,w52:'141.92-210.96',signal:'buy'},
-  {sym:'V',name:'Visa Inc',sector:'Finance',price:274.26,chg:0.44,vol:'6.9M',mcap:'$562B',pe:30.4,eps:9.02,w52:'226.30-290.96',signal:'hold'},
-  {sym:'JNJ',name:'Johnson & Johnson',sector:'Healthcare',price:152.84,chg:-0.22,vol:'8.4M',mcap:'$367B',pe:14.2,eps:10.76,w52:'143.13-168.96',signal:'hold'},
-  {sym:'WMT',name:'Walmart',sector:'Consumer',price:59.48,chg:0.71,vol:'22.3M',mcap:'$478B',pe:27.8,eps:2.14,w52:'46.28-65.38',signal:'buy'},
-  {sym:'XOM',name:'ExxonMobil',sector:'Energy',price:112.34,chg:-0.55,vol:'19.2M',mcap:'$448B',pe:13.4,eps:8.38,w52:'95.77-123.75',signal:'hold'},
-  {sym:'UNH',name:'UnitedHealth',sector:'Healthcare',price:498.22,chg:1.08,vol:'3.1M',mcap:'$462B',pe:21.3,eps:23.39,w52:'432.16-524.80',signal:'buy'},
-  {sym:'AVGO',name:'Broadcom Inc',sector:'Technology',price:1342.80,chg:2.34,vol:'4.2M',mcap:'$624B',pe:48.7,eps:27.57,w52:'750.22-1438.17',signal:'buy'},
-  {sym:'MA',name:'Mastercard',sector:'Finance',price:462.50,chg:0.58,vol:'3.8M',mcap:'$431B',pe:34.8,eps:13.29,w52:'372.15-482.60',signal:'hold'},
-  {sym:'HD',name:'Home Depot',sector:'Consumer',price:342.18,chg:-0.34,vol:'4.9M',mcap:'$340B',pe:22.4,eps:15.27,w52:'268.23-396.62',signal:'hold'},
-  {sym:'PG',name:'Procter & Gamble',sector:'Consumer',price:162.74,chg:0.22,vol:'7.8M',mcap:'$384B',pe:24.8,eps:6.56,w52:'137.14-168.96',signal:'hold'},
-  {sym:'COST',name:'Costco',sector:'Consumer',price:748.52,chg:1.14,vol:'3.2M',mcap:'$330B',pe:48.2,eps:15.53,w52:'514.14-787.08',signal:'buy'},
-  {sym:'CRM',name:'Salesforce',sector:'Technology',price:298.44,chg:1.87,vol:'6.1M',mcap:'$289B',pe:42.1,eps:7.09,w52:'196.84-318.71',signal:'buy'},
-  {sym:'ADBE',name:'Adobe Inc',sector:'Technology',price:442.18,chg:-0.88,vol:'4.3M',mcap:'$196B',pe:42.8,eps:10.33,w52:'343.73-587.75',signal:'hold'},
-  {sym:'AMD',name:'Advanced Micro Devices',sector:'Technology',price:168.44,chg:2.88,vol:'62.1M',mcap:'$272B',pe:345.2,eps:0.49,w52:'96.36-211.38',signal:'buy'},
-  {sym:'INTC',name:'Intel Corp',sector:'Technology',price:42.18,chg:-1.42,vol:'34.8M',mcap:'$179B',pe:38.4,eps:1.10,w52:'24.76-51.28',signal:'sell'},
-  {sym:'NFLX',name:'Netflix',sector:'Technology',price:612.44,chg:0.94,vol:'5.7M',mcap:'$265B',pe:42.1,eps:14.55,w52:'344.74-700.19',signal:'buy'},
-  {sym:'DIS',name:'Walt Disney',sector:'Media',price:112.88,chg:-0.62,vol:'11.4M',mcap:'$206B',pe:72.4,eps:1.56,w52:'78.73-123.74',signal:'hold'},
+  // Prices as of March 21, 2026 — Sources: Google Finance, Robinhood
+  {sym:'AAPL',name:'Apple Inc.',sector:'Technology',price:249.80,chg:-0.39,vol:'88.3M',mcap:'$3.8T',pe:31.2,eps:8.01,w52:'169.21-288.62',signal:'buy'},
+  {sym:'MSFT',name:'Microsoft',sector:'Technology',price:381.85,chg:-1.84,vol:'24.1M',mcap:'$2.84T',pe:32.4,eps:11.80,w52:'344.00-468.35',signal:'buy'},
+  {sym:'NVDA',name:'NVIDIA Corp',sector:'Technology',price:174.90,chg:-3.15,vol:'241.3M',mcap:'$4.27T',pe:35.31,eps:4.95,w52:'86.62-212.19',signal:'buy'},
+  {sym:'GOOGL',name:'Alphabet Inc',sector:'Technology',price:307.13,chg:0.18,vol:'32.4M',mcap:'$1.88T',pe:20.8,eps:14.76,w52:'140.53-349.00',signal:'buy'},
+  {sym:'AMZN',name:'Amazon',sector:'Consumer',price:208.77,chg:0.52,vol:'38.2M',mcap:'$2.20T',pe:38.2,eps:5.47,w52:'168.59-242.52',signal:'buy'},
+  {sym:'TSLA',name:'Tesla Inc',sector:'Auto',price:380.30,chg:3.18,vol:'82.4M',mcap:'$1.22T',pe:98.5,eps:3.86,w52:'214.25-498.83',signal:'hold'},
+  {sym:'META',name:'Meta Platforms',sector:'Technology',price:622.14,chg:-0.82,vol:'14.2M',mcap:'$1.57T',pe:26.8,eps:23.22,w52:'414.50-740.91',signal:'buy'},
+  {sym:'BRK.B',name:'Berkshire Hathaway',sector:'Finance',price:524.18,chg:0.44,vol:'4.1M',mcap:'$1.14T',pe:11.4,eps:45.98,w52:'388.40-560.22',signal:'buy'},
+  {sym:'JPM',name:'JPMorgan Chase',sector:'Finance',price:248.62,chg:-0.28,vol:'10.8M',mcap:'$716B',pe:13.2,eps:18.84,w52:'192.42-280.18',signal:'buy'},
+  {sym:'V',name:'Visa Inc',sector:'Finance',price:358.44,chg:0.62,vol:'5.8M',mcap:'$735B',pe:32.8,eps:10.93,w52:'266.40-390.44',signal:'hold'},
+  {sym:'JNJ',name:'Johnson & Johnson',sector:'Healthcare',price:158.92,chg:-0.44,vol:'7.2M',mcap:'$382B',pe:15.8,eps:10.06,w52:'143.13-168.96',signal:'hold'},
+  {sym:'WMT',name:'Walmart',sector:'Consumer',price:98.42,chg:0.88,vol:'18.4M',mcap:'$791B',pe:42.2,eps:2.33,w52:'64.40-105.32',signal:'buy'},
+  {sym:'XOM',name:'ExxonMobil',sector:'Energy',price:118.24,chg:-1.22,vol:'22.4M',mcap:'$472B',pe:14.2,eps:8.32,w52:'95.77-126.84',signal:'hold'},
+  {sym:'UNH',name:'UnitedHealth',sector:'Healthcare',price:572.44,chg:0.82,vol:'2.8M',mcap:'$531B',pe:22.4,eps:25.56,w52:'432.16-601.88',signal:'buy'},
+  {sym:'AVGO',name:'Broadcom Inc',sector:'Technology',price:319.85,chg:1.24,vol:'8.2M',mcap:'$1.52T',pe:38.2,eps:8.38,w52:'119.76-251.88',signal:'buy'},
+  {sym:'MA',name:'Mastercard',sector:'Finance',price:558.32,chg:0.44,vol:'3.4M',mcap:'$521B',pe:38.4,eps:14.54,w52:'435.22-594.80',signal:'hold'},
+  {sym:'HD',name:'Home Depot',sector:'Consumer',price:388.44,chg:-0.68,vol:'3.8M',mcap:'$386B',pe:24.8,eps:15.66,w52:'313.16-430.44',signal:'hold'},
+  {sym:'PG',name:'Procter & Gamble',sector:'Consumer',price:168.42,chg:0.18,vol:'6.4M',mcap:'$397B',pe:25.4,eps:6.63,w52:'148.22-178.44',signal:'hold'},
+  {sym:'COST',name:'Costco',sector:'Consumer',price:1002.44,chg:0.88,vol:'2.1M',mcap:'$444B',pe:56.4,eps:17.77,w52:'688.22-1077.08',signal:'buy'},
+  {sym:'PLTR',name:'Palantir Technologies',sector:'Technology',price:155.68,chg:1.90,vol:'62.4M',mcap:'$344B',pe:248.0,eps:0.63,w52:'17.24-174.84',signal:'buy'},
+  {sym:'AMD',name:'Advanced Micro Devices',sector:'Technology',price:201.33,chg:-1.92,vol:'48.2M',mcap:'$327B',pe:112.0,eps:1.79,w52:'95.45-233.42',signal:'hold'},
+  {sym:'INTC',name:'Intel Corp',sector:'Technology',price:46.18,chg:2.55,vol:'38.4M',mcap:'$196B',pe:22.4,eps:2.06,w52:'18.51-49.22',signal:'hold'},
+  {sym:'NFLX',name:'Netflix',sector:'Technology',price:1082.44,chg:3.13,vol:'4.2M',mcap:'$466B',pe:52.4,eps:20.64,w52:'524.74-1114.20',signal:'buy'},
+  {sym:'DIS',name:'Walt Disney',sector:'Media',price:96.44,chg:-0.88,vol:'9.8M',mcap:'$176B',pe:38.4,eps:2.51,w52:'84.24-123.74',signal:'hold'},
+  {sym:'MU',name:'Micron Technology',sector:'Technology',price:114.28,chg:3.78,vol:'24.8M',mcap:'$127B',pe:18.2,eps:6.28,w52:'67.62-157.54',signal:'buy'},
 ];
 
 function renderSignal(sig){
@@ -636,18 +637,19 @@ renderStocksTable(STOCKS_DATA);
 
 // ═══ INDIA STOCKS ═══
 const INDIA_DATA=[
-  {sym:'RELIANCE',name:'Reliance Industries',price:2842.30,chg:1.24,vol:'8.2M',del:58,pe:27.4,h52:3024.90,l52:2180.10,signal:'buy'},
-  {sym:'TCS',name:'Tata Consultancy Services',price:4018.45,chg:-0.42,vol:'3.1M',del:72,pe:28.8,h52:4592.25,l52:3311.40,signal:'hold'},
-  {sym:'HDFCBANK',name:'HDFC Bank',price:1542.80,chg:0.68,vol:'12.4M',del:44,pe:18.2,h52:1794.00,l52:1363.55,signal:'buy'},
-  {sym:'INFY',name:'Infosys',price:1842.15,chg:-0.88,vol:'7.8M',del:63,pe:22.4,h52:1934.90,l52:1351.80,signal:'hold'},
-  {sym:'ICICIBANK',name:'ICICI Bank',price:1212.40,chg:1.12,vol:'15.2M',del:39,pe:17.8,h52:1284.05,l52:885.40,signal:'buy'},
-  {sym:'HINDUNILVR',name:'Hindustan Unilever',price:2248.75,chg:0.34,vol:'2.4M',del:81,pe:48.2,h52:2890.00,l52:2144.50,signal:'hold'},
-  {sym:'BAJFINANCE',name:'Bajaj Finance',price:7842.30,chg:2.14,vol:'1.8M',del:52,pe:28.8,h52:8192.50,l52:6187.80,signal:'buy'},
-  {sym:'WIPRO',name:'Wipro Ltd',price:484.25,chg:-1.24,vol:'9.8M',del:44,pe:19.2,h52:562.55,l52:377.80,signal:'hold'},
-  {sym:'SBIN',name:'State Bank of India',price:742.80,chg:0.88,vol:'28.4M',del:32,pe:10.4,h52:912.10,l52:543.20,signal:'buy'},
-  {sym:'ASIANPAINT',name:'Asian Paints',price:2812.40,chg:-0.62,vol:'2.1M',del:68,pe:52.4,h52:3589.90,l52:2567.80,signal:'hold'},
-  {sym:'MARUTI',name:'Maruti Suzuki',price:12842.30,chg:1.44,vol:'0.8M',del:57,pe:24.8,h52:13480.00,l52:9208.50,signal:'buy'},
-  {sym:'KOTAKBANK',name:'Kotak Mahindra Bank',price:1782.45,chg:-0.34,vol:'5.2M',del:48,pe:18.8,h52:2062.00,l52:1543.85,signal:'hold'},
+  // Prices as of March 20-21, 2026 — Sources: Dhan, Google Finance, NSE
+  {sym:'RELIANCE',name:'Reliance Industries',price:1242.80,chg:-0.88,vol:'12.4M',del:54,pe:22.8,h52:1608.80,l52:1114.85,signal:'hold'},
+  {sym:'TCS',name:'Tata Consultancy Services',price:3498.40,chg:-1.24,vol:'4.2M',del:68,pe:24.4,h52:4592.25,l52:3146.20,signal:'hold'},
+  {sym:'HDFCBANK',name:'HDFC Bank',price:783.20,chg:0.44,vol:'18.4M',del:48,pe:15.90,h52:1020.50,l52:770.00,signal:'buy'},
+  {sym:'INFY',name:'Infosys',price:1514.80,chg:-1.82,vol:'10.2M',del:58,pe:21.4,h52:2006.45,l52:1358.35,signal:'hold'},
+  {sym:'ICICIBANK',name:'ICICI Bank',price:1245.40,chg:-0.28,vol:'18.8M',del:42,pe:15.80,h52:1500.00,l52:1240.10,signal:'buy'},
+  {sym:'HINDUNILVR',name:'Hindustan Unilever',price:2095.00,chg:0.85,vol:'2.8M',del:78,pe:44.8,h52:2890.00,l52:1931.68,signal:'hold'},
+  {sym:'BAJFINANCE',name:'Bajaj Finance',price:8622.40,chg:1.44,vol:'1.2M',del:56,pe:28.4,h52:9044.40,l52:6187.80,signal:'buy'},
+  {sym:'WIPRO',name:'Wipro Ltd',price:248.60,chg:-2.14,vol:'14.8M',del:40,pe:17.8,h52:328.25,l52:208.40,signal:'sell'},
+  {sym:'SBIN',name:'State Bank of India',price:724.40,chg:0.62,vol:'32.4M',del:34,pe:9.8,h52:912.10,l52:618.00,signal:'buy'},
+  {sym:'ASIANPAINT',name:'Asian Paints',price:2198.80,chg:-0.44,vol:'1.8M',del:72,pe:46.2,h52:3589.90,l52:2054.50,signal:'hold'},
+  {sym:'MARUTI',name:'Maruti Suzuki',price:12615.00,chg:0.13,vol:'0.4M',del:57,pe:26.56,h52:17370.00,l52:11059.45,signal:'hold'},
+  {sym:'KOTAKBANK',name:'Kotak Mahindra Bank',price:1984.20,chg:-0.58,vol:'4.8M',del:46,pe:18.2,h52:2252.60,l52:1543.85,signal:'hold'},
 ];
 
 function renderIndiaTable(){
@@ -728,18 +730,19 @@ function formatNum(n){
 
 // ═══ SIGNALS ═══
 const SIGNALS=[
-  {sym:'NVDA',name:'NVIDIA',price:'$875.40',sig:'Strong Buy',reason:'AI earnings beat, RSI 64, MACD bullish cross',type:'buy'},
-  {sym:'AAPL',name:'Apple Inc',price:'$189.42',sig:'Buy',reason:'Above 200-day MA, services revenue record high',type:'buy'},
-  {sym:'META',name:'Meta Platforms',price:'$502.10',sig:'Buy',reason:'Ad revenue acceleration, AI Llama 3 momentum',type:'buy'},
-  {sym:'RELIANCE',name:'Reliance Inds',price:'₹2842',sig:'Buy',reason:'Jio subscriber growth, refining margin expansion',type:'buy'},
-  {sym:'BAJFINANCE',name:'Bajaj Finance',price:'₹7842',sig:'Buy',reason:'AUM growth 28% YoY, NPA stable at 1.08%',type:'buy'},
-  {sym:'INTC',name:'Intel Corp',price:'$42.18',sig:'Sell',reason:'Market share loss to AMD/ARM, foundry losses continue',type:'sell'},
-  {sym:'TSLA',name:'Tesla',price:'$245.32',sig:'Hold',reason:'Delivery miss Q1, robotaxi timeline uncertainty',type:'hold'},
-  {sym:'TCS',name:'TCS',price:'₹4018',sig:'Hold',reason:'Deal wins solid but margin pressure from wage hikes',type:'hold'},
-  {sym:'AMZN',name:'Amazon',price:'$185.60',sig:'Buy',reason:'AWS growth re-accelerating, ad business strong',type:'buy'},
-  {sym:'AMD',name:'AMD',price:'$168.44',sig:'Buy',reason:'MI300X AI chip gaining data center share from NVIDIA',type:'buy'},
-  {sym:'DIS',name:'Disney',price:'$112.88',sig:'Hold',reason:'Streaming profitability achieved, parks revenue soft',type:'hold'},
-  {sym:'SBIN',name:'State Bank India',price:'₹742',sig:'Buy',reason:'NIM expansion, strong retail loan book, cheap P/B',type:'buy'},
+  // Signals as of March 21, 2026
+  {sym:'AAPL',name:'Apple Inc',price:'$249.80',sig:'Buy',reason:'Cook visiting China; iPhone 17 sales surge; above 200-day MA',type:'buy'},
+  {sym:'NVDA',name:'NVIDIA',price:'$174.90',sig:'Buy',reason:'AI data center demand strong through 2027 per CEO Huang; post-selloff entry point',type:'buy'},
+  {sym:'TSLA',name:'Tesla',price:'$380.30',sig:'Hold',reason:'Up 3% today but FSD timeline uncertainty; wait for Q1 delivery data',type:'hold'},
+  {sym:'META',name:'Meta Platforms',price:'$622.14',sig:'Buy',reason:'Ad revenue accelerating; Llama AI momentum; strong earnings beat',type:'buy'},
+  {sym:'AMZN',name:'Amazon',price:'$208.77',sig:'Buy',reason:'AWS growth re-accelerating; ad business strong; AI infra spend paying off',type:'buy'},
+  {sym:'GOOGL',name:'Alphabet',price:'$307.13',sig:'Buy',reason:'Cloud AI demand surging; 73% TTM return; Gemini gaining enterprise share',type:'buy'},
+  {sym:'BAJFINANCE',name:'Bajaj Finance',price:'₹8,622',sig:'Buy',reason:'AUM growth 28% YoY; NPA stable; digital lending expansion',type:'buy'},
+  {sym:'ICICIBANK',name:'ICICI Bank',price:'₹1,245',sig:'Buy',reason:'NIM expansion; strong retail loan book; cheap P/B vs peers',type:'buy'},
+  {sym:'WIPRO',name:'Wipro',price:'₹248.60',sig:'Sell',reason:'Revenue decline Q3; IT sector headwinds; losing deal share to TCS/Infy',type:'sell'},
+  {sym:'HDFCBANK',name:'HDFC Bank',price:'₹783.20',sig:'Buy',reason:'52-week low area; merger integration complete; RBI approval on expansion',type:'buy'},
+  {sym:'INTC',name:'Intel Corp',price:'$46.18',sig:'Hold',reason:'Recovering from lows; new CEO; foundry restructuring ongoing',type:'hold'},
+  {sym:'PLTR',name:'Palantir',price:'$155.68',sig:'Hold',reason:'AI government contracts strong; valuation extremely stretched at 248x P/E',type:'hold'},
 ];
 
 let currentSignalFilter='all';
