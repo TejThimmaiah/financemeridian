@@ -1042,7 +1042,7 @@ function populateStockDetail(s) {
     </div>
     <div class="tech-card">
       <h4>MACD</h4>
-      <div class="rsi-val" style="color:${parseFloat(macd)>parseFloat(signal_line)?'var(--green)':'var(--red)';color:parseFloat(macd)>0?'var(--green)':'var(--red)'}">${macd}</div>
+      <div class="rsi-val" style="color:${parseFloat(macd)>0?'var(--green)':'var(--red)'}">${macd}</div>
       <div class="rsi-label neu">Signal: ${signal_line} | ${parseFloat(macd)>parseFloat(signal_line)?'🟢 Bullish cross':'🔴 Bearish cross'}</div>
     </div>
     <div class="tech-card">
