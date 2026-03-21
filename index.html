@@ -8,6 +8,40 @@
 <title>Finance Meridian — India's Sharpest Financial Intelligence</title>
 <link rel="canonical" href="https://financemeridian.com/">
 
+<script>
+function openArticle(n){
+  document.getElementById('page-home').style.display='none';
+  document.getElementById('subnav').style.display='none';
+  document.getElementById('aff-strip').style.display='none';
+  document.querySelectorAll('.art-page').forEach(el=>el.style.display='none');
+  var p=document.getElementById('art-page-'+n);
+  if(p)p.style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){
+  document.querySelectorAll('.art-page').forEach(el=>el.style.display='none');
+  document.getElementById('page-home').style.display='block';
+  document.getElementById('subnav').style.display='block';
+  document.getElementById('aff-strip').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function filterCat(cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  var btn=document.getElementById('btn-'+cat);
+  if(btn)btn.classList.add('active');
+  var cards=document.querySelectorAll('.art-card');
+  var visible=0;
+  cards.forEach(function(card){
+    if(cat==='all'||card.dataset.cat===cat){card.style.display='block';visible++;}
+    else card.style.display='none';
+  });
+  var e=document.getElementById('empty-state');
+  var c=document.getElementById('art-count');
+  if(e)e.style.display=visible===0?'block':'none';
+  if(c)c.textContent=visible+(visible===1?' article':' articles');
+  goHome();
+}
+</script>
 <!-- ── Google AdSense ── -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1618644195498270"
      crossorigin="anonymous"></script>
@@ -3574,9 +3608,9 @@ At 44, a ₹4 crore portfolio at 4% withdrawal provides ₹16L/year = ₹1.33L/m
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
-// ── Navigation ──────────────────────────────────────────────────────────────
-function openArticle(n) {
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script data-cfasync="false">
+window.openArticle = function(n) {
   document.getElementById('page-home').style.display = 'none';
   document.getElementById('subnav').style.display = 'none';
   document.getElementById('aff-strip').style.display = 'none';
@@ -3586,7 +3620,7 @@ function openArticle(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function goHome() {
+window.goHome = function() {
   document.querySelectorAll('.art-page').forEach(el => el.style.display = 'none');
   document.getElementById('page-home').style.display = 'block';
   document.getElementById('subnav').style.display = 'block';
@@ -3594,36 +3628,29 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── Category Filtering ───────────────────────────────────────────────────────
-function filterCat(cat) {
-  // Update active button
+window.filterCat = function(cat) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('btn-' + cat);
   if (btn) btn.classList.add('active');
-
   const cards = document.querySelectorAll('.art-card');
   let visible = 0;
   cards.forEach(card => {
     if (cat === 'all' || card.dataset.cat === cat) {
-      card.style.display = 'block';
-      visible++;
+      card.style.display = 'block'; visible++;
     } else {
       card.style.display = 'none';
     }
   });
-
   const emptyState = document.getElementById('empty-state');
   const countEl = document.getElementById('art-count');
   if (visible === 0) {
-    emptyState.style.display = 'block';
-    if (countEl) countEl.textContent = '0 articles';
+    if(emptyState) emptyState.style.display = 'block';
+    if(countEl) countEl.textContent = '0 articles';
   } else {
-    emptyState.style.display = 'none';
-    if (countEl) countEl.textContent = visible + (visible === 1 ? ' article' : ' articles');
+    if(emptyState) emptyState.style.display = 'none';
+    if(countEl) countEl.textContent = visible + (visible === 1 ? ' article' : ' articles');
   }
-
-  // Make sure homepage is shown
-  goHome();
+  window.goHome();
 }
 
 // ── Live Crypto Prices ────────────────────────────────────────────────────────
