@@ -17,6 +17,7 @@
 
 <script>
 function openArticle(n){
+  document.getElementById('page-home').style.display='none';
   document.getElementById('subnav').style.display='none';
   document.getElementById('aff-strip').style.display='none';
   document.querySelectorAll('.art-page').forEach(el=>el.style.display='none');
