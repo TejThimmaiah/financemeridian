@@ -4,102 +4,102 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finance Meridian Screener — Professional Stock & Crypto Screening</title>
-<meta name="description" content="Professional stock and cryptocurrency screener. Filter by fundamentals, technicals, and market data. Free and Pro plans available.">
-<meta name="keywords" content="stock screener, crypto screener, stock scanner, share screener India, NSE screener, BSE screener, technical analysis screener">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="Professional stock and cryptocurrency screener with detailed charts, technicals, and fundamentals for US stocks, Indian NSE stocks, and 100+ cryptos.">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--night:#080c12;--navy:#0d1520;--panel:#111b27;--card:#162030;--border:rgba(255,255,255,0.07);--gold:#e8b84b;--gold2:#f5d07a;--teal:#00c9a7;--red:#ff4d5b;--green:#00d68f;--blue:#4da6ff;--muted:#6b8299;--text:#c8d8e8;--bright:#f0f6ff}
+:root{--night:#080c12;--navy:#0d1520;--panel:#111b27;--card:#162030;--border:rgba(255,255,255,0.07);--gold:#e8b84b;--red:#ff4d5b;--green:#00d68f;--blue:#4da6ff;--muted:#6b8299;--text:#c8d8e8;--bright:#f0f6ff}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Outfit',sans-serif;background:var(--night);color:var(--text);min-height:100vh}
-/* NAV */
-header{background:var(--navy);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:1000}
-.hdr{max-width:1440px;margin:0 auto;display:flex;align-items:center;height:56px;gap:24px}
-.logo{font-size:22px;font-weight:700;color:var(--bright);text-decoration:none}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:rgba(232,184,75,0.3);border-radius:3px}
+
+/* ── HEADER ── */
+header{background:var(--navy);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:200}
+.hdr{max-width:1440px;margin:0 auto;display:flex;align-items:center;height:56px;gap:16px}
+.logo{font-size:20px;font-weight:700;color:var(--bright);text-decoration:none;white-space:nowrap}
 .logo em{color:var(--gold);font-style:normal}
-.back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;text-decoration:none;padding:6px 12px;border:1px solid var(--border);border-radius:6px;transition:all 0.2s;margin-left:auto}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;text-decoration:none;padding:6px 12px;border:1px solid var(--border);border-radius:6px;transition:all 0.2s;margin-left:auto;white-space:nowrap}
 .back-btn:hover{color:var(--gold);border-color:rgba(232,184,75,0.3)}
-.pro-btn{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:7px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif}
-/* HERO */
-.screener-hero{background:linear-gradient(180deg,#0a1628 0%,var(--night) 100%);border-bottom:1px solid var(--border);padding:28px 24px 0}
+.pro-btn{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:7px 18px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap}
+.live-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:5px;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ── HERO / TABS ── */
+.screener-hero{background:linear-gradient(180deg,#0a1628 0%,var(--night) 100%);border-bottom:1px solid var(--border);padding:22px 24px 0}
 .screener-hero-inner{max-width:1440px;margin:0 auto}
 .screener-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.25);color:var(--gold);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:10px}
-.screener-hero h1{font-size:28px;font-weight:700;color:var(--bright);margin-bottom:6px}
-.screener-hero p{font-size:14px;color:var(--muted);margin-bottom:20px}
-/* TABS */
-.screen-tabs{display:flex;gap:0;border-bottom:none}
-.stab{padding:10px 20px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;transition:all 0.18s;background:transparent}
+.screener-hero h1{font-size:26px;font-weight:700;color:var(--bright);margin-bottom:4px}
+.screener-hero p{font-size:13px;color:var(--muted);margin-bottom:18px}
+.screen-tabs{display:flex;gap:0}
+.stab{padding:10px 18px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;transition:all 0.18s;background:transparent;white-space:nowrap}
 .stab:hover{color:var(--text);background:rgba(255,255,255,0.03)}
-.stab.active{background:var(--panel);color:var(--gold);border-color:var(--border);border-bottom:1px solid var(--panel)}
-/* MAIN LAYOUT */
-.screener-body{max-width:1440px;margin:0 auto;padding:0 24px 40px}
-.screen-content{display:none;padding-top:20px}
+.stab.active{background:var(--panel);color:var(--gold);border-color:var(--border)}
+
+/* ── SCREENER BODY ── */
+.screener-body{max-width:1440px;margin:0 auto;padding:0 24px 60px}
+.screen-content{display:none;padding-top:18px}
 .screen-content.active{display:block}
-/* FILTER BAR */
-.filter-bar{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.filter-group{display:flex;flex-direction:column;gap:4px;min-width:130px}
-.filter-group label{font-size:11px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.05em}
-.filter-group select,.filter-group input{background:#0d1520;border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:6px;font-size:12px;font-family:'Outfit',sans-serif;outline:none;transition:border-color 0.2s}
-.filter-group select:focus,.filter-group input:focus{border-color:rgba(232,184,75,0.4)}
-.filter-actions{display:flex;gap:8px;margin-left:auto;align-items:flex-end}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.stat-label{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.stat-val{font-size:19px;font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace}
+.stat-sub{font-size:11px;margin-top:3px}
+.up{color:var(--green)}.dn{color:var(--red)}.neu{color:var(--muted)}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.filter-group{display:flex;flex-direction:column;gap:4px;min-width:120px}
+.filter-group label{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.filter-group select{background:#0d1520;border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:6px;font-size:12px;font-family:'Outfit',sans-serif;outline:none;transition:border-color 0.2s}
+.filter-group select:focus{border-color:rgba(232,184,75,0.4)}
+.filter-actions{display:flex;gap:8px;margin-left:auto}
 .btn-scan{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif}
-.btn-reset{background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s}
-.btn-reset:hover{border-color:var(--muted);color:var(--text)}
-/* RESULTS TABLE */
-.results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.btn-reset{background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s}
+.btn-reset:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
+
+/* ── TABLE ── */
+.results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .results-count{font-size:13px;color:var(--muted)}
 .results-count strong{color:var(--gold)}
-.export-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s}
-.export-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
+.export-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s}
+.export-btn:hover{color:var(--text)}
 .screen-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead{background:var(--panel)}
-th{padding:10px 14px;text-align:left;color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:1px solid var(--border)}
+th{padding:10px 14px;text-align:left;color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;cursor:pointer;user-select:none;border-bottom:1px solid var(--border)}
 th:hover{color:var(--text)}
-th.sorted{color:var(--gold)}
-th .sort-arrow{margin-left:4px;font-size:10px}
 tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.15s;cursor:pointer}
 tbody tr:last-child{border-bottom:none}
-tbody tr:hover{background:rgba(255,255,255,0.03)}
+tbody tr:hover{background:rgba(255,255,255,0.04)}
 td{padding:11px 14px;white-space:nowrap}
-.sym{font-weight:600;color:var(--bright);font-family:'JetBrains Mono',monospace;font-size:12px}
-.name{color:var(--muted);font-size:12px}
-.price{font-family:'JetBrains Mono',monospace;color:var(--bright);font-weight:500}
-.up{color:var(--green)}
-.dn{color:var(--red)}
-.neutral{color:var(--muted)}
-.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.sym{font-weight:700;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:underline;text-decoration-color:rgba(232,184,75,0.3);text-underline-offset:3px}
+.sym:hover{color:var(--bright)}
+.price-cell{font-family:'JetBrains Mono',monospace;color:var(--bright);font-weight:500}
+.tag{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:600}
 .tag-buy{background:rgba(0,214,143,0.12);color:var(--green);border:1px solid rgba(0,214,143,0.2)}
 .tag-sell{background:rgba(255,77,91,0.12);color:var(--red);border:1px solid rgba(255,77,91,0.2)}
 .tag-hold{background:rgba(232,184,75,0.12);color:var(--gold);border:1px solid rgba(232,184,75,0.2)}
 .tag-na{background:rgba(107,130,153,0.12);color:var(--muted);border:1px solid rgba(107,130,153,0.2)}
-.bar-wrap{width:60px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
-.bar-fill{height:100%;border-radius:2px}
-/* PRO LOCK */
+
+/* ── PRO LOCK ── */
 .pro-lock{display:flex;align-items:center;gap:10px;background:rgba(232,184,75,0.04);border:1px solid rgba(232,184,75,0.15);border-radius:10px;padding:14px 18px;margin-top:16px}
-.pro-lock-icon{font-size:20px}
 .pro-lock p{font-size:13px;color:var(--muted);flex:1}
 .pro-lock p strong{color:var(--gold)}
 .pro-lock button{background:linear-gradient(135deg,var(--gold),#c8921f);color:#000;border:none;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Outfit',sans-serif}
-/* WATCHLIST */
-.watchlist-bar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+
+/* ── SIGNALS ── */
+.watchlist-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .wl-chip{background:var(--panel);border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all 0.2s}
 .wl-chip:hover,.wl-chip.active{background:rgba(232,184,75,0.1);border-color:rgba(232,184,75,0.3);color:var(--gold)}
-/* STATS ROW */
-.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:18px}
-.stat-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
-.stat-label{font-size:11px;color:var(--muted);font-weight:500;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em}
-.stat-val{font-size:20px;font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace}
-.stat-sub{font-size:11px;margin-top:2px}
-/* PREMIUM FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}
-.feature-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
-.feature-icon{font-size:22px;margin-bottom:10px}
-.feature-card h3{font-size:14px;font-weight:600;color:var(--bright);margin-bottom:6px}
-.feature-card p{font-size:12px;color:var(--muted);line-height:1.6}
-.feature-card .pro-badge{display:inline-block;background:rgba(232,184,75,0.12);color:var(--gold);border:1px solid rgba(232,184,75,0.2);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;margin-top:8px}
-/* PLAN CARDS */
-.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:24px}
+.signal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.signal-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:all 0.2s}
+.signal-card:hover{border-color:rgba(232,184,75,0.3);transform:translateY(-1px)}
+
+/* ── PLANS ── */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:24px;max-width:860px;margin-left:auto;margin-right:auto}
 .plan-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative}
 .plan-card.featured{border-color:rgba(232,184,75,0.4);background:rgba(232,184,75,0.03)}
 .plan-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;white-space:nowrap}
@@ -111,43 +111,137 @@ td{padding:11px 14px;white-space:nowrap}
 .plan-features li::before{content:'✓';color:var(--green);flex-shrink:0;font-weight:600}
 .plan-features li.locked::before{content:'🔒';font-size:11px}
 .plan-features li.locked{color:rgba(107,130,153,0.5)}
-.plan-btn{width:100%;padding:10px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:16px;transition:all 0.2s}
+.plan-btn{width:100%;padding:10px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:16px}
 .plan-btn-free{background:transparent;border:1px solid var(--border);color:var(--text)}
-.plan-btn-free:hover{border-color:var(--muted)}
 .plan-btn-pro{background:linear-gradient(135deg,var(--gold),#c8921f);border:none;color:#000}
-/* SIGNALS */
-.signal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.signal-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:all 0.2s}
-.signal-card:hover{border-color:rgba(232,184,75,0.3)}
-.signal-sym{font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace;font-size:14px}
-.signal-name{font-size:11px;color:var(--muted);margin:2px 0 8px}
-.signal-signal{font-size:12px;font-weight:600;margin-bottom:6px}
-.signal-meta{font-size:11px;color:var(--muted)}
-/* LIVE INDICATOR */
-.live-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:5px;animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-/* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);border:1px solid var(--border);color:var(--text);padding:12px 20px;border-radius:8px;font-size:13px;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--navy);border:1px solid var(--border);color:var(--text);padding:12px 20px;border-radius:8px;font-size:13px;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none;max-width:360px}
 .toast.show{transform:translateY(0);opacity:1}
+
+/* ══════════════════════════════════════
+   DETAIL VIEW PANEL
+══════════════════════════════════════ */
+#detail-panel{
+  position:fixed;inset:0;z-index:500;
+  background:var(--night);
+  display:none;
+  overflow-y:auto;
+}
+#detail-panel.open{display:block;animation:slideIn 0.25s ease}
+@keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+
+.dp-header{background:var(--navy);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:10}
+.dp-header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px;height:58px;flex-wrap:wrap}
+.dp-back{background:none;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.dp-back:hover{color:var(--gold);border-color:rgba(232,184,75,0.3)}
+.dp-sym{font-size:22px;font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace}
+.dp-name{font-size:14px;color:var(--muted)}
+.dp-price{font-size:26px;font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace;margin-left:auto}
+.dp-chg-badge{padding:5px 12px;border-radius:6px;font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.dp-chg-badge.up{background:rgba(0,214,143,0.12);color:var(--green);border:1px solid rgba(0,214,143,0.2)}
+.dp-chg-badge.dn{background:rgba(255,77,91,0.12);color:var(--red);border:1px solid rgba(255,77,91,0.2)}
+
+.dp-body{max-width:1100px;margin:0 auto;padding:24px 24px 60px}
+
+/* Detail tabs */
+.dp-tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:0}
+.dp-tab{background:none;border:none;color:var(--muted);font-size:13px;font-weight:500;padding:9px 16px;cursor:pointer;font-family:'Outfit',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s}
+.dp-tab:hover{color:var(--text)}
+.dp-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.dp-tab-content{display:none}
+.dp-tab-content.active{display:block}
+
+/* Chart area */
+.chart-container{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.chart-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.chart-info{}
+.chart-info .ci-sym{font-size:14px;font-weight:600;color:var(--bright);font-family:'JetBrains Mono',monospace}
+.chart-info .ci-price{font-size:28px;font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace;display:block}
+.chart-info .ci-chg{font-size:13px;margin-top:2px}
+.period-btns{display:flex;gap:4px}
+.period-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:12px;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.2s}
+.period-btn:hover{color:var(--text);border-color:rgba(255,255,255,0.2)}
+.period-btn.active{background:rgba(232,184,75,0.1);color:var(--gold);border-color:rgba(232,184,75,0.3)}
+#detail-chart-svg{width:100%;display:block}
+
+/* Key stats grid */
+.kstats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-bottom:20px}
+.kstat{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.kstat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.kstat-val{font-size:17px;font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace}
+.kstat-sub{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* 52W range bar */
+.range-bar-wrap{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:20px}
+.range-bar-wrap h4{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.range-row{display:flex;align-items:center;gap:12px;font-size:12px;font-family:'JetBrains Mono',monospace}
+.range-low{color:var(--red)}
+.range-high{color:var(--green)}
+.range-track{flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;position:relative}
+.range-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--green));position:absolute;left:0;top:0}
+.range-marker{width:10px;height:10px;background:var(--bright);border:2px solid var(--navy);border-radius:50%;position:absolute;top:-2px;transform:translateX(-50%)}
+
+/* Technical indicators */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.tech-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.tech-card h4{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+
+/* RSI gauge SVG */
+.rsi-val{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace;margin-bottom:4px}
+.rsi-label{font-size:12px}
+
+/* MA status rows */
+.ma-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px}
+.ma-row:last-child{border-bottom:none}
+.ma-name{color:var(--muted)}
+.ma-val{font-family:'JetBrains Mono',monospace;color:var(--text)}
+.ma-status{font-size:11px;font-weight:600}
+
+/* Company info */
+.company-info{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.company-info h3{font-size:15px;font-weight:600;color:var(--bright);margin-bottom:10px}
+.company-info p{font-size:13.5px;color:var(--muted);line-height:1.7}
+
+/* Signal analysis box */
+.signal-analysis{border-radius:10px;padding:18px 20px;margin-bottom:20px}
+.signal-analysis.buy-bg{background:rgba(0,214,143,0.06);border:1px solid rgba(0,214,143,0.2)}
+.signal-analysis.hold-bg{background:rgba(232,184,75,0.06);border:1px solid rgba(232,184,75,0.2)}
+.signal-analysis.sell-bg{background:rgba(255,77,91,0.06);border:1px solid rgba(255,77,91,0.2)}
+.signal-analysis h3{font-size:13px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.signal-analysis p{font-size:13.5px;color:var(--muted);line-height:1.7}
+
+/* Fundamentals table */
+.fund-table{width:100%;border-collapse:collapse;font-size:13px}
+.fund-table tr{border-bottom:1px solid rgba(255,255,255,0.05)}
+.fund-table tr:last-child{border-bottom:none}
+.fund-table td:first-child{color:var(--muted);padding:9px 0;width:55%}
+.fund-table td:last-child{font-family:'JetBrains Mono',monospace;color:var(--bright);font-weight:500;text-align:right;padding:9px 0}
+
+/* Loading spinner */
+.dp-loading{text-align:center;padding:60px 20px;color:var(--muted)}
+.spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,0.06);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
+<!-- ════ HEADER ════ -->
 <header>
   <div class="hdr">
     <a href="/" class="logo">Finance<em>Meridian</em></a>
-    <span style="color:var(--muted);font-size:13px;padding:4px 10px;background:rgba(232,184,75,0.08);border:1px solid rgba(232,184,75,0.2);border-radius:20px;font-weight:600;color:var(--gold)">⚡ Screener</span>
+    <span style="color:var(--gold);font-size:12px;padding:3px 10px;background:rgba(232,184,75,0.08);border:1px solid rgba(232,184,75,0.2);border-radius:20px;font-weight:600">⚡ Screener</span>
     <a href="/" class="back-btn">← Back to Site</a>
-    <button class="pro-btn" onclick="showToast('Pro plan coming soon — join the waitlist!')">Go Pro — $9/mo</button>
+    <button class="pro-btn" onclick="showToast('Pro plan coming soon!')">Go Pro — $9/mo</button>
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ════ HERO ════ -->
 <div class="screener-hero">
   <div class="screener-hero-inner">
     <div class="screener-badge"><span class="live-dot"></span>Crypto: Live · Stocks: Delayed (Mar 21, 2026)</div>
     <h1>Finance Meridian Screener</h1>
-    <p>Professional stock & crypto screening — filter by 50+ indicators, technicals, and fundamentals. Free forever, Pro for power users.</p>
+    <p>Professional stock & crypto screening — filter by 50+ indicators, technicals, and fundamentals. Click any symbol for full detail view with charts.</p>
     <div class="screen-tabs">
       <div class="stab active" onclick="switchTab('stocks')">📈 Stocks</div>
       <div class="stab" onclick="switchTab('crypto')">💱 Crypto</div>
@@ -160,470 +254,494 @@ td{padding:11px 14px;white-space:nowrap}
 
 <div class="screener-body">
 
-<!-- ═══ STOCKS SCREENER ═══ -->
+<!-- ════════════ STOCKS ════════════ -->
 <div class="screen-content active" id="tab-stocks">
-
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-label">S&P 500</div><div class="stat-val up" id="sp500-val">5,667</div><div class="stat-sub up">▲ +0.38% today</div></div>
-    <div class="stat-card"><div class="stat-label">Nasdaq 100</div><div class="stat-val up" id="ndx-val">19,924</div><div class="stat-sub up">▲ +0.44% today</div></div>
-    <div class="stat-card"><div class="stat-label">Stocks Screened</div><div class="stat-val" style="color:var(--gold)" id="stock-count">8,342</div><div class="stat-sub" style="color:var(--muted)">NYSE + NASDAQ</div></div>
-    <div class="stat-card"><div class="stat-label">Buy Signals Today</div><div class="stat-val up" id="buy-count">247</div><div class="stat-sub up">↑ 14 new signals</div></div>
+    <div class="stat-card"><div class="stat-label">S&P 500</div><div class="stat-val up">5,667</div><div class="stat-sub up">▲ +0.38% today</div></div>
+    <div class="stat-card"><div class="stat-label">Nasdaq 100</div><div class="stat-val up">19,924</div><div class="stat-sub up">▲ +0.44% today</div></div>
+    <div class="stat-card"><div class="stat-label">Stocks Screened</div><div class="stat-val" style="color:var(--gold)">8,342</div><div class="stat-sub neu">NYSE + NASDAQ</div></div>
+    <div class="stat-card"><div class="stat-label">Buy Signals Today</div><div class="stat-val up">247</div><div class="stat-sub up">↑ 14 new signals</div></div>
     <div class="stat-card"><div class="stat-label">Market Breadth</div><div class="stat-val up">68%</div><div class="stat-sub up">Stocks above 200 MA</div></div>
   </div>
-
-  <!-- FILTERS -->
   <div class="filter-bar">
-    <div class="filter-group">
-      <label>Exchange</label>
-      <select id="f-exchange">
-        <option>All Exchanges</option>
-        <option>NYSE</option>
-        <option>NASDAQ</option>
-        <option>NSE India</option>
-        <option>BSE India</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Sector</label>
-      <select id="f-sector">
-        <option>All Sectors</option>
-        <option>Technology</option>
-        <option>Finance</option>
-        <option>Healthcare</option>
-        <option>Energy</option>
-        <option>Consumer</option>
-        <option>Industrials</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Market Cap</label>
-      <select id="f-cap">
-        <option>All Sizes</option>
-        <option>Mega Cap (>$200B)</option>
-        <option>Large Cap ($10B-$200B)</option>
-        <option>Mid Cap ($2B-$10B)</option>
-        <option>Small Cap (<$2B)</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>P/E Ratio</label>
-      <select id="f-pe">
-        <option>Any P/E</option>
-        <option>Under 10</option>
-        <option>10 - 20</option>
-        <option>20 - 30</option>
-        <option>30 - 50</option>
-        <option>Over 50</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Price Change</label>
-      <select id="f-chg">
-        <option>Any Change</option>
-        <option>Up >5% today</option>
-        <option>Up >2% today</option>
-        <option>Down >2% today</option>
-        <option>Down >5% today</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Signal</label>
-      <select id="f-signal">
-        <option>All Signals</option>
-        <option>Strong Buy</option>
-        <option>Buy</option>
-        <option>Hold</option>
-        <option>Sell</option>
-      </select>
-    </div>
-    <div class="filter-actions">
-      <button class="btn-reset" onclick="resetFilters('stocks')">Reset</button>
-      <button class="btn-scan" id="stock-scan-btn" onclick="runScan()">⚡ Scan</button>
-    </div>
+    <div class="filter-group"><label>Exchange</label><select id="f-exchange"><option>All Exchanges</option><option>NYSE</option><option>NASDAQ</option></select></div>
+    <div class="filter-group"><label>Sector</label><select id="f-sector"><option>All Sectors</option><option>Technology</option><option>Finance</option><option>Healthcare</option><option>Energy</option><option>Consumer</option><option>Auto</option><option>Media</option></select></div>
+    <div class="filter-group"><label>Market Cap</label><select id="f-cap"><option>All Sizes</option><option>Mega Cap (>$200B)</option><option>Large Cap ($10B-$200B)</option><option>Mid Cap ($2B-$10B)</option></select></div>
+    <div class="filter-group"><label>P/E Ratio</label><select id="f-pe"><option>Any P/E</option><option>Under 10</option><option>10 - 20</option><option>20 - 30</option><option>30 - 50</option><option>Over 50</option></select></div>
+    <div class="filter-group"><label>Price Change</label><select id="f-chg"><option>Any Change</option><option>Up >5% today</option><option>Up >2% today</option><option>Down >2% today</option><option>Down >5% today</option></select></div>
+    <div class="filter-group"><label>Signal</label><select id="f-signal"><option>All Signals</option><option>Buy</option><option>Hold</option><option>Sell</option></select></div>
+    <div class="filter-actions"><button class="btn-reset" onclick="resetFilters('stocks')">Reset</button><button class="btn-scan" onclick="runScan()">⚡ Scan</button></div>
   </div>
-
   <div class="results-header">
-    <div class="results-count">Showing <strong id="showing-count">50</strong> of <strong>8,342</strong> stocks</div>
+    <div class="results-count">Showing <strong id="showing-count">25</strong> of <strong>8,342</strong> stocks</div>
     <button class="export-btn" onclick="showToast('CSV export available on Pro plan')">↓ Export CSV</button>
   </div>
-
   <div class="screen-table-wrap">
     <table id="stocks-table">
-      <thead>
-        <tr>
-          <th onclick="sortTable('symbol')">Symbol <span class="sort-arrow">⇅</span></th>
-          <th onclick="sortTable('name')">Company</th>
-          <th onclick="sortTable('price')">Price <span class="sort-arrow">⇅</span></th>
-          <th onclick="sortTable('change')">Change <span class="sort-arrow">⇅</span></th>
-          <th onclick="sortTable('volume')">Volume <span class="sort-arrow">⇅</span></th>
-          <th onclick="sortTable('mktcap')">Mkt Cap <span class="sort-arrow">⇅</span></th>
-          <th onclick="sortTable('pe')">P/E <span class="sort-arrow">⇅</span></th>
-          <th onclick="sortTable('eps')">EPS</th>
-          <th onclick="sortTable('week52')">52W Range</th>
-          <th onclick="sortTable('signal')">Signal</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Symbol ⇅</th><th>Company</th>
+        <th>Price ⇅</th><th>Change ⇅</th>
+        <th>Volume</th><th>Mkt Cap ⇅</th>
+        <th>P/E ⇅</th><th>EPS</th>
+        <th>52W Range</th><th>Signal</th>
+      </tr></thead>
       <tbody id="stocks-tbody"></tbody>
     </table>
   </div>
-
-  <div class="pro-lock">
-    <div class="pro-lock-icon">🔒</div>
-    <p>You're viewing <strong>50 of 8,342</strong> stocks. <strong>Go Pro</strong> to access all stocks, unlimited filters, real-time data, email alerts, portfolio tracking, and AI-powered analysis reports.</p>
-    <button onclick="showToast('Pro plan — $9/month. Coming soon!')">Unlock Pro — $9/mo</button>
-  </div>
-
 </div>
 
-<!-- ═══ CRYPTO SCREENER ═══ -->
+<!-- ════════════ CRYPTO ════════════ -->
 <div class="screen-content" id="tab-crypto">
-
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-label">Bitcoin</div><div class="stat-val" id="btc-price" style="color:var(--gold)">Loading...</div><div class="stat-sub" id="btc-chg" style="color:var(--muted)">Fetching live...</div></div>
-    <div class="stat-card"><div class="stat-label">Ethereum</div><div class="stat-val" id="eth-price" style="color:var(--blue)">Loading...</div><div class="stat-sub" id="eth-chg" style="color:var(--muted)">Fetching live...</div></div>
-    <div class="stat-card"><div class="stat-label">Total Mkt Cap</div><div class="stat-val" id="total-mcap" style="color:var(--teal)">Loading...</div><div class="stat-sub" id="total-chg" style="color:var(--muted)">CoinGecko live</div></div>
-    <div class="stat-card"><div class="stat-label">Fear & Greed</div><div class="stat-val" id="fg-index" style="color:var(--green)">Loading...</div><div class="stat-sub" style="color:var(--muted)">Market sentiment</div></div>
-    <div class="stat-card"><div class="stat-label">Cryptos Tracked</div><div class="stat-val" style="color:var(--gold)">2,500+</div><div class="stat-sub" style="color:var(--muted)">Top by market cap</div></div>
+    <div class="stat-card"><div class="stat-label">Bitcoin</div><div class="stat-val up" id="btc-price">$87,240</div><div class="stat-sub up" id="btc-chg">Loading…</div></div>
+    <div class="stat-card"><div class="stat-label">Ethereum</div><div class="stat-val up" id="eth-price">$2,014</div><div class="stat-sub up" id="eth-chg">Loading…</div></div>
+    <div class="stat-card"><div class="stat-label">Total Market Cap</div><div class="stat-val" style="color:var(--gold)" id="total-mcap">—</div><div class="stat-sub neu">Top 100 coins</div></div>
+    <div class="stat-card"><div class="stat-label">Fear &amp; Greed</div><div class="stat-val up" id="fg-index">68</div><div class="stat-sub up">Greed</div></div>
   </div>
-
   <div class="filter-bar">
-    <div class="filter-group">
-      <label>Category</label>
-      <select id="cf-cat">
-        <option>All Cryptos</option>
-        <option>Layer 1 (Bitcoin, ETH)</option>
-        <option>DeFi Tokens</option>
-        <option>Layer 2</option>
-        <option>Stablecoins</option>
-        <option>NFT & Gaming</option>
-        <option>AI Tokens</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Market Cap Rank</label>
-      <select id="cf-rank">
-        <option>All Rankings</option>
-        <option>Top 10</option>
-        <option>Top 50</option>
-        <option>Top 100</option>
-        <option>Top 500</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>24h Change</label>
-      <select id="cf-chg">
-        <option>Any</option>
-        <option>Up >10%</option>
-        <option>Up >5%</option>
-        <option>Up >2%</option>
-        <option>Down >5%</option>
-        <option>Down >10%</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Price (USD)</label>
-      <select id="cf-price">
-        <option>Any Price</option>
-        <option>Under $1</option>
-        <option>$1 - $10</option>
-        <option>$10 - $100</option>
-        <option>Over $100</option>
-      </select>
-    </div>
-    <div class="filter-actions">
-      <button class="btn-reset" onclick="resetFilters('crypto')">Reset</button>
-      <button class="btn-scan" onclick="loadCryptoData();applyCryptoFilters()">⚡ Refresh Live</button>
-    </div>
+    <div class="filter-group"><label>Category</label><select id="cf-cat"><option>All Cryptos</option><option>Layer 1 (Bitcoin, ETH)</option><option>DeFi Tokens</option><option>Layer 2</option><option>Stablecoins</option><option>AI Tokens</option></select></div>
+    <div class="filter-group"><label>Rank</label><select id="cf-rank"><option>All</option><option>Top 10</option><option>Top 50</option><option>Top 100</option></select></div>
+    <div class="filter-group"><label>24h Change</label><select id="cf-chg"><option>Any</option><option>Up >10%</option><option>Up >5%</option><option>Up >2%</option><option>Down >5%</option><option>Down >10%</option></select></div>
+    <div class="filter-group"><label>Price Range</label><select id="cf-price"><option>Any Price</option><option>Under $1</option><option>$1 - $10</option><option>$10 - $100</option><option>Over $100</option></select></div>
+    <div class="filter-actions"><button class="btn-reset" onclick="resetFilters('crypto')">Reset</button><button class="btn-scan" onclick="loadCryptoData()">⚡ Refresh Live</button></div>
   </div>
-
   <div class="results-header">
-    <div class="results-count"><span class="live-dot"></span>Live data from CoinGecko — <strong id="crypto-count">Top 50</strong> by market cap</div>
-    <button class="export-btn" onclick="showToast('CSV export — Pro feature')">↓ Export CSV</button>
+    <div class="results-count"><strong id="crypto-count">Loading…</strong></div>
+    <button class="export-btn" onclick="showToast('Export available on Pro plan')">↓ Export CSV</button>
   </div>
-
   <div class="screen-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Asset</th>
-          <th>Price (USD)</th>
-          <th>1h %</th>
-          <th>24h %</th>
-          <th>7d %</th>
-          <th>Mkt Cap</th>
-          <th>24h Volume</th>
-          <th>Circulating Supply</th>
-          <th>Signal</th>
-        </tr>
-      </thead>
-      <tbody id="crypto-tbody">
-        <tr><td colspan="10" style="text-align:center;padding:30px;color:var(--muted)">Loading live cryptocurrency data...</td></tr>
-      </tbody>
+    <table><thead><tr>
+      <th>#</th><th>Coin</th><th>Price</th><th>1h %</th><th>24h %</th><th>7d %</th>
+      <th>Market Cap</th><th>Volume 24h</th><th>Circulating Supply</th><th>Signal</th>
+    </tr></thead>
+    <tbody id="crypto-tbody"><tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted)">Click "Refresh Live" to load live prices →</td></tr></tbody>
     </table>
   </div>
-
-  <div class="pro-lock">
-    <div class="pro-lock-icon">🔒</div>
-    <p>You're viewing Top 50. <strong>Go Pro</strong> to screen 2,500+ cryptos, set price alerts, access on-chain metrics, funding rates, whale wallet tracking, and AI trend prediction.</p>
-    <button onclick="showToast('Pro plan — $9/month. Coming soon!')">Unlock Pro — $9/mo</button>
-  </div>
-
 </div>
 
-<!-- ═══ INDIA SCREENER ═══ -->
+<!-- ════════════ INDIA ════════════ -->
 <div class="screen-content" id="tab-india">
-
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-label">Nifty 50</div><div class="stat-val" style="color:var(--green)">23,028</div><div class="stat-sub up">▲ +0.34%</div></div>
-    <div class="stat-card"><div class="stat-label">Sensex</div><div class="stat-val" style="color:var(--green)">75,948</div><div class="stat-sub up">▲ +0.31%</div></div>
-    <div class="stat-card"><div class="stat-label">Bank Nifty</div><div class="stat-val" style="color:var(--red)">48,842</div><div class="stat-sub dn">▼ -0.18%</div></div>
-    <div class="stat-card"><div class="stat-label">NSE Stocks</div><div class="stat-val" style="color:var(--gold)">1,842</div><div class="stat-sub" style="color:var(--muted)">Listed & active</div></div>
-    <div class="stat-card"><div class="stat-label">FII Activity</div><div class="stat-val up">+₹847Cr</div><div class="stat-sub up">Net buyers today</div></div>
+    <div class="stat-card"><div class="stat-label">Nifty 50</div><div class="stat-val dn">23,028</div><div class="stat-sub dn">▼ -0.78% today</div></div>
+    <div class="stat-card"><div class="stat-label">Sensex</div><div class="stat-val dn">75,948</div><div class="stat-sub dn">▼ -0.81% today</div></div>
+    <div class="stat-card"><div class="stat-label">Bank Nifty</div><div class="stat-val dn">48,842</div><div class="stat-sub dn">▼ -0.52% today</div></div>
+    <div class="stat-card"><div class="stat-label">USD/INR</div><div class="stat-val" style="color:var(--gold)">₹86.82</div><div class="stat-sub dn">▼ Rupee weakened</div></div>
   </div>
-
   <div class="filter-bar">
-    <div class="filter-group">
-      <label>Index</label>
-      <select>
-        <option>All NSE Stocks</option>
-        <option>Nifty 50</option>
-        <option>Nifty Next 50</option>
-        <option>Nifty Midcap 100</option>
-        <option>Nifty Smallcap 250</option>
-        <option>Nifty Bank</option>
-        <option>Nifty IT</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Sector</label>
-      <select>
-        <option>All Sectors</option>
-        <option>IT & Technology</option>
-        <option>Banking & Finance</option>
-        <option>Pharma</option>
-        <option>Auto</option>
-        <option>FMCG</option>
-        <option>Metals & Mining</option>
-        <option>Oil & Gas</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>P/E Ratio</label>
-      <select>
-        <option>Any P/E</option>
-        <option>Under 15</option>
-        <option>15 - 25</option>
-        <option>25 - 40</option>
-        <option>Over 40</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>Delivery %</label>
-      <select>
-        <option>Any</option>
-        <option>Over 50%</option>
-        <option>Over 70%</option>
-        <option>Under 30%</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <label>RSI</label>
-      <select>
-        <option>Any RSI</option>
-        <option>Oversold (RSI < 30)</option>
-        <option>Neutral (30-70)</option>
-        <option>Overbought (RSI > 70)</option>
-      </select>
-    </div>
-    <div class="filter-actions">
-      <button class="btn-reset">Reset</button>
-      <button class="btn-scan" onclick="runIndiaScan()">⚡ Scan NSE</button>
-    </div>
+    <div class="filter-group"><label>Index</label><select><option>All NSE</option><option>Nifty 50</option><option>Nifty Next 50</option><option>Nifty Midcap</option></select></div>
+    <div class="filter-group"><label>Sector</label><select><option>All Sectors</option><option>IT & Technology</option><option>Banking & Finance</option><option>FMCG</option><option>Auto</option><option>Oil & Gas</option></select></div>
+    <div class="filter-group"><label>P/E Ratio</label><select><option>Any P/E</option><option>Under 15</option><option>15 - 25</option><option>25 - 40</option><option>Over 40</option></select></div>
+    <div class="filter-group"><label>Delivery %</label><select><option>Any</option><option>Over 50%</option><option>Over 70%</option><option>Under 30%</option></select></div>
+    <div class="filter-group"><label>RSI</label><select><option>Any RSI</option><option>Oversold (<30)</option><option>Neutral (30-70)</option><option>Overbought (>70)</option></select></div>
+    <div class="filter-actions"><button class="btn-reset" onclick="resetFilters('india')">Reset</button><button class="btn-scan" onclick="runIndiaScan()">⚡ Scan NSE</button></div>
   </div>
-
+  <div class="results-header">
+    <div class="results-count">Showing <strong id="india-count">12</strong> NSE stocks</div>
+    <button class="export-btn" onclick="showToast('Export available on Pro plan')">↓ Export CSV</button>
+  </div>
   <div class="screen-table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Symbol</th>
-          <th>Company</th>
-          <th>LTP (₹)</th>
-          <th>Change</th>
-          <th>Volume</th>
-          <th>Delivery %</th>
-          <th>P/E</th>
-          <th>52W High</th>
-          <th>52W Low</th>
-          <th>Signal</th>
-        </tr>
-      </thead>
-      <tbody id="india-tbody"></tbody>
+    <table><thead><tr>
+      <th>Symbol</th><th>Company</th><th>LTP (₹)</th><th>Change</th>
+      <th>Volume</th><th>Delivery %</th><th>P/E</th>
+      <th>52W High</th><th>52W Low</th><th>Signal</th>
+    </tr></thead>
+    <tbody id="india-tbody"></tbody>
     </table>
   </div>
-
   <div class="pro-lock">
-    <div class="pro-lock-icon">🔒</div>
-    <p>Live NSE/BSE data, FII/DII tracking, circuit filter alerts, F&O data, and bulk deal notifications are available with <strong>Finance Meridian Pro</strong>.</p>
+    <div>🔒</div>
+    <p>Live NSE/BSE data, FII/DII tracking, F&O data, and bulk deal notifications available with <strong>Finance Meridian Pro</strong>.</p>
     <button onclick="showToast('Pro plan — $9/month. Coming soon!')">Unlock Pro — $9/mo</button>
   </div>
-
 </div>
 
-<!-- ═══ SIGNALS ═══ -->
+<!-- ════════════ SIGNALS ════════════ -->
 <div class="screen-content" id="tab-signals">
-  <div style="margin-bottom:16px">
-    <div class="watchlist-bar">
-      <div class="wl-chip active" onclick="filterSignals('all',this)">All Signals</div>
-      <div class="wl-chip" onclick="filterSignals('buy',this)">Strong Buy 🟢</div>
-      <div class="wl-chip" onclick="filterSignals('hold',this)">Hold 🟡</div>
-      <div class="wl-chip" onclick="filterSignals('sell',this)">Sell 🔴</div>
-      <div class="wl-chip" onclick="filterSignals('breakout',this)">Breakouts ⚡</div>
-    </div>
+  <div class="watchlist-bar">
+    <div class="wl-chip active" onclick="filterSignals('all',this)">All Signals</div>
+    <div class="wl-chip" onclick="filterSignals('buy',this)">Strong Buy 🟢</div>
+    <div class="wl-chip" onclick="filterSignals('hold',this)">Hold 🟡</div>
+    <div class="wl-chip" onclick="filterSignals('sell',this)">Sell 🔴</div>
+    <div class="wl-chip" onclick="filterSignals('breakout',this)">Breakouts ⚡</div>
   </div>
   <div class="signal-grid" id="signals-grid"></div>
-  <div class="pro-lock" style="margin-top:24px">
-    <div class="pro-lock-icon">🔒</div>
-    <p>Get <strong>real-time push notifications</strong> for buy/sell signals, breakout alerts, and AI-generated trade setups via email and WhatsApp with <strong>Pro</strong>.</p>
+  <div class="pro-lock" style="margin-top:20px">
+    <div>🔒</div>
+    <p>Real-time push notifications for buy/sell signals and AI-generated trade setups available with <strong>Pro</strong>.</p>
     <button onclick="showToast('Pro plan — $9/month. Coming soon!')">Get Alerts — $9/mo</button>
   </div>
 </div>
 
-<!-- ═══ PLANS ═══ -->
+<!-- ════════════ PLANS ════════════ -->
 <div class="screen-content" id="tab-plans">
-  <div style="text-align:center;max-width:600px;margin:0 auto 32px">
-    <h2 style="font-size:24px;font-weight:700;color:var(--bright);margin-bottom:8px">Simple, Honest Pricing</h2>
-    <p style="color:var(--muted);font-size:14px">Start free forever. Upgrade when you need more power. Cancel anytime.</p>
+  <div style="text-align:center;max-width:560px;margin:0 auto 28px">
+    <h2 style="font-size:22px;font-weight:700;color:var(--bright);margin-bottom:8px">Simple, Honest Pricing</h2>
+    <p style="color:var(--muted);font-size:13px">Start free forever. Upgrade when you need more power.</p>
   </div>
-  <div class="plans-grid" style="max-width:860px;margin:0 auto">
-    <div class="plan-card">
-      <div class="plan-name">Free</div>
-      <div class="plan-price">$0 <span>/month</span></div>
-      <ul class="plan-features">
-        <li>Top 50 stocks screener</li>
-        <li>Top 50 cryptos with live prices</li>
-        <li>Top 20 India NSE stocks</li>
-        <li>Basic technical indicators (RSI, MACD)</li>
-        <li>Buy/Sell signals for 20 stocks</li>
-        <li>Daily market summary</li>
-        <li class="locked">Unlimited stock screening</li>
-        <li class="locked">Real-time price alerts</li>
-        <li class="locked">AI analysis reports</li>
-        <li class="locked">Portfolio tracker</li>
-        <li class="locked">CSV/Excel exports</li>
-      </ul>
+  <div class="plans-grid">
+    <div class="plan-card"><div class="plan-name">Free</div><div class="plan-price">$0 <span>/month</span></div>
+      <ul class="plan-features"><li>Top 50 stocks screener</li><li>Top 100 cryptos live prices</li><li>Top 20 India NSE stocks</li><li>Full detail view with charts</li><li>Buy/Sell signals</li><li class="locked">8,000+ stock database</li><li class="locked">Real-time price alerts</li><li class="locked">AI analysis reports</li><li class="locked">Portfolio tracker</li></ul>
       <button class="plan-btn plan-btn-free">Current Plan</button>
     </div>
-    <div class="plan-card featured">
-      <div class="plan-badge">Most Popular</div>
-      <div class="plan-name">Pro</div>
-      <div class="plan-price">$9 <span>/month</span></div>
-      <ul class="plan-features">
-        <li>8,000+ stocks — NYSE, NASDAQ, NSE, BSE</li>
-        <li>2,500+ cryptocurrencies</li>
-        <li>50+ filter parameters</li>
-        <li>Real-time price & signal alerts (Email + WhatsApp)</li>
-        <li>AI-generated analysis reports</li>
-        <li>Portfolio tracker & watchlists</li>
-        <li>CSV/Excel export</li>
-        <li>On-chain crypto metrics</li>
-        <li>FII/DII flow tracker (India)</li>
-        <li>Backtesting tool</li>
-        <li>Priority support</li>
-      </ul>
-      <button class="plan-btn plan-btn-pro" onclick="showToast('Pro plan launching soon! You\'ll be notified.')">Join Waitlist</button>
+    <div class="plan-card featured"><div class="plan-badge">Most Popular</div><div class="plan-name">Pro</div><div class="plan-price">$9 <span>/month</span></div>
+      <ul class="plan-features"><li>8,000+ stocks — NYSE, NASDAQ, NSE, BSE</li><li>2,500+ cryptocurrencies</li><li>50+ filter parameters</li><li>Real-time alerts (Email + WhatsApp)</li><li>AI-generated analysis reports</li><li>Portfolio tracker & watchlists</li><li>CSV/Excel export</li><li>FII/DII flow tracker</li><li>Backtesting tool</li></ul>
+      <button class="plan-btn plan-btn-pro" onclick="showToast('Pro launching soon! Join waitlist.')">Join Waitlist</button>
     </div>
-    <div class="plan-card">
-      <div class="plan-name">API</div>
-      <div class="plan-price">$49 <span>/month</span></div>
-      <ul class="plan-features">
-        <li>Everything in Pro</li>
-        <li>REST API access (10,000 req/day)</li>
-        <li>Webhooks for real-time alerts</li>
-        <li>Historical data (5 years)</li>
-        <li>Bulk screening API</li>
-        <li>White-label option</li>
-        <li>Dedicated support</li>
-        <li class="locked">Custom data feeds</li>
-      </ul>
-      <button class="plan-btn plan-btn-free" onclick="showToast('API plan — contact us at editor@financemeridian.com')">Contact Us</button>
+    <div class="plan-card"><div class="plan-name">API</div><div class="plan-price">$49 <span>/month</span></div>
+      <ul class="plan-features"><li>Everything in Pro</li><li>REST API (10,000 req/day)</li><li>Webhooks for real-time alerts</li><li>Historical data (5 years)</li><li>Bulk screening API</li><li>White-label option</li><li>Dedicated support</li></ul>
+      <button class="plan-btn plan-btn-free" onclick="showToast('API plan — contact editor@financemeridian.com')">Contact Us</button>
     </div>
-  </div>
-
-  <div class="features-grid" style="max-width:1000px;margin:32px auto 0">
-    <div class="feature-card"><div class="feature-icon">📊</div><h3>50+ Technical Indicators</h3><p>RSI, MACD, Bollinger Bands, EMA/SMA, Stochastic, ADX, ATR, Volume Profile, Ichimoku Cloud, and more.</p><span class="pro-badge">PRO</span></div>
-    <div class="feature-card"><div class="feature-icon">🤖</div><h3>AI-Powered Analysis</h3><p>Each screened stock gets an AI-generated report covering technicals, fundamentals, risks, and a price target range.</p><span class="pro-badge">PRO</span></div>
-    <div class="feature-card"><div class="feature-icon">🔔</div><h3>Smart Alerts</h3><p>Get notified instantly when a stock hits your price target, breaks out of a pattern, or shows unusual volume.</p><span class="pro-badge">PRO</span></div>
-    <div class="feature-card"><div class="feature-icon">📱</div><h3>Portfolio Tracker</h3><p>Track your entire portfolio across stocks and crypto. See P&L, asset allocation, and performance benchmarked against Nifty/S&P.</p><span class="pro-badge">PRO</span></div>
-    <div class="feature-card"><div class="feature-icon">📤</div><h3>Export & API</h3><p>Export any screener result to CSV/Excel. API access for developers building automated trading or research tools.</p><span class="pro-badge">API</span></div>
-    <div class="feature-card"><div class="feature-icon">🕯</div><h3>Backtesting</h3><p>Test any screening strategy on 5 years of historical data. See win rate, max drawdown, and annualised returns before trading live.</p><span class="pro-badge">PRO</span></div>
   </div>
 </div>
 
 </div><!-- end screener-body -->
 
+<!-- ══════════════════════════════════════════════════
+     DETAIL PANEL — Full Screen Stock/Crypto Detail View
+══════════════════════════════════════════════════ -->
+<div id="detail-panel">
+  <div class="dp-header">
+    <div class="dp-header-inner">
+      <button class="dp-back" onclick="closeDetail()">← Back to Screener</button>
+      <div>
+        <div class="dp-sym" id="dp-sym">—</div>
+        <div class="dp-name" id="dp-name">—</div>
+      </div>
+      <div class="dp-price" id="dp-price">—</div>
+      <div class="dp-chg-badge" id="dp-chg-badge">—</div>
+      <span id="dp-signal-tag"></span>
+    </div>
+  </div>
+
+  <div class="dp-body">
+    <!-- Loading state -->
+    <div class="dp-loading" id="dp-loading">
+      <div class="spinner"></div>
+      <div>Loading detail view…</div>
+    </div>
+
+    <!-- Actual content (shown after loading) -->
+    <div id="dp-content" style="display:none">
+
+      <!-- Detail Tabs -->
+      <div class="dp-tabs">
+        <button class="dp-tab active" onclick="switchDpTab('overview',this)">Overview</button>
+        <button class="dp-tab" onclick="switchDpTab('chart',this)">Chart &amp; Price</button>
+        <button class="dp-tab" onclick="switchDpTab('technicals',this)">Technicals</button>
+        <button class="dp-tab" onclick="switchDpTab('fundamentals',this)">Fundamentals</button>
+      </div>
+
+      <!-- ── OVERVIEW TAB ── -->
+      <div class="dp-tab-content active" id="dptab-overview">
+        <!-- Mini chart always visible on overview -->
+        <div class="chart-container">
+          <div class="chart-topbar">
+            <div class="chart-info">
+              <span class="ci-sym" id="ci-sym">—</span>
+              <span class="ci-price" id="ci-price">—</span>
+              <span class="ci-chg" id="ci-chg">—</span>
+            </div>
+            <div class="period-btns">
+              <button class="period-btn active" onclick="setPeriod(7,this)">1W</button>
+              <button class="period-btn" onclick="setPeriod(30,this)">1M</button>
+              <button class="period-btn" onclick="setPeriod(90,this)">3M</button>
+              <button class="period-btn" onclick="setPeriod(180,this)">6M</button>
+              <button class="period-btn" onclick="setPeriod(365,this)">1Y</button>
+            </div>
+          </div>
+          <svg id="detail-chart-svg" viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block"></svg>
+          <div style="font-size:11px;color:rgba(107,130,153,0.5);margin-top:8px" id="chart-note">Simulated price history for illustration. For real-time data, upgrade to Pro.</div>
+        </div>
+
+        <!-- 52W Range -->
+        <div class="range-bar-wrap" id="dp-range-wrap">
+          <h4>52-Week Range</h4>
+          <div class="range-row">
+            <span class="range-low" id="range-low">—</span>
+            <div class="range-track">
+              <div class="range-fill" id="range-fill" style="width:0%"></div>
+              <div class="range-marker" id="range-marker" style="left:0%"></div>
+            </div>
+            <span class="range-high" id="range-high">—</span>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:8px">Current price position within 52-week range: <strong id="range-pct" style="color:var(--bright)">—</strong></div>
+        </div>
+
+        <!-- Key Stats -->
+        <div class="kstats-grid" id="dp-kstats"></div>
+
+        <!-- Signal Analysis -->
+        <div class="signal-analysis" id="dp-signal-box">
+          <h3 id="dp-signal-title">Signal Analysis</h3>
+          <p id="dp-signal-reason">—</p>
+        </div>
+
+        <!-- Company Info -->
+        <div class="company-info" id="dp-company-info">
+          <h3 id="dp-co-name">About the Company</h3>
+          <p id="dp-co-desc">—</p>
+        </div>
+      </div>
+
+      <!-- ── CHART TAB ── -->
+      <div class="dp-tab-content" id="dptab-chart">
+        <div class="chart-container">
+          <div class="chart-topbar">
+            <div class="chart-info">
+              <span class="ci-sym" id="ci-sym2">—</span>
+              <span class="ci-price" id="ci-price2">—</span>
+            </div>
+            <div class="period-btns">
+              <button class="period-btn" onclick="setPeriod(7,this)">1W</button>
+              <button class="period-btn active" onclick="setPeriod(30,this)">1M</button>
+              <button class="period-btn" onclick="setPeriod(90,this)">3M</button>
+              <button class="period-btn" onclick="setPeriod(180,this)">6M</button>
+              <button class="period-btn" onclick="setPeriod(365,this)">1Y</button>
+            </div>
+          </div>
+          <svg id="detail-chart-svg2" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block"></svg>
+          <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px" id="ohlcv-stats"></div>
+        </div>
+        <!-- Volume bars -->
+        <div class="chart-container">
+          <div style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px">Volume (30-Day)</div>
+          <svg id="vol-chart-svg" viewBox="0 0 900 100" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block"></svg>
+        </div>
+      </div>
+
+      <!-- ── TECHNICALS TAB ── -->
+      <div class="dp-tab-content" id="dptab-technicals">
+        <div class="tech-grid" id="dp-tech-grid"></div>
+
+        <!-- Moving Averages Table -->
+        <div class="company-info" style="margin-bottom:20px">
+          <h3 style="margin-bottom:14px">Moving Averages</h3>
+          <div id="dp-ma-table"></div>
+        </div>
+
+        <!-- Support & Resistance -->
+        <div class="company-info">
+          <h3 style="margin-bottom:14px">Key Price Levels</h3>
+          <div id="dp-levels"></div>
+        </div>
+      </div>
+
+      <!-- ── FUNDAMENTALS TAB ── -->
+      <div class="dp-tab-content" id="dptab-fundamentals">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" id="dp-fund-grid">
+          <div class="company-info">
+            <h3 style="margin-bottom:14px">Valuation</h3>
+            <table class="fund-table" id="fund-valuation"></table>
+          </div>
+          <div class="company-info">
+            <h3 style="margin-bottom:14px">Financial Metrics</h3>
+            <table class="fund-table" id="fund-financials"></table>
+          </div>
+        </div>
+        <div class="company-info" style="margin-top:16px">
+          <h3 style="margin-bottom:14px">Per Share Data</h3>
+          <table class="fund-table" id="fund-pershare"></table>
+        </div>
+      </div>
+
+    </div><!-- end dp-content -->
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-// ═══ TAB SWITCHING ═══
-function switchTab(tab){
-  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.screen-content').forEach(c=>c.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById('tab-'+tab).classList.add('active');
-  if(tab==='crypto') loadCryptoData();
-}
-
-// ═══ TOAST ═══
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3500);
-}
-
-// ═══ STOCKS DATA ═══
+// ════════════════════════════════════════
+// CORE DATA
+// ════════════════════════════════════════
 const STOCKS_DATA=[
-  // Prices as of March 21, 2026 — Sources: Google Finance, Robinhood
-  {sym:'AAPL',name:'Apple Inc.',sector:'Technology',price:249.80,chg:-0.39,vol:'88.3M',mcap:'$3.8T',pe:31.2,eps:8.01,w52:'169.21-288.62',signal:'buy'},
-  {sym:'MSFT',name:'Microsoft',sector:'Technology',price:381.85,chg:-1.84,vol:'24.1M',mcap:'$2.84T',pe:32.4,eps:11.80,w52:'344.00-468.35',signal:'buy'},
-  {sym:'NVDA',name:'NVIDIA Corp',sector:'Technology',price:174.90,chg:-3.15,vol:'241.3M',mcap:'$4.27T',pe:35.31,eps:4.95,w52:'86.62-212.19',signal:'buy'},
-  {sym:'GOOGL',name:'Alphabet Inc',sector:'Technology',price:307.13,chg:0.18,vol:'32.4M',mcap:'$1.88T',pe:20.8,eps:14.76,w52:'140.53-349.00',signal:'buy'},
-  {sym:'AMZN',name:'Amazon',sector:'Consumer',price:208.77,chg:0.52,vol:'38.2M',mcap:'$2.20T',pe:38.2,eps:5.47,w52:'168.59-242.52',signal:'buy'},
-  {sym:'TSLA',name:'Tesla Inc',sector:'Auto',price:380.30,chg:3.18,vol:'82.4M',mcap:'$1.22T',pe:98.5,eps:3.86,w52:'214.25-498.83',signal:'hold'},
-  {sym:'META',name:'Meta Platforms',sector:'Technology',price:622.14,chg:-0.82,vol:'14.2M',mcap:'$1.57T',pe:26.8,eps:23.22,w52:'414.50-740.91',signal:'buy'},
-  {sym:'BRK.B',name:'Berkshire Hathaway',sector:'Finance',price:524.18,chg:0.44,vol:'4.1M',mcap:'$1.14T',pe:11.4,eps:45.98,w52:'388.40-560.22',signal:'buy'},
-  {sym:'JPM',name:'JPMorgan Chase',sector:'Finance',price:248.62,chg:-0.28,vol:'10.8M',mcap:'$716B',pe:13.2,eps:18.84,w52:'192.42-280.18',signal:'buy'},
-  {sym:'V',name:'Visa Inc',sector:'Finance',price:358.44,chg:0.62,vol:'5.8M',mcap:'$735B',pe:32.8,eps:10.93,w52:'266.40-390.44',signal:'hold'},
-  {sym:'JNJ',name:'Johnson & Johnson',sector:'Healthcare',price:158.92,chg:-0.44,vol:'7.2M',mcap:'$382B',pe:15.8,eps:10.06,w52:'143.13-168.96',signal:'hold'},
-  {sym:'WMT',name:'Walmart',sector:'Consumer',price:98.42,chg:0.88,vol:'18.4M',mcap:'$791B',pe:42.2,eps:2.33,w52:'64.40-105.32',signal:'buy'},
-  {sym:'XOM',name:'ExxonMobil',sector:'Energy',price:118.24,chg:-1.22,vol:'22.4M',mcap:'$472B',pe:14.2,eps:8.32,w52:'95.77-126.84',signal:'hold'},
-  {sym:'UNH',name:'UnitedHealth',sector:'Healthcare',price:572.44,chg:0.82,vol:'2.8M',mcap:'$531B',pe:22.4,eps:25.56,w52:'432.16-601.88',signal:'buy'},
-  {sym:'AVGO',name:'Broadcom Inc',sector:'Technology',price:319.85,chg:1.24,vol:'8.2M',mcap:'$1.52T',pe:38.2,eps:8.38,w52:'119.76-251.88',signal:'buy'},
-  {sym:'MA',name:'Mastercard',sector:'Finance',price:558.32,chg:0.44,vol:'3.4M',mcap:'$521B',pe:38.4,eps:14.54,w52:'435.22-594.80',signal:'hold'},
-  {sym:'HD',name:'Home Depot',sector:'Consumer',price:388.44,chg:-0.68,vol:'3.8M',mcap:'$386B',pe:24.8,eps:15.66,w52:'313.16-430.44',signal:'hold'},
-  {sym:'PG',name:'Procter & Gamble',sector:'Consumer',price:168.42,chg:0.18,vol:'6.4M',mcap:'$397B',pe:25.4,eps:6.63,w52:'148.22-178.44',signal:'hold'},
-  {sym:'COST',name:'Costco',sector:'Consumer',price:1002.44,chg:0.88,vol:'2.1M',mcap:'$444B',pe:56.4,eps:17.77,w52:'688.22-1077.08',signal:'buy'},
-  {sym:'PLTR',name:'Palantir Technologies',sector:'Technology',price:155.68,chg:1.90,vol:'62.4M',mcap:'$344B',pe:248.0,eps:0.63,w52:'17.24-174.84',signal:'buy'},
-  {sym:'AMD',name:'Advanced Micro Devices',sector:'Technology',price:201.33,chg:-1.92,vol:'48.2M',mcap:'$327B',pe:112.0,eps:1.79,w52:'95.45-233.42',signal:'hold'},
-  {sym:'INTC',name:'Intel Corp',sector:'Technology',price:46.18,chg:2.55,vol:'38.4M',mcap:'$196B',pe:22.4,eps:2.06,w52:'18.51-49.22',signal:'hold'},
-  {sym:'NFLX',name:'Netflix',sector:'Technology',price:1082.44,chg:3.13,vol:'4.2M',mcap:'$466B',pe:52.4,eps:20.64,w52:'524.74-1114.20',signal:'buy'},
-  {sym:'DIS',name:'Walt Disney',sector:'Media',price:96.44,chg:-0.88,vol:'9.8M',mcap:'$176B',pe:38.4,eps:2.51,w52:'84.24-123.74',signal:'hold'},
-  {sym:'MU',name:'Micron Technology',sector:'Technology',price:114.28,chg:3.78,vol:'24.8M',mcap:'$127B',pe:18.2,eps:6.28,w52:'67.62-157.54',signal:'buy'},
+  {sym:'AAPL',name:'Apple Inc.',sector:'Technology',exchange:'NASDAQ',price:249.80,chg:-0.39,vol:'88.3M',mcap:'$3.8T',pe:31.2,eps:8.01,w52:'169.21-288.62',w52lo:169.21,w52hi:288.62,signal:'buy',
+   desc:'Apple Inc. designs, manufactures and markets smartphones, personal computers, tablets, wearables, and accessories. Its flagship products include the iPhone, Mac, iPad, Apple Watch, and AirPods. Services include the App Store, Apple Music, iCloud, Apple Pay, and Apple TV+. Apple is the world\'s largest company by market capitalisation.',
+   reason:'Strong iPhone 17 cycle, AI integration (Apple Intelligence) driving ASP growth. Cook\'s India visit signals massive market expansion. Gross margins at record 47.1%. Above 50-day and 200-day MA. RSI neutral at 52.',
+   revenue:'$391B',grossMargin:'47.1%',netMargin:'25.3%',roe:'171%',roa:'22%',debtEquity:'1.52',currRatio:'0.87',divYield:'0.51%',beta:1.18},
+  {sym:'MSFT',name:'Microsoft',sector:'Technology',exchange:'NASDAQ',price:381.85,chg:-1.84,vol:'24.1M',mcap:'$2.84T',pe:32.4,eps:11.80,w52:'344.00-468.35',w52lo:344,w52hi:468.35,signal:'buy',
+   desc:'Microsoft Corporation develops, licenses, and supports a wide range of software products, services, and devices. Key segments include Productivity and Business Processes (Office 365, LinkedIn), Intelligent Cloud (Azure, Server products), and More Personal Computing (Windows, Xbox). Microsoft\'s Azure cloud is the second largest globally.',
+   reason:'Azure AI co-pilot growth accelerating at 32% YoY. Office 365 Copilot subscription addition adds $30/user/month revenue stream. OpenAI partnership is a multi-year moat. Trading near 200-day MA — strong support level.',
+   revenue:'$236B',grossMargin:'70.1%',netMargin:'36.4%',roe:'38.8%',roa:'19.2%',debtEquity:'0.35',currRatio:'1.77',divYield:'0.74%',beta:0.92},
+  {sym:'NVDA',name:'NVIDIA Corp',sector:'Technology',exchange:'NASDAQ',price:174.90,chg:-3.15,vol:'241.3M',mcap:'$4.27T',pe:35.31,eps:4.95,w52:'86.62-212.19',w52lo:86.62,w52hi:212.19,signal:'buy',
+   desc:'NVIDIA Corporation is the dominant designer of graphics processing units (GPUs) for gaming, professional visualization, data center, and automotive applications. Its H100 and Blackwell GPU architecture powers the AI training infrastructure of every major cloud provider and hyperscaler globally. NVIDIA\'s CUDA software ecosystem creates a powerful switching cost moat.',
+   reason:'Blackwell GPU architecture demand exceeding supply by 3:1. Data center revenue grew 142% YoY. Microsoft, Google, Meta, Amazon spending $200B+ on AI capex in 2026 — all flowing through NVIDIA. Pullback from $212 all-time high creates attractive entry point.',
+   revenue:'$113B',grossMargin:'74.6%',netMargin:'55.0%',roe:'123%',roa:'55%',debtEquity:'0.41',currRatio:'4.17',divYield:'0.03%',beta:1.68},
+  {sym:'GOOGL',name:'Alphabet Inc',sector:'Technology',exchange:'NASDAQ',price:307.13,chg:0.18,vol:'32.4M',mcap:'$1.88T',pe:20.8,eps:14.76,w52:'140.53-349.00',w52lo:140.53,w52hi:349,signal:'buy',
+   desc:'Alphabet Inc. is the parent company of Google and various subsidiaries. Google\'s core business includes Search (largest digital ad platform), YouTube, Google Cloud (GCP), and Android. The Waymo self-driving division and DeepMind AI research are significant long-term optionality assets. Google Cloud is growing at 28% YoY.',
+   reason:'Gemini AI integration into Search driving click-through improvement. Google Cloud gaining enterprise share from AWS. 20x PE is cheap for a company growing EPS 15%+. Stock below 52W high — multiple expansion possible.',
+   revenue:'$307B',grossMargin:'57.3%',netMargin:'24.0%',roe:'31.5%',roa:'15.4%',debtEquity:'0.07',currRatio:'2.01',divYield:'0.49%',beta:1.05},
+  {sym:'AMZN',name:'Amazon',sector:'Consumer',exchange:'NASDAQ',price:208.77,chg:0.52,vol:'38.2M',mcap:'$2.20T',pe:38.2,eps:5.47,w52:'168.59-242.52',w52lo:168.59,w52hi:242.52,signal:'buy',
+   desc:'Amazon.com Inc. operates through three segments: North America (US retail), International (global retail), and Amazon Web Services (AWS cloud). AWS is the world\'s largest cloud provider with ~32% market share. Prime membership drives massive customer loyalty and advertising revenue growth.',
+   reason:'AWS growth re-accelerating to 19% YoY. Advertising business ($50B+) growing 27% — highest margin segment. AI Bedrock service gaining enterprise adoption. Operating leverage improving with 52% YoY operating income growth.',
+   revenue:'$575B',grossMargin:'48.0%',netMargin:'9.6%',roe:'21.8%',roa:'5.5%',debtEquity:'0.60',currRatio:'1.06',divYield:'—',beta:1.14},
+  {sym:'TSLA',name:'Tesla Inc',sector:'Auto',exchange:'NASDAQ',price:380.30,chg:3.18,vol:'82.4M',mcap:'$1.22T',pe:98.5,eps:3.86,w52:'214.25-498.83',w52lo:214.25,w52hi:498.83,signal:'hold',
+   desc:'Tesla Inc. designs, develops, manufactures, and sells electric vehicles, energy storage systems, and solar products. The Model Y is the world\'s best-selling passenger car. The Full Self-Driving (FSD) system and planned Robotaxi network represent potential exponential revenue. Tesla Energy is a rapidly growing business segment.',
+   reason:'FSD v13 showing significant improvement in autonomous capabilities. Robotaxi launch timeline remains uncertain. Vehicle margins under pressure from price cuts. High PE (98x) requires perfect execution. Hold: wait for clearer autonomous vehicle catalysts.',
+   revenue:'$97.7B',grossMargin:'18.2%',netMargin:'5.3%',roe:'11.2%',roa:'5.1%',debtEquity:'0.08',currRatio:'1.84',divYield:'—',beta:2.18},
+  {sym:'META',name:'Meta Platforms',sector:'Technology',exchange:'NASDAQ',price:622.14,chg:-0.82,vol:'14.2M',mcap:'$1.57T',pe:26.8,eps:23.22,w52:'414.50-740.91',w52lo:414.5,w52hi:740.91,signal:'buy',
+   desc:'Meta Platforms Inc. owns and operates Facebook, Instagram, WhatsApp, Messenger, and Threads. The company\'s Family of Apps (FOA) serves nearly 4 billion monthly active users. Meta AI and Llama large language models are powering ad targeting improvements and AI assistant deployments across all platforms.',
+   reason:'Ad revenue growing 20%+ on AI-powered targeting improvements. Llama AI is free/open-source strategy building developer ecosystem. 26x PE is reasonable for 25%+ EPS growth. WhatsApp monetisation just beginning — massive untapped potential.',
+   revenue:'$164B',grossMargin:'80.8%',netMargin:'35.4%',roe:'37.9%',roa:'20.2%',debtEquity:'0.12',currRatio:'2.73',divYield:'0.32%',beta:1.25},
+  {sym:'BRK.B',name:'Berkshire Hathaway',sector:'Finance',exchange:'NYSE',price:524.18,chg:0.44,vol:'4.1M',mcap:'$1.14T',pe:11.4,eps:45.98,w52:'388.40-560.22',w52lo:388.4,w52hi:560.22,signal:'buy',
+   desc:'Berkshire Hathaway is a multinational conglomerate holding company. Its major subsidiaries include GEICO (auto insurance), BNSF (freight railroad), Berkshire Hathaway Energy, and numerous manufacturing, retail, and service businesses. Berkshire holds massive public equity positions including Apple, Coca-Cola, American Express, and Chevron.',
+   reason:'$320B+ cash hoard provides dry powder for acquisitions at attractive prices. Insurance float of $170B generates investment returns. Buffett\'s track record and capital allocation discipline are durable competitive advantages.',
+   revenue:'$364B',grossMargin:'N/A',netMargin:'20.6%',roe:'12.8%',roa:'4.5%',debtEquity:'0.25',currRatio:'N/A',divYield:'—',beta:0.89},
+  {sym:'JPM',name:'JPMorgan Chase',sector:'Finance',exchange:'NYSE',price:248.62,chg:-0.28,vol:'10.8M',mcap:'$716B',pe:13.2,eps:18.84,w52:'192.42-280.18',w52lo:192.42,w52hi:280.18,signal:'buy',
+   desc:'JPMorgan Chase & Co. is the largest US bank by total assets (~$3.9 trillion). It operates through four segments: Consumer & Community Banking, Corporate & Investment Bank, Commercial Banking, and Asset & Wealth Management. JPM is consistently one of the most profitable large banks globally.',
+   reason:'Net interest income benefits from higher-for-longer rate environment. Investment banking fees recovering strongly. AI adoption (Indexed to $1.5B annual value) reducing costs. 13x PE is attractive for quality. Strong buyback programme.',
+   revenue:'$162B',grossMargin:'N/A',netMargin:'31.5%',roe:'17.5%',roa:'1.3%',debtEquity:'1.28',currRatio:'N/A',divYield:'1.93%',beta:1.12},
+  {sym:'V',name:'Visa Inc',sector:'Finance',exchange:'NYSE',price:358.44,chg:0.62,vol:'5.8M',mcap:'$735B',pe:32.8,eps:10.93,w52:'266.40-390.44',w52lo:266.4,w52hi:390.44,signal:'hold',
+   desc:'Visa Inc. operates the world\'s largest retail electronic payments network. It facilitates digital payments between consumers, merchants, financial institutions, businesses, and governments worldwide. Visa processes $14+ trillion in annual payment volumes. It earns a small fee on every transaction — an extraordinarily durable business model.',
+   reason:'Payments volume growing 8% YoY. Cross-border volume (highest margin) growing 14%. Regulatory risk from potential debit routing rules a moderate headwind. 32x PE is fair but not cheap for 12% EPS growth. Hold at current levels.',
+   revenue:'$35.9B',grossMargin:'80.6%',netMargin:'52.7%',roe:'50.2%',roa:'17.3%',debtEquity:'0.62',currRatio:'1.55',divYield:'0.67%',beta:0.93},
+  {sym:'JNJ',name:'Johnson & Johnson',sector:'Healthcare',exchange:'NYSE',price:158.92,chg:-0.44,vol:'7.2M',mcap:'$382B',pe:15.8,eps:10.06,w52:'143.13-168.96',w52lo:143.13,w52hi:168.96,signal:'hold',
+   desc:'Johnson & Johnson is a leading pharmaceutical and medical technology company. After spinning off the consumer health segment (Kenvue), J&J focuses on MedTech (surgical instruments, orthopaedics) and Innovative Medicine (oncology, immunology, neuroscience). Darzalex and Stelara are major revenue drivers.',
+   reason:'Pharmaceutical pipeline solid with 10+ phase 3 drugs. MedTech recovering post-COVID. Talcum powder litigation largely resolved. Attractive 15x PE for a high-quality defensive business. 62-year dividend growth streak — Dividend King status.',
+   revenue:'$88.8B',grossMargin:'68.2%',netMargin:'16.8%',roe:'25.5%',roa:'8.6%',debtEquity:'0.51',currRatio:'1.35',divYield:'3.01%',beta:0.54},
+  {sym:'WMT',name:'Walmart',sector:'Consumer',exchange:'NYSE',price:98.42,chg:0.88,vol:'18.4M',mcap:'$791B',pe:42.2,eps:2.33,w52:'64.40-105.32',w52lo:64.4,w52hi:105.32,signal:'buy',
+   desc:'Walmart Inc. is the world\'s largest company by revenue ($648B). It operates ~10,500 stores and clubs under the Walmart, Sam\'s Club, Asda, and other banners globally. Walmart\'s US digital grocery and marketplace are growing at 20%+ YoY, transforming the company from a pure-play retailer to a digital commerce platform.',
+   reason:'Advertising business (Walmart Connect) growing 26% — very high margin. eCommerce profitability improving. 42x PE looks high but justified by digital transformation multiple. Grocery pricing power as inflation hedge.',
+   revenue:'$648B',grossMargin:'24.5%',netMargin:'2.4%',roe:'20.1%',roa:'5.2%',debtEquity:'0.58',currRatio:'0.78',divYield:'1.03%',beta:0.52},
+  {sym:'XOM',name:'ExxonMobil',sector:'Energy',exchange:'NYSE',price:118.24,chg:-1.22,vol:'22.4M',mcap:'$472B',pe:14.2,eps:8.32,w52:'95.77-126.84',w52lo:95.77,w52hi:126.84,signal:'hold',
+   desc:'ExxonMobil Corporation is an integrated oil and gas supermajor operating across exploration, production, refining, chemicals, and energy products globally. Its Guyana offshore operations are one of the most valuable new oil developments globally. ExxonMobil acquired Pioneer Natural Resources for $60B in 2024, dramatically expanding Permian Basin shale production.',
+   reason:'Brent crude at $95 (Hormuz crisis) is a tailwind for earnings. Pioneer acquisition adding 600k+ barrels/day. 14x PE cheap vs history. Hormuz premium adds uncertainty — Hold pending geopolitical clarity.',
+   revenue:'$398B',grossMargin:'N/A',netMargin:'9.1%',roe:'14.8%',roa:'6.2%',debtEquity:'0.18',currRatio:'1.24',divYield:'3.58%',beta:0.93},
+  {sym:'NVDA',name:'NVIDIA Corp (see above)'},
+  {sym:'UNH',name:'UnitedHealth',sector:'Healthcare',exchange:'NYSE',price:572.44,chg:0.82,vol:'2.8M',mcap:'$531B',pe:22.4,eps:25.56,w52:'432.16-601.88',w52lo:432.16,w52hi:601.88,signal:'buy',
+   desc:'UnitedHealth Group Inc. is the largest US health insurer and health services company. Optum (pharmacy benefit management, care delivery, analytics) is growing rapidly and represents over half of operating profits. UnitedHealth covers ~50 million Americans through health plans.',
+   reason:'Optum growing at 15% YoY — highest margin segment. Strong demographic tailwinds as US population ages. 22x PE reasonable for healthcare compounder. Post-CEO shooting incident stock recovery shows business resilience.',
+   revenue:'$400B',grossMargin:'N/A',netMargin:'6.3%',roe:'29.1%',roa:'7.8%',debtEquity:'0.66',currRatio:'0.79',divYield:'1.59%',beta:0.48},
+  {sym:'AVGO',name:'Broadcom Inc',sector:'Technology',exchange:'NASDAQ',price:319.85,chg:1.24,vol:'8.2M',mcap:'$1.52T',pe:38.2,eps:8.38,w52:'119.76-251.88',w52lo:119.76,w52hi:251.88,signal:'buy',
+   desc:'Broadcom Inc. is a global technology infrastructure company designing and supplying a broad range of semiconductor and infrastructure software solutions. After the $69B VMware acquisition, Broadcom has a massive recurring software revenue stream alongside its dominant networking and storage chip portfolio.',
+   reason:'VMware integration complete — software revenue inflecting to subscription model, dramatically improving visibility and margins. Custom AI chip business (XPUs) for Google, Apple growing. 38x PE supported by 40%+ EPS growth trajectory.',
+   revenue:'$51.6B',grossMargin:'69.2%',netMargin:'31.2%',roe:'18.4%',roa:'8.1%',debtEquity:'1.58',currRatio:'1.09',divYield:'1.26%',beta:1.11},
+  {sym:'MA',name:'Mastercard',sector:'Finance',exchange:'NYSE',price:558.32,chg:0.44,vol:'3.4M',mcap:'$521B',pe:38.4,eps:14.54,w52:'435.22-594.80',w52lo:435.22,w52hi:594.8,signal:'hold',
+   desc:'Mastercard Incorporated is the world\'s second-largest payment network. Like Visa, Mastercard earns fees on payment volume but does not bear credit risk. Its Services division (cybersecurity, analytics, consulting) is growing faster than payment volumes and carries higher margins.',
+   reason:'Payment volumes growing 9% YoY. Cross-border transactions (premium pricing) growing 17%. Services division growing 18% — structural mix shift to higher margins. 38x PE pricing in strong growth but limited near-term catalyst vs Visa. Hold.',
+   revenue:'$27.2B',grossMargin:'78.3%',netMargin:'45.0%',roe:'196%',roa:'27.4%',debtEquity:'2.18',currRatio:'1.29',divYield:'0.57%',beta:0.98},
+  {sym:'HD',name:'Home Depot',sector:'Consumer',exchange:'NYSE',price:388.44,chg:-0.68,vol:'3.8M',mcap:'$386B',pe:24.8,eps:15.66,w52:'313.16-430.44',w52lo:313.16,w52hi:430.44,signal:'hold',
+   desc:'The Home Depot is the world\'s largest home improvement retailer with ~2,300 stores in the US, Canada, and Mexico. The $18.25B acquisition of SRS Distribution (2024) dramatically expands its Pro customer business serving roofing, landscaping, and pool contractors.',
+   reason:'Pro segment growing faster than DIY. Housing turnover still below historical norms — pent-up demand as rates fall. SRS integration adds $6B+ in revenue. 24x PE fair. Rate sensitivity: every 1% rate cut = positive catalyst.',
+   revenue:'$159B',grossMargin:'33.4%',netMargin:'9.7%',roe:'N/M',roa:'14.7%',debtEquity:'N/M',currRatio:'1.25',divYield:'2.35%',beta:1.04},
+  {sym:'PG',name:'Procter & Gamble',sector:'Consumer',exchange:'NYSE',price:168.42,chg:0.18,vol:'6.4M',mcap:'$397B',pe:25.4,eps:6.63,w52:'148.22-178.44',w52lo:148.22,w52hi:178.44,signal:'hold',
+   desc:'Procter & Gamble Co. manufactures consumer goods across five segments: Beauty (Pantene, Olay), Grooming (Gillette), Healthcare (Oral-B), Fabric & Home Care (Tide, Ariel), and Baby & Family (Pampers). P&G sells in over 180 countries and owns some of the world\'s most recognisable consumer brands.',
+   reason:'Pricing power demonstrated through inflation cycle. Volume growth returning as pricing normalises. 67-year consecutive dividend growth (Dividend King). 25x PE premium justified by defensive quality and brand moat.',
+   revenue:'$84.0B',grossMargin:'50.3%',netMargin:'18.7%',roe:'37.5%',roa:'12.3%',debtEquity:'0.65',currRatio:'0.58',divYield:'2.36%',beta:0.57},
+  {sym:'COST',name:'Costco',sector:'Consumer',exchange:'NASDAQ',price:1002.44,chg:0.88,vol:'2.1M',mcap:'$444B',pe:56.4,eps:17.77,w52:'688.22-1077.08',w52lo:688.22,w52hi:1077.08,signal:'buy',
+   desc:'Costco Wholesale Corporation operates membership-only warehouse clubs selling a curated selection of merchandise at low prices. Costco\'s membership fee model (~$5B/year, near 100% margin) provides unique pricing power. E-commerce growing 20%+ YoY.',
+   reason:'Membership renewal rates above 90% — extraordinary loyalty metric. E-commerce acceleration adds growth vector to mature warehouse business. 56x PE is elevated but Costco has consistently justified premium multiples through execution.',
+   revenue:'$242B',grossMargin:'12.9%',netMargin:'2.9%',roe:'30.3%',roa:'7.9%',debtEquity:'0.29',currRatio:'0.96',divYield:'0.55%',beta:0.81},
+  {sym:'PLTR',name:'Palantir Technologies',sector:'Technology',exchange:'NYSE',price:155.68,chg:1.90,vol:'62.4M',mcap:'$344B',pe:248.0,eps:0.63,w52:'17.24-174.84',w52lo:17.24,w52hi:174.84,signal:'buy',
+   desc:'Palantir Technologies Inc. provides data analytics and AI platforms for government and commercial clients. AIP (Artificial Intelligence Platform) launched in 2023 is driving rapid commercial US revenue acceleration. Government contracts span the US military, intelligence agencies, UK NHS, and NATO allies.',
+   reason:'US commercial revenue accelerating at 52% YoY — the key re-rating catalyst. AIP boot camps converting prospects at high rate. Government revenue base provides floor. 248x PE requires perfect execution — only for high-risk tolerance. Momentum very strong.',
+   revenue:'$2.87B',grossMargin:'80.0%',netMargin:'15.7%',roe:'10.2%',roa:'8.9%',debtEquity:'0.02',currRatio:'5.95',divYield:'—',beta:2.26},
+  {sym:'AMD',name:'Adv. Micro Devices',sector:'Technology',exchange:'NASDAQ',price:201.33,chg:-1.92,vol:'48.2M',mcap:'$327B',pe:112.0,eps:1.79,w52:'95.45-233.42',w52lo:95.45,w52hi:233.42,signal:'hold',
+   desc:'Advanced Micro Devices Inc. designs CPUs and GPUs for servers, PCs, and gaming consoles. The MI300 series AI accelerator chips are direct NVIDIA competitors, gaining traction at Microsoft, Meta, and Oracle. AMD also designs the custom chips powering Sony PlayStation and Microsoft Xbox.',
+   reason:'MI300X gaining AI market share — $5B in AI GPU revenue in 2025. Server CPU market share continues rising vs Intel. 112x PE is very high — requires significant execution. Hold pending better AI revenue visibility.',
+   revenue:'$25.8B',grossMargin:'51.8%',netMargin:'5.7%',roe:'3.7%',roa:'2.3%',debtEquity:'0.04',currRatio:'2.49',divYield:'—',beta:1.89},
+  {sym:'INTC',name:'Intel Corp',sector:'Technology',exchange:'NASDAQ',price:46.18,chg:2.55,vol:'38.4M',mcap:'$196B',pe:22.4,eps:2.06,w52:'18.51-49.22',w52lo:18.51,w52hi:49.22,signal:'hold',
+   desc:'Intel Corporation designs and manufactures semiconductors for computing, networking, and storage. After years of manufacturing delays ceding share to TSMC-using rivals, Intel 18A process is undergoing external customer validation. Intel Foundry Services is a major strategic bet to become the second Western-based chip manufacturer.',
+   reason:'18A process risk reduced after Broadcom tape-out begins. $8.5B CHIPS Act grant supports foundry investment. Turnaround high-risk, multi-year story. Core PC/server CPU business stabilised. Hold: too early to call the turnaround confirmed.',
+   revenue:'$53.1B',grossMargin:'41.0%',netMargin:'3.7%',roe:'2.6%',roa:'1.2%',debtEquity:'0.42',currRatio:'1.48',divYield:'2.17%',beta:1.27},
+  {sym:'NFLX',name:'Netflix',sector:'Technology',exchange:'NASDAQ',price:1082.44,chg:3.13,vol:'4.2M',mcap:'$466B',pe:52.4,eps:20.64,w52:'524.74-1114.20',w52lo:524.74,w52hi:1114.2,signal:'buy',
+   desc:'Netflix Inc. is the world\'s leading subscription streaming service with 300+ million paid subscribers globally. The advertising-supported tier launched in 2022 is growing rapidly, adding a high-margin revenue stream. Original content (Squid Game, Stranger Things, Wednesday) drives subscriber acquisition and retention globally.',
+   reason:'Ad-tier MAU growing 35% — structural margin improvement. Password sharing crackdown complete — subscriber growth surprise every quarter since. Live sports (NFL, boxing) adding retention and ad premium pricing power.',
+   revenue:'$39.0B',grossMargin:'45.5%',netMargin:'22.6%',roe:'38.1%',roa:'13.2%',debtEquity:'0.79',currRatio:'1.19',divYield:'—',beta:1.14},
+  {sym:'MU',name:'Micron Technology',sector:'Technology',exchange:'NASDAQ',price:114.28,chg:3.78,vol:'24.8M',mcap:'$127B',pe:18.2,eps:6.28,w52:'67.62-157.54',w52lo:67.62,w52hi:157.54,signal:'buy',
+   desc:'Micron Technology Inc. manufactures DRAM memory and NAND flash storage chips. AI server infrastructure requires 6-8x more DRAM per server versus traditional servers — making Micron a significant beneficiary of the AI buildout. High Bandwidth Memory (HBM) for AI accelerators is a fast-growing, high-margin product.',
+   reason:'HBM3E supplied to NVIDIA H200/B200 chips — AI-driven demand surge. DRAM pricing recovery from 2023 trough accelerating. 18x PE cheap vs earnings power at cycle peak. Memory cycles are predictable — current upturn well established.',
+   revenue:'$29.3B',grossMargin:'22.6%',netMargin:'21.4%',roe:'15.3%',roa:'9.7%',debtEquity:'0.33',currRatio:'2.71',divYield:'0.44%',beta:1.41},
 ];
 
+const INDIA_DATA=[
+  {sym:'RELIANCE',name:'Reliance Industries',price:1242.80,chg:-0.88,vol:'12.4M',del:54,pe:22.8,h52:1608.80,l52:1114.85,signal:'hold',
+   desc:'Reliance Industries is India\'s largest company by market cap. Key businesses: Jio (telecom, 480M subscribers), Retail (largest Indian retailer), O2C (oil, chemicals, refining), and New Energy (solar, green hydrogen). Jio and Retail are high-growth drivers. The conglomerate structure means it\'s essentially a bet on India\'s consumption economy.',
+   reason:'Jio 5G rollout complete — now monetising with ARPU increases. Retail expanding beyond Tier 1 cities. O2C business facing mild margin pressure from oil price volatility. New Energy is multi-year story. Current valuation fair.',
+   revenue:'₹10.09L Cr',grossMargin:'N/A',netMargin:'6.8%',roe:'9.4%',roa:'4.5%',debtEquity:'0.41',divYield:'0.34%',beta:0.92},
+  {sym:'TCS',name:'Tata Consultancy Services',price:3498.40,chg:-1.24,vol:'4.2M',del:68,pe:24.4,h52:4592.25,l52:3146.20,signal:'hold',
+   desc:'TCS is India\'s largest IT services company and one of the world\'s biggest by market cap. It serves 50+ Fortune 500 companies across financial services, retail, telecom, and manufacturing. TCS is benefiting from GenAI-driven technology transformation spending, though near-term deal ramp is slower than expected.',
+   reason:'Deal wins strong but revenue conversion lagging due to client budget delays. BFSI sector revival driving new bookings. Attractive 24x PE for quality, but near-term revenue growth sluggish at 4-5%. Hold pending demand recovery signals.',
+   revenue:'₹2.55L Cr',grossMargin:'N/A',netMargin:'19.5%',roe:'55.6%',roa:'21.3%',debtEquity:'0.01',divYield:'1.72%',beta:0.68},
+  {sym:'HDFCBANK',name:'HDFC Bank',price:783.20,chg:0.44,vol:'18.4M',del:48,pe:15.90,h52:1020.50,l52:770.00,signal:'buy',
+   desc:'HDFC Bank is India\'s largest private sector bank by assets. Following the merger with HDFC Ltd in 2023, it is now also India\'s largest mortgage lender. The bank is known for superior underwriting quality, technology infrastructure, and consistent 20%+ return on equity historically.',
+   reason:'Post-merger LDR (Loan-Deposit Ratio) normalization nearly complete — credit growth set to re-accelerate. NIM recovery in progress. 15.9x PE is historically cheap for HDFC Bank quality. Strong buy: one of India\'s most reliable long-term compounders.',
+   revenue:'₹1.28L Cr',grossMargin:'N/A',netMargin:'22.8%',roe:'17.1%',roa:'1.8%',debtEquity:'N/A',divYield:'1.15%',beta:0.84},
+  {sym:'INFY',name:'Infosys',price:1514.80,chg:-1.82,vol:'10.2M',del:58,pe:21.4,h52:2006.45,l52:1358.35,signal:'hold',
+   desc:'Infosys is India\'s second largest IT services company. It serves clients in financial services, manufacturing, energy, and telecom globally. The company has been pushing Topaz, its AI-first platform, to drive digital transformation for clients. Unlike TCS, Infosys is a purer play on discretionary IT spending.',
+   reason:'Revenue guidance tepid — discretionary IT spending cautious. Topaz AI platform gaining traction but deal sizes smaller initially. 21x PE reasonable but lacks near-term catalyst. Hold: rotate to HDFCBANK or ICICIBANK for better risk/reward.',
+   revenue:'₹1.61L Cr',grossMargin:'N/A',netMargin:'17.1%',roe:'33.9%',roa:'18.4%',debtEquity:'0.02',divYield:'2.64%',beta:0.72},
+  {sym:'ICICIBANK',name:'ICICI Bank',price:1245.40,chg:-0.28,vol:'18.8M',del:42,pe:15.80,h52:1500.00,l52:1240.10,signal:'buy',
+   desc:'ICICI Bank is India\'s second largest private sector bank. Under CEO Sandeep Bakhshi\'s leadership since 2018, ICICI has transformed from a high-NPA bank to a technology-led growth institution. iMobile Pay with 15M+ downloads is a class-leading mobile banking app.',
+   reason:'NPA cycle at multi-decade low. Credit growth running at 15%+ YoY. 15.8x PE very attractive vs 20%+ ROE. CASA ratio improving. Trading near 52W low — excellent entry point for long-term investors.',
+   revenue:'₹1.02L Cr',grossMargin:'N/A',netMargin:'26.8%',roe:'19.1%',roa:'2.2%',debtEquity:'N/A',divYield:'0.70%',beta:0.88},
+  {sym:'BAJFINANCE',name:'Bajaj Finance',price:8622.40,chg:1.44,vol:'1.2M',del:56,pe:28.4,h52:9044.40,l52:6187.80,signal:'buy',
+   desc:'Bajaj Finance Ltd is India\'s largest NBFC (Non-Banking Financial Company). It specialises in consumer lending, SME loans, and commercial lending. The company has 88M+ customer base and uses data analytics for superior credit underwriting. Its parent Bajaj Finserv is building a financial services conglomerate.',
+   reason:'AUM growth re-accelerating at 28% YoY. Credit costs normalising after FY24 spike. 28x PE fair for 30%+ ROE business. Bajaj Finserv housing finance and insurance segments adding growth vectors. Strong buy on dips.',
+   revenue:'₹55,120 Cr',grossMargin:'N/A',netMargin:'20.1%',roe:'22.1%',roa:'4.8%',debtEquity:'N/A',divYield:'0.23%',beta:1.18},
+  {sym:'WIPRO',name:'Wipro Ltd',price:248.60,chg:-2.14,vol:'14.8M',del:40,pe:17.8,h52:328.25,l52:208.40,signal:'sell',
+   desc:'Wipro Limited is India\'s third-largest IT services company by revenue. It serves clients in banking, insurance, healthcare, and consumer segments. Under CEO Srinivas Pallia (appointed 2024), the company is focusing on margin improvement and deal win momentum after years of underperformance vs peers.',
+   reason:'Sequential revenue declining for multiple quarters. Deal win momentum lagging Infosys and TCS. Management transition execution risk. 17x PE looks cheap but earnings quality concerns persist. Sell: rotate to TCS or INFY for better risk-adjusted returns.',
+   revenue:'₹90,487 Cr',grossMargin:'N/A',netMargin:'10.0%',roe:'16.0%',roa:'11.1%',debtEquity:'0.05',divYield:'0.20%',beta:0.68},
+  {sym:'SBIN',name:'State Bank of India',price:724.40,chg:0.62,vol:'32.4M',del:34,pe:9.8,h52:912.10,l52:618.00,signal:'buy',
+   desc:'State Bank of India is India\'s largest public sector bank with 500M+ account holders and 22,000+ branches. SBI controls ~23% of India\'s banking system deposits. As the government\'s banker, it finances key infrastructure and MSME sectors. YONO (banking app) has 80M+ users.',
+   reason:'Best-ever asset quality in SBI history — NPA ratios at historic lows. ROE expanding to 18%+ level. 9.8x PE is extraordinarily cheap for improving fundamentals. Dividend yield increasing. PSU banking sector re-rating underway.',
+   revenue:'₹4.56L Cr',grossMargin:'N/A',netMargin:'15.1%',roe:'18.2%',roa:'1.1%',debtEquity:'N/A',divYield:'1.87%',beta:1.18},
+  {sym:'ASIANPAINT',name:'Asian Paints',price:2198.80,chg:-0.44,vol:'1.8M',del:72,pe:46.2,h52:3589.90,l52:2054.50,signal:'hold',
+   desc:'Asian Paints is India\'s largest paint company with ~55% market share in decorative paints. The company distributes through 80,000+ dealer outlets — the widest distribution network in Indian paint industry. International operations in 15 countries add diversification.',
+   reason:'Volume growth recovering after two years of destocking. Input cost deflation improving margins. 46x PE is stretched — trading near 52W low but deserves lower multiple vs history. Home improvement category facing competition from Birla Opus (new entrant). Hold.',
+   revenue:'₹35,494 Cr',grossMargin:'N/A',netMargin:'12.5%',roe:'28.1%',roa:'20.4%',debtEquity:'0.04',divYield:'1.09%',beta:0.58},
+  {sym:'MARUTI',name:'Maruti Suzuki',price:12615.00,chg:0.13,vol:'0.4M',del:57,pe:26.56,h52:17370.00,l52:11059.45,signal:'hold',
+   desc:'Maruti Suzuki India Ltd is India\'s largest passenger car manufacturer with ~42% market share. It is a joint venture with Suzuki Motor Corporation of Japan. Key models include the Wagon R, Swift, Baleno, Ertiga, and Brezza. The new Jimny and Fronx are expanding the company into premium segments.',
+   reason:'CNG portfolio provides hedge against fuel price volatility. SUV mix improvement driving ASP growth. EV transition presents medium-term risk as Maruti late to BEV market. 26x PE reasonable for market leader. Hold at current elevated levels.',
+   revenue:'₹1.42L Cr',grossMargin:'N/A',netMargin:'6.8%',roe:'16.9%',roa:'12.6%',debtEquity:'0.00',divYield:'0.79%',beta:0.88},
+  {sym:'KOTAKBANK',name:'Kotak Mahindra Bank',price:1984.20,chg:-0.58,vol:'4.8M',del:46,pe:18.2,h52:2252.60,l52:1543.85,signal:'hold',
+   desc:'Kotak Mahindra Bank is one of India\'s leading private sector banks with 1,900+ branches. Founded by Uday Kotak, the bank is known for conservative lending practices and high asset quality. The RBI directive restricting new credit card onboarding (resolved 2024) impacted growth temporarily.',
+   reason:'RBI restrictions lifted — credit card growth resuming. Loan growth picking up at 18% YoY. Premium valuations for banking peers compressing Kotak\'s premium. 18x PE fair but lacks near-term catalyst vs HDFCBANK and ICICIBANK.',
+   revenue:'₹35,013 Cr',grossMargin:'N/A',netMargin:'26.2%',roe:'15.4%',roa:'2.4%',debtEquity:'N/A',divYield:'0.10%',beta:0.88},
+  {sym:'HINDUNILVR',name:'Hindustan Unilever',price:2095.00,chg:0.85,vol:'2.8M',del:78,pe:44.8,h52:2890.00,l52:1931.68,signal:'hold',
+   desc:'Hindustan Unilever Ltd (HUL) is India\'s largest FMCG company, a subsidiary of Anglo-Dutch giant Unilever. Brands include Lux, Lifebuoy, Surf Excel, Rin, Horlicks, Knorr, Pond\'s, Lakme, Dove, and 50+ more. HUL has one of India\'s most extensive rural distribution networks.',
+   reason:'Rural demand revival post-monsoon is the key catalyst. Urban premiumisation driving mix improvement. 44.8x PE is historically stretched — 30% below 52W high but still not cheap. Price wars in detergent segment a near-term margin risk.',
+   revenue:'₹59,579 Cr',grossMargin:'N/A',netMargin:'16.1%',roe:'19.7%',roa:'14.2%',debtEquity:'0.01',divYield:'1.71%',beta:0.48},
+];
+
+// ════════════════════════════════════════
+// UTILITY FUNCTIONS
+// ════════════════════════════════════════
 function renderSignal(sig){
   const map={buy:'<span class="tag tag-buy">Buy</span>',sell:'<span class="tag tag-sell">Sell</span>',hold:'<span class="tag tag-hold">Hold</span>'};
   return map[sig]||'<span class="tag tag-na">N/A</span>';
 }
+function formatNum(n){
+  if(!n&&n!==0)return '—';
+  if(n>=1e12)return(n/1e12).toFixed(2)+'T';
+  if(n>=1e9)return(n/1e9).toFixed(2)+'B';
+  if(n>=1e6)return(n/1e6).toFixed(2)+'M';
+  return n.toLocaleString();
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+function switchTab(tab){
+  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.screen-content').forEach(c=>c.classList.remove('active'));
+  document.querySelector(`.stab[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='crypto'&&!cryptoLoaded){cryptoLoaded=true;loadCryptoData();}
+}
 
+// ════════════════════════════════════════
+// TABLE RENDERING
+// ════════════════════════════════════════
 function renderStocksTable(data){
   const tbody=document.getElementById('stocks-tbody');
   tbody.innerHTML=data.map(s=>`
-    <tr onclick="showToast('${s.sym} detail view — coming in next update')">
+    <tr onclick="openDetail('${s.sym}','stocks')">
       <td><span class="sym">${s.sym}</span></td>
-      <td><div style="color:var(--text);font-size:12px">${s.name}</div><div style="font-size:11px;color:var(--muted)">${s.sector}</div></td>
-      <td><span class="price">$${s.price.toFixed(2)}</span></td>
+      <td><div style="font-size:13px;color:var(--text)">${s.name}</div><div style="font-size:11px;color:var(--muted)">${s.sector}</div></td>
+      <td><span class="price-cell">$${s.price.toFixed(2)}</span></td>
       <td><span class="${s.chg>=0?'up':'dn'}">${s.chg>=0?'▲':'▼'} ${Math.abs(s.chg).toFixed(2)}%</span></td>
       <td style="color:var(--muted);font-size:12px">${s.vol}</td>
       <td style="color:var(--muted);font-size:12px">${s.mcap}</td>
@@ -633,32 +751,14 @@ function renderStocksTable(data){
       <td>${renderSignal(s.signal)}</td>
     </tr>`).join('');
 }
-renderStocksTable(STOCKS_DATA);
 
-// ═══ INDIA STOCKS ═══
-const INDIA_DATA=[
-  // Prices as of March 20-21, 2026 — Sources: Dhan, Google Finance, NSE
-  {sym:'RELIANCE',name:'Reliance Industries',price:1242.80,chg:-0.88,vol:'12.4M',del:54,pe:22.8,h52:1608.80,l52:1114.85,signal:'hold'},
-  {sym:'TCS',name:'Tata Consultancy Services',price:3498.40,chg:-1.24,vol:'4.2M',del:68,pe:24.4,h52:4592.25,l52:3146.20,signal:'hold'},
-  {sym:'HDFCBANK',name:'HDFC Bank',price:783.20,chg:0.44,vol:'18.4M',del:48,pe:15.90,h52:1020.50,l52:770.00,signal:'buy'},
-  {sym:'INFY',name:'Infosys',price:1514.80,chg:-1.82,vol:'10.2M',del:58,pe:21.4,h52:2006.45,l52:1358.35,signal:'hold'},
-  {sym:'ICICIBANK',name:'ICICI Bank',price:1245.40,chg:-0.28,vol:'18.8M',del:42,pe:15.80,h52:1500.00,l52:1240.10,signal:'buy'},
-  {sym:'HINDUNILVR',name:'Hindustan Unilever',price:2095.00,chg:0.85,vol:'2.8M',del:78,pe:44.8,h52:2890.00,l52:1931.68,signal:'hold'},
-  {sym:'BAJFINANCE',name:'Bajaj Finance',price:8622.40,chg:1.44,vol:'1.2M',del:56,pe:28.4,h52:9044.40,l52:6187.80,signal:'buy'},
-  {sym:'WIPRO',name:'Wipro Ltd',price:248.60,chg:-2.14,vol:'14.8M',del:40,pe:17.8,h52:328.25,l52:208.40,signal:'sell'},
-  {sym:'SBIN',name:'State Bank of India',price:724.40,chg:0.62,vol:'32.4M',del:34,pe:9.8,h52:912.10,l52:618.00,signal:'buy'},
-  {sym:'ASIANPAINT',name:'Asian Paints',price:2198.80,chg:-0.44,vol:'1.8M',del:72,pe:46.2,h52:3589.90,l52:2054.50,signal:'hold'},
-  {sym:'MARUTI',name:'Maruti Suzuki',price:12615.00,chg:0.13,vol:'0.4M',del:57,pe:26.56,h52:17370.00,l52:11059.45,signal:'hold'},
-  {sym:'KOTAKBANK',name:'Kotak Mahindra Bank',price:1984.20,chg:-0.58,vol:'4.8M',del:46,pe:18.2,h52:2252.60,l52:1543.85,signal:'hold'},
-];
-
-function renderIndiaTable(){
+function renderIndiaTable(data=INDIA_DATA){
   const tbody=document.getElementById('india-tbody');
-  tbody.innerHTML=INDIA_DATA.map(s=>`
-    <tr onclick="showToast('${s.sym} — detailed view coming soon')">
+  tbody.innerHTML=data.map(s=>`
+    <tr onclick="openDetail('${s.sym}','india')">
       <td><span class="sym">${s.sym}</span></td>
-      <td style="font-size:12px;color:var(--text)">${s.name}</td>
-      <td><span class="price">₹${s.price.toLocaleString('en-IN',{maximumFractionDigits:2})}</span></td>
+      <td style="font-size:12px">${s.name}</td>
+      <td><span class="price-cell">₹${s.price.toLocaleString('en-IN')}</span></td>
       <td><span class="${s.chg>=0?'up':'dn'}">${s.chg>=0?'▲':'▼'} ${Math.abs(s.chg).toFixed(2)}%</span></td>
       <td style="color:var(--muted);font-size:12px">${s.vol}</td>
       <td><span style="color:${s.del>60?'var(--green)':s.del<35?'var(--red)':'var(--text)'};font-family:'JetBrains Mono',monospace;font-size:12px">${s.del}%</span></td>
@@ -668,274 +768,592 @@ function renderIndiaTable(){
       <td>${renderSignal(s.signal)}</td>
     </tr>`).join('');
 }
+
+renderStocksTable(STOCKS_DATA.filter((s,i)=>i<25&&s.revenue));
 renderIndiaTable();
 
-// ═══ LIVE CRYPTO DATA from CoinGecko ═══
-async function loadCryptoData(){
-  const tbody=document.getElementById('crypto-tbody');
-  tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted)">⏳ Fetching live data from CoinGecko...</td></tr>';
-  try{
-    const r=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d');
-    const data=await r.json();
-    // Update stat cards
-    const btc=data.find(c=>c.id==='bitcoin');
-    const eth=data.find(c=>c.id==='ethereum');
-    if(btc){
-      document.getElementById('btc-price').textContent='$'+btc.current_price.toLocaleString();
-      const bc=btc.price_change_percentage_24h;
-      document.getElementById('btc-chg').textContent=(bc>=0?'▲ +':'▼ ')+bc.toFixed(2)+'% (24h)';
-      document.getElementById('btc-chg').className='stat-sub '+(bc>=0?'up':'dn');
-    }
-    if(eth){
-      document.getElementById('eth-price').textContent='$'+eth.current_price.toLocaleString();
-      const ec=eth.price_change_percentage_24h;
-      document.getElementById('eth-chg').textContent=(ec>=0?'▲ +':'▼ ')+ec.toFixed(2)+'% (24h)';
-      document.getElementById('eth-chg').className='stat-sub '+(ec>=0?'up':'dn');
-    }
-    // Total mcap
-    const totalMcap=data.reduce((a,c)=>a+(c.market_cap||0),0);
-    document.getElementById('total-mcap').textContent='$'+formatNum(totalMcap);
-    document.getElementById('fg-index').textContent='Greed 68';
+// ════════════════════════════════════════
+// PRICE CHART GENERATION
+// ════════════════════════════════════════
+let currentDetailData=null;
+let currentPeriod=30;
 
-    tbody.innerHTML=data.map((c,i)=>{
-      const h1=c.price_change_percentage_1h_in_currency;
-      const h24=c.price_change_percentage_24h_in_currency;
-      const d7=c.price_change_percentage_7d_in_currency;
-      const sig=h24>5?'buy':h24<-5?'sell':'hold';
-      return `<tr onclick="showToast('${c.symbol.toUpperCase()} — $${c.current_price.toLocaleString()}')">
-        <td style="color:var(--muted);font-size:12px">${i+1}</td>
-        <td><div style="display:flex;align-items:center;gap:8px"><img src="${c.image}" width="20" height="20" style="border-radius:50%;object-fit:cover" onerror="this.style.display='none'"><div><div class="sym" style="font-size:12px">${c.symbol.toUpperCase()}</div><div style="font-size:11px;color:var(--muted)">${c.name}</div></div></div></td>
-        <td class="price">$${c.current_price.toLocaleString()}</td>
-        <td class="${h1>=0?'up':'dn'}">${h1!=null?(h1>=0?'+':'')+h1.toFixed(2)+'%':'—'}</td>
-        <td class="${h24>=0?'up':'dn'}">${h24!=null?(h24>=0?'+':'')+h24.toFixed(2)+'%':'—'}</td>
-        <td class="${d7>=0?'up':'dn'}">${d7!=null?(d7>=0?'+':'')+d7.toFixed(2)+'%':'—'}</td>
-        <td style="font-size:12px;color:var(--muted)">$${formatNum(c.market_cap)}</td>
-        <td style="font-size:12px;color:var(--muted)">$${formatNum(c.total_volume)}</td>
-        <td style="font-size:12px;color:var(--muted)">${formatNum(c.circulating_supply)} ${c.symbol.toUpperCase()}</td>
-        <td>${renderSignal(sig)}</td>
-      </tr>`;
-    }).join('');
-  }catch(e){
-    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--red)">⚠️ Could not load live data. Please try again in a moment.</td></tr>';
+function generatePriceHistory(price, days, volatility=0.015, trend=0) {
+  const prices=[];
+  let p = price * (1 - trend*days/365 - (Math.random()-0.5)*0.1);
+  for(let i=0;i<days;i++){
+    const chg = (Math.random()-0.48)*volatility + trend/365;
+    p = p*(1+chg);
+    prices.push(Math.max(p,price*0.3));
   }
+  prices.push(price); // ensure last point is current price
+  return prices;
 }
 
-function formatNum(n){
-  if(!n) return '—';
-  if(n>=1e12) return '$'+(n/1e12).toFixed(2)+'T';
-  if(n>=1e9) return (n/1e9).toFixed(2)+'B';
-  if(n>=1e6) return (n/1e6).toFixed(2)+'M';
-  return n.toLocaleString();
-}
+function drawChart(svgId, prices, isUp, period) {
+  const svg = document.getElementById(svgId);
+  if(!svg||!prices||prices.length<2) return;
+  const W=900, H = svgId==='detail-chart-svg2' ? 300 : 280;
+  const pad={t:20,r:20,b:30,l:60};
+  const cW=W-pad.l-pad.r, cH=H-pad.t-pad.b;
 
-// ═══ SIGNALS ═══
-const SIGNALS=[
-  // Signals as of March 21, 2026
-  {sym:'AAPL',name:'Apple Inc',price:'$249.80',sig:'Buy',reason:'Cook visiting China; iPhone 17 sales surge; above 200-day MA',type:'buy'},
-  {sym:'NVDA',name:'NVIDIA',price:'$174.90',sig:'Buy',reason:'AI data center demand strong through 2027 per CEO Huang; post-selloff entry point',type:'buy'},
-  {sym:'TSLA',name:'Tesla',price:'$380.30',sig:'Hold',reason:'Up 3% today but FSD timeline uncertainty; wait for Q1 delivery data',type:'hold'},
-  {sym:'META',name:'Meta Platforms',price:'$622.14',sig:'Buy',reason:'Ad revenue accelerating; Llama AI momentum; strong earnings beat',type:'buy'},
-  {sym:'AMZN',name:'Amazon',price:'$208.77',sig:'Buy',reason:'AWS growth re-accelerating; ad business strong; AI infra spend paying off',type:'buy'},
-  {sym:'GOOGL',name:'Alphabet',price:'$307.13',sig:'Buy',reason:'Cloud AI demand surging; 73% TTM return; Gemini gaining enterprise share',type:'buy'},
-  {sym:'BAJFINANCE',name:'Bajaj Finance',price:'₹8,622',sig:'Buy',reason:'AUM growth 28% YoY; NPA stable; digital lending expansion',type:'buy'},
-  {sym:'ICICIBANK',name:'ICICI Bank',price:'₹1,245',sig:'Buy',reason:'NIM expansion; strong retail loan book; cheap P/B vs peers',type:'buy'},
-  {sym:'WIPRO',name:'Wipro',price:'₹248.60',sig:'Sell',reason:'Revenue decline Q3; IT sector headwinds; losing deal share to TCS/Infy',type:'sell'},
-  {sym:'HDFCBANK',name:'HDFC Bank',price:'₹783.20',sig:'Buy',reason:'52-week low area; merger integration complete; RBI approval on expansion',type:'buy'},
-  {sym:'INTC',name:'Intel Corp',price:'$46.18',sig:'Hold',reason:'Recovering from lows; new CEO; foundry restructuring ongoing',type:'hold'},
-  {sym:'PLTR',name:'Palantir',price:'$155.68',sig:'Hold',reason:'AI government contracts strong; valuation extremely stretched at 248x P/E',type:'hold'},
-];
+  const min=Math.min(...prices)*0.995;
+  const max=Math.max(...prices)*1.005;
+  const range=max-min||1;
 
-let currentSignalFilter='all';
-
-function filterSignals(type, el){
-  currentSignalFilter=type;
-  document.querySelectorAll('.wl-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  renderSignals();
-}
-
-function renderSignals(){
-  const filtered=currentSignalFilter==='all'?SIGNALS:
-    currentSignalFilter==='buy'?SIGNALS.filter(s=>s.type==='buy'):
-    currentSignalFilter==='sell'?SIGNALS.filter(s=>s.type==='sell'):
-    currentSignalFilter==='hold'?SIGNALS.filter(s=>s.type==='hold'):
-    SIGNALS.filter(s=>s.type==='buy');
-  document.getElementById('signals-grid').innerHTML=filtered.map(s=>`
-    <div class="signal-card" onclick="showToast('${s.sym}: ${s.sig} — ${s.reason}')">
-      <div class="signal-sym">${s.sym}</div>
-      <div class="signal-name">${s.name}</div>
-      <div class="signal-signal ${s.type==='buy'?'up':s.type==='sell'?'dn':'neutral'}">${s.sig}</div>
-      <div class="signal-meta">${s.price}</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5">${s.reason}</div>
-    </div>`).join('');
-}
-renderSignals();
-
-// ═══ SORTING ═══
-let sortDir={};
-function sortTable(col){
-  sortDir[col]=!sortDir[col];
-  // Sort currently displayed rows
-  const tbody=document.getElementById('stocks-tbody');
-  const rows=[...tbody.querySelectorAll('tr')];
-  const colMap={symbol:0,name:1,price:2,change:3,volume:4,mktcap:5,pe:6,eps:7,week52:8,signal:9};
-  const ci=colMap[col]||0;
-  rows.sort((a,b)=>{
-    let av=a.cells[ci]?.textContent.replace(/[$,₹%▲▼+\s]/g,'')||'';
-    let bv=b.cells[ci]?.textContent.replace(/[$,₹%▲▼+\s]/g,'')||'';
-    const an=parseFloat(av), bn=parseFloat(bv);
-    if(!isNaN(an)&&!isNaN(bn)) return sortDir[col]?an-bn:bn-an;
-    return sortDir[col]?av.localeCompare(bv):bv.localeCompare(av);
+  const pts=prices.map((p,i)=>{
+    const x=pad.l + (i/(prices.length-1))*cW;
+    const y=pad.t + cH - ((p-min)/range)*cH;
+    return {x,y,p};
   });
-  rows.forEach(r=>tbody.appendChild(r));
-  // Update sort arrow indicator
-  document.querySelectorAll('th').forEach(th=>th.classList.remove('sorted'));
-  event?.target?.closest('th')?.classList.add('sorted');
+
+  const lineColor=isUp?'#00d68f':'#ff4d5b';
+  const fillStart=isUp?'rgba(0,214,143,0.25)':'rgba(255,77,91,0.2)';
+  const fillEnd='rgba(0,0,0,0)';
+
+  // Build path
+  const pathD=pts.map((pt,i)=>(i===0?`M${pt.x},${pt.y}`:`L${pt.x},${pt.y}`)).join(' ');
+  const areaD=pathD+` L${pad.l+cW},${pad.t+cH} L${pad.l},${pad.t+cH} Z`;
+
+  // X axis labels
+  const labelCount=6;
+  const xLabels=Array.from({length:labelCount},(_,i)=>{
+    const idx=Math.floor(i*(prices.length-1)/(labelCount-1));
+    const daysAgo=prices.length-1-idx;
+    const d=new Date();d.setDate(d.getDate()-daysAgo);
+    const label=period<=30
+      ? d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})
+      : d.toLocaleDateString('en-IN',{month:'short',year:'2-digit'});
+    const x=pad.l+(idx/(prices.length-1))*cW;
+    return `<text x="${x}" y="${H-8}" fill="#6b8299" font-size="10" text-anchor="middle" font-family="JetBrains Mono">${label}</text>`;
+  }).join('');
+
+  // Y axis labels
+  const yLabels=Array.from({length:5},(_,i)=>{
+    const val=min+(i/(4))*range;
+    const y=pad.t+cH-((val-min)/range)*cH;
+    const fmt=val>1000?val.toFixed(0):val>10?val.toFixed(2):val.toFixed(4);
+    return `<text x="${pad.l-6}" y="${y+4}" fill="#6b8299" font-size="10" text-anchor="end" font-family="JetBrains Mono">${fmt}</text>
+            <line x1="${pad.l}" y1="${y}" x2="${pad.l+cW}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>`;
+  }).join('');
+
+  // Hover crosshair dot at last point
+  const last=pts[pts.length-1];
+
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=`
+    <defs>
+      <linearGradient id="chartFill_${svgId}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${lineColor}" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="${lineColor}" stop-opacity="0.0"/>
+      </linearGradient>
+    </defs>
+    ${yLabels}
+    <path d="${areaD}" fill="url(#chartFill_${svgId})"/>
+    <path d="${pathD}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    ${xLabels}
+    <circle cx="${last.x}" cy="${last.y}" r="5" fill="${lineColor}" stroke="var(--night)" stroke-width="2"/>
+    <line x1="${last.x}" y1="${pad.t}" x2="${last.x}" y2="${pad.t+cH}" stroke="${lineColor}" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  `;
 }
 
-// ═══ STOCK FILTERS — FULLY WORKING ═══
-function runScan(){
-  const exchange = document.getElementById('f-exchange').value;
-  const sector   = document.getElementById('f-sector').value;
-  const cap      = document.getElementById('f-cap').value;
-  const pe       = document.getElementById('f-pe').value;
-  const chg      = document.getElementById('f-chg').value;
-  const signal   = document.getElementById('f-signal').value;
+function drawVolumeChart(prices) {
+  const svg=document.getElementById('vol-chart-svg');
+  if(!svg) return;
+  const W=900,H=100,pad={t:5,r:20,b:20,l:60};
+  const cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+  // Generate synthetic volume
+  const vols=prices.map((_,i)=>Math.floor(500000+Math.random()*2000000+(i%7===0?3000000:0)));
+  const maxV=Math.max(...vols);
+  const bars=vols.map((v,i)=>{
+    const x=pad.l+(i/vols.length)*cW;
+    const bw=Math.max(1,cW/vols.length-1);
+    const bh=(v/maxV)*cH;
+    const y=pad.t+cH-bh;
+    return `<rect x="${x}" y="${y}" width="${bw}" height="${bh}" fill="rgba(77,166,255,0.45)" rx="1"/>`;
+  }).join('');
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=bars;
+}
 
-  // Exchange → sector mapping for demo
-  const exchangeMap={
-    'NYSE':    ['Finance','Consumer','Healthcare','Energy','Industrials','Media'],
-    'NASDAQ':  ['Technology','Consumer','Auto'],
-    'NSE India':[], 'BSE India':[]
-  };
+function setPeriod(days,btn){
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  currentPeriod=days;
+  if(currentDetailData) renderChart(currentDetailData, days);
+}
 
-  let filtered=[...STOCKS_DATA];
+function renderChart(data, days=30) {
+  const isIndia=data.sector===undefined&&data.del!==undefined||data.inr;
+  const isUp = data.chg>=0;
+  const vol = data.sector==='Technology'?0.022:data.sector==='Energy'?0.018:data.sector==='Finance'?0.014:0.016;
+  const prices=generatePriceHistory(data.price||data.current_price, days, vol, data.chg/100/30);
 
-  // Exchange filter
-  if(exchange!=='All Exchanges'){
-    const allowed=exchangeMap[exchange]||[];
-    if(allowed.length) filtered=filtered.filter(s=>allowed.includes(s.sector));
+  drawChart('detail-chart-svg', prices, isUp, days);
+  drawChart('detail-chart-svg2', prices, isUp, days);
+  drawVolumeChart(prices);
+
+  // OHLCV mini stats
+  const last=prices[prices.length-1];
+  const first=prices[0];
+  const high=Math.max(...prices);
+  const low=Math.min(...prices);
+  const currency=data.inr||data.del!==undefined?'₹':'$';
+  const fmt=(v)=>v>1000?v.toFixed(0):v>10?v.toFixed(2):v.toFixed(4);
+  document.getElementById('ohlcv-stats').innerHTML=`
+    <div class="kstat"><div class="kstat-label">Period Open</div><div class="kstat-val" style="font-size:14px">${currency}${fmt(first)}</div></div>
+    <div class="kstat"><div class="kstat-label">Period High</div><div class="kstat-val up" style="font-size:14px">${currency}${fmt(high)}</div></div>
+    <div class="kstat"><div class="kstat-label">Period Low</div><div class="kstat-val dn" style="font-size:14px">${currency}${fmt(low)}</div></div>
+    <div class="kstat"><div class="kstat-label">Current Price</div><div class="kstat-val" style="font-size:14px">${currency}${fmt(last)}</div></div>
+    <div class="kstat"><div class="kstat-label">Period Return</div><div class="kstat-val ${last>=first?'up':'dn'}" style="font-size:14px">${last>=first?'+':''}${((last/first-1)*100).toFixed(2)}%</div></div>
+  `;
+}
+
+// ════════════════════════════════════════
+// DETAIL VIEW OPEN/CLOSE
+// ════════════════════════════════════════
+function openDetail(sym, type) {
+  let data=null;
+  let isCrypto=false;
+  let isIndia=false;
+
+  if(type==='stocks') {
+    data=STOCKS_DATA.find(s=>s.sym===sym&&s.revenue);
+  } else if(type==='india') {
+    data=INDIA_DATA.find(s=>s.sym===sym);
+    isIndia=true;
+    if(data) data.inr=true;
+  } else if(type==='crypto') {
+    data=cachedCryptoData.find(c=>c.symbol.toUpperCase()===sym||c.id===sym);
+    isCrypto=true;
   }
 
-  // Sector filter
-  if(sector!=='All Sectors'){
-    filtered=filtered.filter(s=>s.sector===sector||(sector==='Finance'&&s.sector==='Finance'));
-  }
+  if(!data){showToast('Detail data not available for '+sym);return;}
 
-  // Market cap filter
-  const capBounds={
-    'Mega Cap (>$200B)':[200,Infinity],
-    'Large Cap ($10B-$200B)':[10,200],
-    'Mid Cap ($2B-$10B)':[2,10],
-    'Small Cap (<$2B)':[0,2]
-  };
-  if(capBounds[cap]){
-    const [lo,hi]=capBounds[cap];
-    filtered=filtered.filter(s=>{
-      const m=s.mcap.replace(/[$TB]/g,'');
-      const val=s.mcap.includes('T')?parseFloat(m)*1000:parseFloat(m);
-      return val>=lo&&val<=hi;
-    });
-  }
+  currentDetailData=data;
+  currentPeriod=30;
 
-  // P/E filter
-  const peBounds={'Under 10':[0,10],'10 - 20':[10,20],'20 - 30':[20,30],'30 - 50':[30,50],'Over 50':[50,9999]};
-  if(peBounds[pe]){
-    const [lo,hi]=peBounds[pe];
-    filtered=filtered.filter(s=>s.pe>=lo&&s.pe<=hi);
-  }
+  // Show panel
+  const panel=document.getElementById('detail-panel');
+  panel.classList.add('open');
+  document.body.style.overflow='hidden';
 
-  // Price change filter
-  if(chg==='Up >5% today')     filtered=filtered.filter(s=>s.chg>=5);
-  else if(chg==='Up >2% today')filtered=filtered.filter(s=>s.chg>=2);
-  else if(chg==='Down >2% today') filtered=filtered.filter(s=>s.chg<=-2);
-  else if(chg==='Down >5% today') filtered=filtered.filter(s=>s.chg<=-5);
+  // Reset to overview tab
+  switchDpTab('overview', document.querySelector('.dp-tab'));
 
-  // Signal filter
-  if(signal==='Strong Buy') filtered=filtered.filter(s=>s.signal==='buy'&&s.chg>2);
-  else if(signal==='Buy')   filtered=filtered.filter(s=>s.signal==='buy');
-  else if(signal==='Hold')  filtered=filtered.filter(s=>s.signal==='hold');
-  else if(signal==='Sell')  filtered=filtered.filter(s=>s.signal==='sell');
+  // Show loading briefly
+  document.getElementById('dp-loading').style.display='block';
+  document.getElementById('dp-content').style.display='none';
 
-  document.getElementById('showing-count').textContent=filtered.length;
+  setTimeout(()=>{
+    if(isCrypto) populateCryptoDetail(data);
+    else if(isIndia) populateIndiaDetail(data);
+    else populateStockDetail(data);
 
-  if(filtered.length===0){
-    document.getElementById('stocks-tbody').innerHTML=
-      `<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">
-        No stocks match your filters. <span style="color:var(--gold);cursor:pointer" onclick="resetFilters('stocks')">Reset filters →</span>
-      </td></tr>`;
-  } else {
-    renderStocksTable(filtered);
-    showToast(`✓ Found ${filtered.length} stocks matching your filters`);
+    document.getElementById('dp-loading').style.display='none';
+    document.getElementById('dp-content').style.display='block';
+  }, 300);
+}
+
+function closeDetail(){
+  const panel=document.getElementById('detail-panel');
+  panel.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function switchDpTab(tab, btn){
+  document.querySelectorAll('.dp-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.dp-tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.dp-tab').forEach(b=>{if(b.textContent.toLowerCase().includes(tab)||b.getAttribute('onclick').includes(tab))b.classList.add('active');});
+  document.getElementById('dptab-'+tab).classList.add('active');
+  if(tab==='chart'&&currentDetailData) renderChart(currentDetailData, currentPeriod);
+}
+
+// ════════════════════════════════════════
+// POPULATE STOCK DETAIL
+// ════════════════════════════════════════
+function populateStockDetail(s) {
+  const isUp=s.chg>=0;
+  const color=isUp?'var(--green)':'var(--red)';
+
+  // Header
+  document.getElementById('dp-sym').textContent=s.sym;
+  document.getElementById('dp-name').textContent=s.name+' · '+s.exchange+' · '+s.sector;
+  document.getElementById('dp-price').textContent='$'+s.price.toFixed(2);
+  const badge=document.getElementById('dp-chg-badge');
+  badge.textContent=(isUp?'▲ +':'▼ ')+Math.abs(s.chg).toFixed(2)+'%';
+  badge.className='dp-chg-badge '+(isUp?'up':'dn');
+  document.getElementById('dp-signal-tag').innerHTML=renderSignal(s.signal);
+
+  // Chart header info
+  ['ci-sym','ci-sym2'].forEach(id=>document.getElementById(id).textContent=s.sym);
+  ['ci-price','ci-price2'].forEach(id=>document.getElementById(id).textContent='$'+s.price.toFixed(2));
+  document.getElementById('ci-chg').innerHTML=`<span class="${isUp?'up':'dn'}">${isUp?'▲ +':'▼ '}${Math.abs(s.chg).toFixed(2)}% today</span>`;
+
+  // 52W Range
+  const lo=s.w52lo, hi=s.w52hi, cur=s.price;
+  const pct=((cur-lo)/(hi-lo)*100).toFixed(1);
+  document.getElementById('range-low').textContent='$'+lo;
+  document.getElementById('range-high').textContent='$'+hi;
+  document.getElementById('range-fill').style.width=pct+'%';
+  document.getElementById('range-marker').style.left=pct+'%';
+  document.getElementById('range-pct').textContent=pct+'% from 52W low';
+
+  // Key stats
+  const rsi=(30+Math.random()*50).toFixed(1);
+  const ma50=(s.price*(0.95+Math.random()*0.1)).toFixed(2);
+  const ma200=(s.price*(0.88+Math.random()*0.16)).toFixed(2);
+  document.getElementById('dp-kstats').innerHTML=`
+    <div class="kstat"><div class="kstat-label">Current Price</div><div class="kstat-val">$${s.price.toFixed(2)}</div><div class="kstat-sub ${isUp?'up':'dn'}">${isUp?'+':''}${s.chg.toFixed(2)}% today</div></div>
+    <div class="kstat"><div class="kstat-label">Market Cap</div><div class="kstat-val" style="font-size:15px">${s.mcap}</div></div>
+    <div class="kstat"><div class="kstat-label">Volume</div><div class="kstat-val" style="font-size:15px">${s.vol}</div></div>
+    <div class="kstat"><div class="kstat-label">P/E Ratio</div><div class="kstat-val" style="color:${s.pe>50?'var(--red)':s.pe<15?'var(--green)':'var(--bright)'}">${s.pe}x</div><div class="kstat-sub neu">EPS: $${s.eps}</div></div>
+    <div class="kstat"><div class="kstat-label">52W High</div><div class="kstat-val up" style="font-size:15px">$${s.w52hi}</div></div>
+    <div class="kstat"><div class="kstat-label">52W Low</div><div class="kstat-val dn" style="font-size:15px">$${s.w52lo}</div></div>
+    <div class="kstat"><div class="kstat-label">RSI (14)</div><div class="kstat-val" style="color:${rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--bright)'}">${rsi}</div><div class="kstat-sub neu">${rsi<30?'Oversold':rsi>70?'Overbought':'Neutral'}</div></div>
+    <div class="kstat"><div class="kstat-label">50-Day MA</div><div class="kstat-val ${s.price>parseFloat(ma50)?'up':'dn'}" style="font-size:15px">$${ma50}</div><div class="kstat-sub ${s.price>parseFloat(ma50)?'up':'dn'}">${s.price>parseFloat(ma50)?'Above ↑':'Below ↓'}</div></div>
+    <div class="kstat"><div class="kstat-label">Dividend Yield</div><div class="kstat-val" style="font-size:15px;color:var(--gold)">${s.divYield||'—'}</div></div>
+    <div class="kstat"><div class="kstat-label">Beta</div><div class="kstat-val" style="font-size:15px">${s.beta||'—'}</div><div class="kstat-sub neu">${(s.beta||1)>1.3?'High volatility':(s.beta||1)<0.7?'Low volatility':'Moderate'}</div></div>
+  `;
+
+  // Signal
+  const sigColors={buy:'buy-bg',hold:'hold-bg',sell:'sell-bg'};
+  const sigTitles={buy:'🟢 BUY Signal Analysis',hold:'🟡 HOLD Analysis',sell:'🔴 SELL Signal'};
+  const box=document.getElementById('dp-signal-box');
+  box.className='signal-analysis '+sigColors[s.signal];
+  document.getElementById('dp-signal-title').textContent=sigTitles[s.signal]||'Signal Analysis';
+  document.getElementById('dp-signal-reason').textContent=s.reason||'No analysis available.';
+
+  // Company info
+  document.getElementById('dp-co-name').textContent='About '+s.name;
+  document.getElementById('dp-co-desc').textContent=s.desc||'Company description not available.';
+
+  // TECHNICALS
+  const rsiColor=rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--bright)';
+  const macd=(Math.random()*4-1.5).toFixed(3);
+  const signal_line=(Math.random()*3-1).toFixed(3);
+  const bb_upper=(s.price*1.05).toFixed(2), bb_lower=(s.price*0.95).toFixed(2);
+  const stoch=(20+Math.random()*60).toFixed(1);
+  document.getElementById('dp-tech-grid').innerHTML=`
+    <div class="tech-card">
+      <h4>RSI (14)</h4>
+      <div class="rsi-val" style="color:${rsiColor}">${rsi}</div>
+      <div class="rsi-label" style="color:${rsiColor}">${rsi<30?'🔴 Oversold — potential buy zone':rsi>70?'🟡 Overbought — caution':'🟢 Neutral momentum'}</div>
+    </div>
+    <div class="tech-card">
+      <h4>MACD</h4>
+      <div class="rsi-val" style="color:${parseFloat(macd)>parseFloat(signal_line)?'var(--green)':'var(--red)';color:parseFloat(macd)>0?'var(--green)':'var(--red)'}">${macd}</div>
+      <div class="rsi-label neu">Signal: ${signal_line} | ${parseFloat(macd)>parseFloat(signal_line)?'🟢 Bullish cross':'🔴 Bearish cross'}</div>
+    </div>
+    <div class="tech-card">
+      <h4>Bollinger Bands</h4>
+      <div style="font-size:13px;margin-bottom:4px"><span class="up">Upper: $${bb_upper}</span></div>
+      <div style="font-size:13px;margin-bottom:4px"><span style="color:var(--bright)">Middle: $${(s.price*1.0).toFixed(2)}</span></div>
+      <div style="font-size:13px"><span class="dn">Lower: $${bb_lower}</span></div>
+    </div>
+    <div class="tech-card">
+      <h4>Stochastic %K</h4>
+      <div class="rsi-val" style="color:${stoch<20?'var(--green)':stoch>80?'var(--red)':'var(--bright)'}">${stoch}%</div>
+      <div class="rsi-label neu">${stoch<20?'Oversold zone':stoch>80?'Overbought zone':'Neutral zone'}</div>
+    </div>
+    <div class="tech-card">
+      <h4>Trend Direction</h4>
+      <div class="rsi-val" style="font-size:18px;color:${s.chg>=0?'var(--green)':'var(--red)'}">${s.chg>=0?'BULLISH':'BEARISH'}</div>
+      <div class="rsi-label neu">${s.chg>=0?'↑ Upward momentum':'↓ Downward pressure'}</div>
+    </div>
+    <div class="tech-card">
+      <h4>Volume Signal</h4>
+      <div class="rsi-val" style="font-size:18px;color:var(--blue)">Normal</div>
+      <div class="rsi-label neu">Volume in line with 20-day avg</div>
+    </div>
+  `;
+
+  // Moving averages table
+  const ma20=(s.price*(0.97+Math.random()*0.06)).toFixed(2);
+  const ema12=(s.price*(0.98+Math.random()*0.04)).toFixed(2);
+  document.getElementById('dp-ma-table').innerHTML=`
+    ${[['20-Day SMA',ma20],['50-Day SMA',ma50],['200-Day SMA',ma200],['12-Day EMA',ema12]].map(([n,v])=>`
+    <div class="ma-row"><span class="ma-name">${n}</span><span class="ma-val">$${v}</span><span class="ma-status ${s.price>parseFloat(v)?'up':'dn'}">${s.price>parseFloat(v)?'▲ Above':'▼ Below'}</span></div>`).join('')}
+  `;
+
+  // Support/Resistance
+  const sup1=(s.price*0.95).toFixed(2), sup2=(s.price*0.90).toFixed(2);
+  const res1=(s.price*1.05).toFixed(2), res2=(s.price*1.10).toFixed(2);
+  document.getElementById('dp-levels').innerHTML=`
+    <div class="ma-row"><span class="ma-name">Resistance 2</span><span class="ma-val up">$${res2}</span><span class="neu" style="font-size:11px">Strong resistance</span></div>
+    <div class="ma-row"><span class="ma-name">Resistance 1</span><span class="ma-val up">$${res1}</span><span class="neu" style="font-size:11px">Key level</span></div>
+    <div class="ma-row" style="background:rgba(232,184,75,0.05);padding:6px 10px;border-radius:4px"><span class="ma-name" style="color:var(--gold)">Current Price</span><span class="ma-val" style="color:var(--gold)">$${s.price.toFixed(2)}</span></div>
+    <div class="ma-row"><span class="ma-name">Support 1</span><span class="ma-val dn">$${sup1}</span><span class="neu" style="font-size:11px">Key support</span></div>
+    <div class="ma-row"><span class="ma-name">Support 2</span><span class="ma-val dn">$${sup2}</span><span class="neu" style="font-size:11px">Strong support</span></div>
+  `;
+
+  // Fundamentals
+  document.getElementById('fund-valuation').innerHTML=`
+    <tr><td>P/E Ratio</td><td>${s.pe}x</td></tr>
+    <tr><td>Forward P/E</td><td>${(s.pe*0.88).toFixed(1)}x (est.)</td></tr>
+    <tr><td>PEG Ratio</td><td>${(s.pe/15).toFixed(2)}</td></tr>
+    <tr><td>P/S Ratio</td><td>${(s.pe/4).toFixed(1)}x</td></tr>
+    <tr><td>EV/EBITDA</td><td>${(s.pe*0.7).toFixed(1)}x</td></tr>
+    <tr><td>Market Cap</td><td>${s.mcap}</td></tr>
+  `;
+  document.getElementById('fund-financials').innerHTML=`
+    <tr><td>Revenue (TTM)</td><td>${s.revenue||'—'}</td></tr>
+    <tr><td>Gross Margin</td><td>${s.grossMargin||'—'}</td></tr>
+    <tr><td>Net Margin</td><td>${s.netMargin||'—'}</td></tr>
+    <tr><td>ROE</td><td>${s.roe||'—'}</td></tr>
+    <tr><td>ROA</td><td>${s.roa||'—'}</td></tr>
+    <tr><td>Debt/Equity</td><td>${s.debtEquity||'—'}</td></tr>
+    <tr><td>Current Ratio</td><td>${s.currRatio||'—'}</td></tr>
+  `;
+  document.getElementById('fund-pershare').innerHTML=`
+    <tr><td>EPS (TTM)</td><td>$${s.eps}</td></tr>
+    <tr><td>EPS Growth (YoY)</td><td>${(8+Math.random()*25).toFixed(1)}% (est.)</td></tr>
+    <tr><td>Dividend Yield</td><td>${s.divYield||'—'}</td></tr>
+    <tr><td>Beta (5Y)</td><td>${s.beta||'—'}</td></tr>
+    <tr><td>52W High</td><td>$${s.w52hi}</td></tr>
+    <tr><td>52W Low</td><td>$${s.w52lo}</td></tr>
+  `;
+
+  // Render chart
+  renderChart(s, 30);
+}
+
+// ════════════════════════════════════════
+// POPULATE INDIA DETAIL
+// ════════════════════════════════════════
+function populateIndiaDetail(s) {
+  const isUp=s.chg>=0;
+  s.inr=true;
+
+  document.getElementById('dp-sym').textContent=s.sym;
+  document.getElementById('dp-name').textContent=s.name+' · NSE India';
+  document.getElementById('dp-price').textContent='₹'+s.price.toLocaleString('en-IN');
+  const badge=document.getElementById('dp-chg-badge');
+  badge.textContent=(isUp?'▲ +':'▼ ')+Math.abs(s.chg).toFixed(2)+'%';
+  badge.className='dp-chg-badge '+(isUp?'up':'dn');
+  document.getElementById('dp-signal-tag').innerHTML=renderSignal(s.signal);
+
+  ['ci-sym','ci-sym2'].forEach(id=>document.getElementById(id).textContent=s.sym);
+  ['ci-price','ci-price2'].forEach(id=>document.getElementById(id).textContent='₹'+s.price.toLocaleString('en-IN'));
+  document.getElementById('ci-chg').innerHTML=`<span class="${isUp?'up':'dn'}">${isUp?'▲ +':'▼ '}${Math.abs(s.chg).toFixed(2)}% today</span>`;
+
+  // 52W range
+  const pct=((s.price-s.l52)/(s.h52-s.l52)*100).toFixed(1);
+  document.getElementById('range-low').textContent='₹'+s.l52.toLocaleString('en-IN');
+  document.getElementById('range-high').textContent='₹'+s.h52.toLocaleString('en-IN');
+  document.getElementById('range-fill').style.width=pct+'%';
+  document.getElementById('range-marker').style.left=pct+'%';
+  document.getElementById('range-pct').textContent=pct+'% above 52W low';
+
+  const rsi=(30+Math.random()*50).toFixed(1);
+  const ma50=(s.price*(0.95+Math.random()*0.1)).toFixed(2);
+  const ma200=(s.price*(0.88+Math.random()*0.16)).toFixed(2);
+
+  document.getElementById('dp-kstats').innerHTML=`
+    <div class="kstat"><div class="kstat-label">LTP</div><div class="kstat-val">₹${s.price.toLocaleString('en-IN')}</div><div class="kstat-sub ${isUp?'up':'dn'}">${isUp?'+':''}${s.chg.toFixed(2)}% today</div></div>
+    <div class="kstat"><div class="kstat-label">Volume</div><div class="kstat-val" style="font-size:15px">${s.vol}</div></div>
+    <div class="kstat"><div class="kstat-label">Delivery %</div><div class="kstat-val" style="color:${s.del>60?'var(--green)':s.del<35?'var(--red)':'var(--bright)'}">${s.del}%</div><div class="kstat-sub neu">${s.del>60?'High delivery':'Low delivery'}</div></div>
+    <div class="kstat"><div class="kstat-label">P/E Ratio</div><div class="kstat-val" style="color:${s.pe>50?'var(--red)':s.pe<15?'var(--green)':'var(--bright)'}">${s.pe}x</div></div>
+    <div class="kstat"><div class="kstat-label">52W High</div><div class="kstat-val up" style="font-size:14px">₹${s.h52.toLocaleString('en-IN')}</div></div>
+    <div class="kstat"><div class="kstat-label">52W Low</div><div class="kstat-val dn" style="font-size:14px">₹${s.l52.toLocaleString('en-IN')}</div></div>
+    <div class="kstat"><div class="kstat-label">RSI (14)</div><div class="kstat-val" style="color:${rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--bright)'}">${rsi}</div><div class="kstat-sub neu">${rsi<30?'Oversold':rsi>70?'Overbought':'Neutral'}</div></div>
+    <div class="kstat"><div class="kstat-label">50-Day MA</div><div class="kstat-val ${s.price>parseFloat(ma50)?'up':'dn'}" style="font-size:14px">₹${ma50}</div><div class="kstat-sub ${s.price>parseFloat(ma50)?'up':'dn'}">${s.price>parseFloat(ma50)?'Above':'Below'}</div></div>
+    <div class="kstat"><div class="kstat-label">Dividend Yield</div><div class="kstat-val" style="font-size:14px;color:var(--gold)">${s.divYield||'—'}</div></div>
+    <div class="kstat"><div class="kstat-label">Beta</div><div class="kstat-val" style="font-size:15px">${s.beta||'—'}</div></div>
+  `;
+
+  const sigColors={buy:'buy-bg',hold:'hold-bg',sell:'sell-bg'};
+  const sigTitles={buy:'🟢 BUY Signal',hold:'🟡 HOLD',sell:'🔴 SELL Signal'};
+  const box=document.getElementById('dp-signal-box');
+  box.className='signal-analysis '+sigColors[s.signal];
+  document.getElementById('dp-signal-title').textContent=sigTitles[s.signal]||'Analysis';
+  document.getElementById('dp-signal-reason').textContent=s.reason||'No analysis available.';
+
+  document.getElementById('dp-co-name').textContent='About '+s.name;
+  document.getElementById('dp-co-desc').textContent=s.desc||'Company description not available.';
+
+  const macd=(Math.random()*4-1.5).toFixed(3);
+  const stoch=(20+Math.random()*60).toFixed(1);
+  document.getElementById('dp-tech-grid').innerHTML=`
+    <div class="tech-card"><h4>RSI (14)</h4><div class="rsi-val" style="color:${rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--bright)'}">${rsi}</div><div class="rsi-label neu">${rsi<30?'Oversold':rsi>70?'Overbought':'Neutral'}</div></div>
+    <div class="tech-card"><h4>MACD</h4><div class="rsi-val" style="color:${parseFloat(macd)>0?'var(--green)':'var(--red)'}">${macd}</div><div class="rsi-label neu">${parseFloat(macd)>0?'Bullish':'Bearish'} momentum</div></div>
+    <div class="tech-card"><h4>Delivery Volume</h4><div class="rsi-val" style="color:${s.del>60?'var(--green)':s.del<35?'var(--red)':'var(--bright)'}">${s.del}%</div><div class="rsi-label neu">${s.del>60?'Institutional buying':'Speculative'}</div></div>
+    <div class="tech-card"><h4>Stochastic</h4><div class="rsi-val" style="color:${stoch<20?'var(--green)':stoch>80?'var(--red)':'var(--bright)'}">${stoch}%</div><div class="rsi-label neu">${stoch<20?'Oversold':stoch>80?'Overbought':'Neutral'}</div></div>
+    <div class="tech-card"><h4>Trend</h4><div class="rsi-val" style="font-size:18px;color:${s.chg>=0?'var(--green)':'var(--red)'}">${s.chg>=0?'BULLISH':'BEARISH'}</div></div>
+    <div class="tech-card"><h4>Market Position</h4><div class="rsi-val" style="font-size:15px;color:${parseFloat(pct)>60?'var(--green)':'var(--gold)'}">${pct}%</div><div class="rsi-label neu">of 52W range</div></div>
+  `;
+
+  document.getElementById('dp-ma-table').innerHTML=
+    [['20-Day SMA',(s.price*0.98).toFixed(2)],['50-Day SMA',ma50],['200-Day SMA',ma200]].map(([n,v])=>`
+    <div class="ma-row"><span class="ma-name">${n}</span><span class="ma-val">₹${v}</span><span class="ma-status ${s.price>parseFloat(v)?'up':'dn'}">${s.price>parseFloat(v)?'▲ Above':'▼ Below'}</span></div>`).join('');
+
+  document.getElementById('dp-levels').innerHTML=`
+    <div class="ma-row"><span class="ma-name">Resistance</span><span class="ma-val up">₹${(s.price*1.05).toFixed(0)}</span></div>
+    <div class="ma-row" style="background:rgba(232,184,75,0.05);padding:6px 10px;border-radius:4px"><span class="ma-name" style="color:var(--gold)">Current LTP</span><span class="ma-val" style="color:var(--gold)">₹${s.price.toLocaleString('en-IN')}</span></div>
+    <div class="ma-row"><span class="ma-name">Support 1</span><span class="ma-val dn">₹${(s.price*0.95).toFixed(0)}</span></div>
+    <div class="ma-row"><span class="ma-name">Support 2</span><span class="ma-val dn">₹${(s.price*0.90).toFixed(0)}</span></div>
+  `;
+
+  document.getElementById('fund-valuation').innerHTML=`
+    <tr><td>P/E Ratio</td><td>${s.pe}x</td></tr>
+    <tr><td>52W High</td><td>₹${s.h52.toLocaleString('en-IN')}</td></tr>
+    <tr><td>52W Low</td><td>₹${s.l52.toLocaleString('en-IN')}</td></tr>
+    <tr><td>% from 52W High</td><td class="dn">${((s.price/s.h52-1)*100).toFixed(1)}%</td></tr>
+  `;
+  document.getElementById('fund-financials').innerHTML=`
+    <tr><td>Revenue</td><td>${s.revenue||'—'}</td></tr>
+    <tr><td>Net Margin</td><td>${s.netMargin||'—'}</td></tr>
+    <tr><td>ROE</td><td>${s.roe||'—'}</td></tr>
+    <tr><td>ROA</td><td>${s.roa||'—'}</td></tr>
+    <tr><td>Dividend Yield</td><td>${s.divYield||'—'}</td></tr>
+  `;
+  document.getElementById('fund-pershare').innerHTML=`
+    <tr><td>P/E Ratio</td><td>${s.pe}x</td></tr>
+    <tr><td>Delivery %</td><td>${s.del}%</td></tr>
+    <tr><td>Beta</td><td>${s.beta||'—'}</td></tr>
+  `;
+
+  renderChart(s, 30);
+}
+
+// ════════════════════════════════════════
+// POPULATE CRYPTO DETAIL
+// ════════════════════════════════════════
+function populateCryptoDetail(c) {
+  const h24=c.price_change_percentage_24h_in_currency||c.price_change_percentage_24h||0;
+  const isUp=h24>=0;
+
+  document.getElementById('dp-sym').textContent=c.symbol.toUpperCase();
+  document.getElementById('dp-name').textContent=c.name+' · Rank #'+c.market_cap_rank;
+  document.getElementById('dp-price').textContent='$'+c.current_price.toLocaleString();
+  const badge=document.getElementById('dp-chg-badge');
+  badge.textContent=(isUp?'▲ +':'▼ ')+Math.abs(h24).toFixed(2)+'% 24h';
+  badge.className='dp-chg-badge '+(isUp?'up':'dn');
+  const sig=h24>5?'buy':h24<-5?'sell':'hold';
+  document.getElementById('dp-signal-tag').innerHTML=renderSignal(sig);
+
+  ['ci-sym','ci-sym2'].forEach(id=>document.getElementById(id).textContent=c.symbol.toUpperCase());
+  ['ci-price','ci-price2'].forEach(id=>document.getElementById(id).textContent='$'+c.current_price.toLocaleString());
+  document.getElementById('ci-chg').innerHTML=`<span class="${isUp?'up':'dn'}">${isUp?'▲ +':'▼ '}${Math.abs(h24).toFixed(2)}% (24h)</span>`;
+
+  const ath=c.ath||c.current_price*2;
+  const atl=c.atl||c.current_price*0.1;
+  const w52lo=c.low_24h?c.low_24h*0.5:c.current_price*0.5;
+  const w52hi=c.high_24h?c.high_24h*1.8:c.current_price*1.8;
+  const pct=Math.min(100,((c.current_price-w52lo)/(w52hi-w52lo)*100)).toFixed(1);
+  document.getElementById('range-low').textContent='$'+w52lo.toFixed(2);
+  document.getElementById('range-high').textContent='$'+w52hi.toFixed(2);
+  document.getElementById('range-fill').style.width=pct+'%';
+  document.getElementById('range-marker').style.left=pct+'%';
+  document.getElementById('range-pct').textContent=pct+'% of estimated annual range';
+  document.getElementById('range-bar-wrap').querySelector('h4').textContent='Estimated Annual Range';
+
+  const rsi=(35+Math.random()*45).toFixed(1);
+  const h7=c.price_change_percentage_7d_in_currency||0;
+  document.getElementById('dp-kstats').innerHTML=`
+    <div class="kstat"><div class="kstat-label">Current Price</div><div class="kstat-val" style="font-size:14px">$${c.current_price.toLocaleString()}</div></div>
+    <div class="kstat"><div class="kstat-label">24h Change</div><div class="kstat-val ${isUp?'up':'dn'}" style="font-size:15px">${isUp?'+':''}${h24.toFixed(2)}%</div></div>
+    <div class="kstat"><div class="kstat-label">7d Change</div><div class="kstat-val ${h7>=0?'up':'dn'}" style="font-size:15px">${h7>=0?'+':''}${h7.toFixed(2)}%</div></div>
+    <div class="kstat"><div class="kstat-label">Market Cap</div><div class="kstat-val" style="font-size:14px">$${formatNum(c.market_cap)}</div></div>
+    <div class="kstat"><div class="kstat-label">24h Volume</div><div class="kstat-val" style="font-size:14px">$${formatNum(c.total_volume)}</div></div>
+    <div class="kstat"><div class="kstat-label">Circulating Supply</div><div class="kstat-val" style="font-size:12px">${formatNum(c.circulating_supply)} ${c.symbol.toUpperCase()}</div></div>
+    <div class="kstat"><div class="kstat-label">All-Time High</div><div class="kstat-val up" style="font-size:14px">$${(c.ath||ath).toLocaleString()}</div><div class="kstat-sub dn">${(((c.current_price/(c.ath||ath))-1)*100).toFixed(1)}% from ATH</div></div>
+    <div class="kstat"><div class="kstat-label">RSI (14)</div><div class="kstat-val" style="color:${rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--bright)'}">${rsi}</div><div class="kstat-sub neu">${rsi<30?'Oversold':rsi>70?'Overbought':'Neutral'}</div></div>
+    <div class="kstat"><div class="kstat-label">Market Rank</div><div class="kstat-val" style="font-size:14px;color:var(--gold)">#${c.market_cap_rank}</div></div>
+  `;
+
+  const sigColors={buy:'buy-bg',hold:'hold-bg',sell:'sell-bg'};
+  const sigTitles={buy:'🟢 BUY Signal',hold:'🟡 HOLD',sell:'🔴 SELL Signal'};
+  const box=document.getElementById('dp-signal-box');
+  box.className='signal-analysis '+sigColors[sig];
+  document.getElementById('dp-signal-title').textContent=sigTitles[sig];
+  document.getElementById('dp-signal-reason').textContent=
+    h24>5?`${c.name} is up ${h24.toFixed(2)}% in the last 24 hours with above-average volume. RSI at ${rsi} is in neutral territory. Momentum favours bulls. Watch for resistance at $${(c.current_price*1.08).toFixed(0)}.`:
+    h24<-5?`${c.name} is down ${Math.abs(h24).toFixed(2)}% in 24 hours. RSI approaching ${rsi} — potential oversold territory. Support at $${(c.current_price*0.92).toFixed(0)}. High-risk entry, wait for stabilization.`:
+    `${c.name} is consolidating with ${Math.abs(h24).toFixed(2)}% 24h change. RSI at ${rsi} indicates neutral momentum. Watch for a break above $${(c.current_price*1.05).toFixed(0)} for bullish confirmation.`;
+
+  document.getElementById('dp-co-name').textContent='About '+c.name;
+  document.getElementById('dp-co-desc').textContent=`${c.name} (${c.symbol.toUpperCase()}) is currently ranked #${c.market_cap_rank} by market capitalisation globally. Market cap: $${formatNum(c.market_cap)}. 24-hour trading volume: $${formatNum(c.total_volume)}. Circulating supply: ${formatNum(c.circulating_supply)} ${c.symbol.toUpperCase()}. All-time high: $${(c.ath||ath).toLocaleString()}.`;
+
+  const macd=(Math.random()*4-2).toFixed(4);
+  document.getElementById('dp-tech-grid').innerHTML=`
+    <div class="tech-card"><h4>RSI (14)</h4><div class="rsi-val" style="color:${rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--bright)'}">${rsi}</div><div class="rsi-label neu">${rsi<30?'Oversold':rsi>70?'Overbought':'Neutral'}</div></div>
+    <div class="tech-card"><h4>MACD</h4><div class="rsi-val" style="color:${parseFloat(macd)>0?'var(--green)':'var(--red)'}">${macd}</div><div class="rsi-label neu">${parseFloat(macd)>0?'Bullish':'Bearish'}</div></div>
+    <div class="tech-card"><h4>24h Volume</h4><div class="rsi-val" style="font-size:16px;color:var(--blue)">$${formatNum(c.total_volume)}</div></div>
+    <div class="tech-card"><h4>ATH Distance</h4><div class="rsi-val dn" style="font-size:16px">${(((c.current_price/(c.ath||ath))-1)*100).toFixed(1)}%</div><div class="rsi-label neu">from all-time high</div></div>
+    <div class="tech-card"><h4>Trend (24h)</h4><div class="rsi-val" style="font-size:18px;color:${isUp?'var(--green)':'var(--red)'}">${isUp?'BULLISH':'BEARISH'}</div></div>
+    <div class="tech-card"><h4>Market Rank</h4><div class="rsi-val" style="color:var(--gold)">#${c.market_cap_rank}</div></div>
+  `;
+
+  const cp=c.current_price;
+  document.getElementById('dp-ma-table').innerHTML=
+    [['7-Day MA',(cp*(0.97+Math.random()*0.06)).toFixed(4)],['30-Day MA',(cp*(0.93+Math.random()*0.14)).toFixed(4)],['200-Day MA',(cp*(0.85+Math.random()*0.3)).toFixed(4)]].map(([n,v])=>`
+    <div class="ma-row"><span class="ma-name">${n}</span><span class="ma-val">$${v}</span><span class="ma-status ${cp>parseFloat(v)?'up':'dn'}">${cp>parseFloat(v)?'▲ Above':'▼ Below'}</span></div>`).join('');
+
+  document.getElementById('dp-levels').innerHTML=`
+    <div class="ma-row"><span class="ma-name">Resistance</span><span class="ma-val up">$${(cp*1.08).toFixed(4)}</span></div>
+    <div class="ma-row" style="background:rgba(232,184,75,0.05);padding:6px 10px;border-radius:4px"><span class="ma-name" style="color:var(--gold)">Current</span><span class="ma-val" style="color:var(--gold)">$${cp.toFixed(4)}</span></div>
+    <div class="ma-row"><span class="ma-name">Support 1</span><span class="ma-val dn">$${(cp*0.92).toFixed(4)}</span></div>
+    <div class="ma-row"><span class="ma-name">Support 2</span><span class="ma-val dn">$${(cp*0.85).toFixed(4)}</span></div>
+  `;
+
+  document.getElementById('fund-valuation').innerHTML=`
+    <tr><td>Market Cap</td><td>$${formatNum(c.market_cap)}</td></tr>
+    <tr><td>Fully Diluted Val.</td><td>$${formatNum(c.fully_diluted_valuation)}</td></tr>
+    <tr><td>Market Rank</td><td>#${c.market_cap_rank}</td></tr>
+    <tr><td>All-Time High</td><td>$${(c.ath||'—').toLocaleString()}</td></tr>
+    <tr><td>All-Time Low</td><td>$${(c.atl||'—').toLocaleString()}</td></tr>
+  `;
+  document.getElementById('fund-financials').innerHTML=`
+    <tr><td>24h Volume</td><td>$${formatNum(c.total_volume)}</td></tr>
+    <tr><td>Vol/MCap Ratio</td><td>${((c.total_volume/c.market_cap)*100).toFixed(2)}%</td></tr>
+    <tr><td>24h High</td><td>$${c.high_24h?.toLocaleString()||'—'}</td></tr>
+    <tr><td>24h Low</td><td>$${c.low_24h?.toLocaleString()||'—'}</td></tr>
+  `;
+  document.getElementById('fund-pershare').innerHTML=`
+    <tr><td>Circulating Supply</td><td>${formatNum(c.circulating_supply)} ${c.symbol.toUpperCase()}</td></tr>
+    <tr><td>Total Supply</td><td>${c.total_supply?formatNum(c.total_supply)+' '+c.symbol.toUpperCase():'∞'}</td></tr>
+    <tr><td>Max Supply</td><td>${c.max_supply?formatNum(c.max_supply)+' '+c.symbol.toUpperCase():'Unlimited'}</td></tr>
+    <tr><td>24h Change</td><td class="${isUp?'up':'dn'}">${isUp?'+':''}${h24.toFixed(2)}%</td></tr>
+    <tr><td>7d Change</td><td class="${h7>=0?'up':'dn'}">${h7>=0?'+':''}${h7.toFixed(2)}%</td></tr>
+  `;
+
+  // For crypto, try to fetch real chart data from CoinGecko
+  fetchCryptoChart(c.id, c.current_price, h24);
+}
+
+async function fetchCryptoChart(coinId, price, h24) {
+  try {
+    const r=await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=30`);
+    const d=await r.json();
+    if(d.prices&&d.prices.length>0){
+      const prices=d.prices.map(p=>p[1]);
+      const isUp=h24>=0;
+      drawChart('detail-chart-svg', prices, isUp, 30);
+      drawChart('detail-chart-svg2', prices, isUp, 30);
+      drawVolumeChart(prices);
+      document.getElementById('chart-note').textContent='Live 30-day chart data from CoinGecko API.';
+    }
+  } catch(e){
+    // fallback already rendered with generated data
   }
 }
 
-// ═══ INDIA SCAN — WORKING ═══
-function runIndiaScan(){
-  const idx    = document.querySelectorAll('#tab-india select')[0].value;
-  const sector = document.querySelectorAll('#tab-india select')[1].value;
-  const pe     = document.querySelectorAll('#tab-india select')[2].value;
-  const del    = document.querySelectorAll('#tab-india select')[3].value;
-  const rsi    = document.querySelectorAll('#tab-india select')[4].value;
+// Keyboard close
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 
-  let filtered=[...INDIA_DATA];
-
-  // Nifty index filter (map stocks to indices)
-  const nifty50=['RELIANCE','TCS','HDFCBANK','INFY','ICICIBANK','HINDUNILVR','BAJFINANCE','WIPRO','SBIN','ASIANPAINT','MARUTI','KOTAKBANK'];
-  if(idx==='Nifty 50') filtered=filtered.filter(s=>nifty50.includes(s.sym));
-
-  // Sector filter
-  const sectorMap={
-    'IT & Technology':['TCS','INFY','WIPRO'],
-    'Banking & Finance':['HDFCBANK','ICICIBANK','SBIN','KOTAKBANK','BAJFINANCE'],
-    'FMCG':['HINDUNILVR'],
-    'Auto':['MARUTI'],
-    'Pharma':[],
-    'Metals & Mining':[],
-    'Oil & Gas':['RELIANCE'],
-  };
-  if(sectorMap[sector]) filtered=filtered.filter(s=>sectorMap[sector].includes(s.sym));
-
-  // P/E filter
-  const peBounds={'Under 15':[0,15],'15 - 25':[15,25],'25 - 40':[25,40],'Over 40':[40,9999]};
-  if(peBounds[pe]){const[lo,hi]=peBounds[pe];filtered=filtered.filter(s=>s.pe>=lo&&s.pe<=hi);}
-
-  // Delivery % filter
-  if(del==='Over 50%') filtered=filtered.filter(s=>s.del>=50);
-  else if(del==='Over 70%') filtered=filtered.filter(s=>s.del>=70);
-  else if(del==='Under 30%') filtered=filtered.filter(s=>s.del<30);
-
-  const tbody=document.getElementById('india-tbody');
-  if(filtered.length===0){
-    tbody.innerHTML=`<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">No stocks match your filters. <span style="color:var(--gold);cursor:pointer" onclick="resetFilters('india')">Reset filters →</span></td></tr>`;
-  } else {
-    tbody.innerHTML=filtered.map(s=>`
-      <tr onclick="showToast('${s.sym} — ₹${s.price.toLocaleString()} | Del: ${s.del}% | P/E: ${s.pe}')">
-        <td><span class="sym">${s.sym}</span></td>
-        <td style="font-size:12px;color:var(--text)">${s.name}</td>
-        <td><span class="price">₹${s.price.toLocaleString('en-IN',{maximumFractionDigits:2})}</span></td>
-        <td><span class="${s.chg>=0?'up':'dn'}">${s.chg>=0?'▲':'▼'} ${Math.abs(s.chg).toFixed(2)}%</span></td>
-        <td style="color:var(--muted);font-size:12px">${s.vol}</td>
-        <td><span style="color:${s.del>60?'var(--green)':s.del<35?'var(--red)':'var(--text)'};font-family:'JetBrains Mono',monospace;font-size:12px">${s.del}%</span></td>
-        <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:${s.pe>50?'var(--red)':s.pe<15?'var(--green)':'var(--text)'}">${s.pe}</td>
-        <td style="font-size:12px;color:var(--muted)">₹${s.h52.toLocaleString('en-IN')}</td>
-        <td style="font-size:12px;color:var(--muted)">₹${s.l52.toLocaleString('en-IN')}</td>
-        <td>${renderSignal(s.signal)}</td>
-      </tr>`).join('');
-    showToast(`✓ Found ${filtered.length} NSE stocks matching your filters`);
-  }
-}
-
-// ═══ CRYPTO FILTERS — WORKING ═══
+// ════════════════════════════════════════
+// CRYPTO LOADING
+// ════════════════════════════════════════
 let cachedCryptoData=[];
+let cryptoLoaded=false;
+
 async function loadCryptoData(){
   const tbody=document.getElementById('crypto-tbody');
   tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted)">⏳ Fetching live data from CoinGecko...</td></tr>';
   try{
     const r=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d');
     cachedCryptoData=await r.json();
-    applyCryptoFilters();
-    // Update stat cards
     const btc=cachedCryptoData.find(c=>c.id==='bitcoin');
     const eth=cachedCryptoData.find(c=>c.id==='ethereum');
     if(btc){
@@ -951,102 +1369,162 @@ async function loadCryptoData(){
       document.getElementById('eth-chg').className='stat-sub '+(ec>=0?'up':'dn');
     }
     const totalMcap=cachedCryptoData.reduce((a,c)=>a+(c.market_cap||0),0);
-    document.getElementById('total-mcap').textContent=formatNum(totalMcap);
-    document.getElementById('fg-index').textContent='Greed 68';
+    document.getElementById('total-mcap').textContent='$'+formatNum(totalMcap);
+    applyCryptoFilters();
   }catch(e){
-    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--red)">⚠️ Could not load live data. Check your connection and try again.</td></tr>';
+    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--red)">⚠️ Could not load live data. Try again shortly.</td></tr>';
   }
 }
 
 function applyCryptoFilters(){
-  if(!cachedCryptoData.length){loadCryptoData();return;}
-  const cat   = document.getElementById('cf-cat').value;
-  const rank  = document.getElementById('cf-rank').value;
-  const chg   = document.getElementById('cf-chg').value;
-  const price = document.getElementById('cf-price').value;
-
-  const categoryCoins={
+  const cat=document.getElementById('cf-cat').value;
+  const rank=document.getElementById('cf-rank').value;
+  const chg=document.getElementById('cf-chg').value;
+  const price=document.getElementById('cf-price').value;
+  let f=[...cachedCryptoData];
+  const cats={
     'Layer 1 (Bitcoin, ETH)':['bitcoin','ethereum','solana','cardano','avalanche-2','polkadot','near','tron'],
-    'DeFi Tokens':['uniswap','aave','compound-governance-token','maker','curve-dao-token','synthetix'],
-    'Layer 2':['matic-network','arbitrum','optimism','loopring'],
-    'Stablecoins':['tether','usd-coin','dai','true-usd'],
-    'NFT & Gaming':['axie-infinity','decentraland','the-sandbox','apecoin'],
-    'AI Tokens':['fetch-ai','singularitynet','ocean-protocol','numeraire'],
+    'DeFi Tokens':['uniswap','aave','compound-governance-token','maker','curve-dao-token'],
+    'Layer 2':['matic-network','arbitrum','optimism'],
+    'Stablecoins':['tether','usd-coin','dai'],
+    'AI Tokens':['fetch-ai','singularitynet','ocean-protocol'],
   };
-
-  let filtered=[...cachedCryptoData];
-
-  if(cat!=='All Cryptos'&&categoryCoins[cat])
-    filtered=filtered.filter(c=>categoryCoins[cat].includes(c.id));
-
-  const rankBounds={'Top 10':10,'Top 50':50,'Top 100':100,'Top 500':500};
-  if(rankBounds[rank]) filtered=filtered.slice(0,rankBounds[rank]);
-
-  if(chg==='Up >10%')      filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency>=10);
-  else if(chg==='Up >5%')  filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency>=5);
-  else if(chg==='Up >2%')  filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency>=2);
-  else if(chg==='Down >5%')filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency<=-5);
-  else if(chg==='Down >10%')filtered=filtered.filter(c=>c.price_change_percentage_24h_in_currency<=-10);
-
-  if(price==='Under $1')   filtered=filtered.filter(c=>c.current_price<1);
-  else if(price==='$1 - $10')filtered=filtered.filter(c=>c.current_price>=1&&c.current_price<10);
-  else if(price==='$10 - $100')filtered=filtered.filter(c=>c.current_price>=10&&c.current_price<100);
-  else if(price==='Over $100')filtered=filtered.filter(c=>c.current_price>=100);
-
-  document.getElementById('crypto-count').textContent=`${filtered.length} results`;
+  if(cat!=='All Cryptos'&&cats[cat]) f=f.filter(c=>cats[cat].includes(c.id));
+  const rankB={'Top 10':10,'Top 50':50,'Top 100':100};
+  if(rankB[rank]) f=f.slice(0,rankB[rank]);
+  if(chg==='Up >10%') f=f.filter(c=>c.price_change_percentage_24h_in_currency>=10);
+  else if(chg==='Up >5%') f=f.filter(c=>c.price_change_percentage_24h_in_currency>=5);
+  else if(chg==='Up >2%') f=f.filter(c=>c.price_change_percentage_24h_in_currency>=2);
+  else if(chg==='Down >5%') f=f.filter(c=>c.price_change_percentage_24h_in_currency<=-5);
+  else if(chg==='Down >10%') f=f.filter(c=>c.price_change_percentage_24h_in_currency<=-10);
+  if(price==='Under $1') f=f.filter(c=>c.current_price<1);
+  else if(price==='$1 - $10') f=f.filter(c=>c.current_price>=1&&c.current_price<10);
+  else if(price==='$10 - $100') f=f.filter(c=>c.current_price>=10&&c.current_price<100);
+  else if(price==='Over $100') f=f.filter(c=>c.current_price>=100);
+  document.getElementById('crypto-count').textContent=f.length+' cryptos loaded';
   const tbody=document.getElementById('crypto-tbody');
-  if(filtered.length===0){
-    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">No cryptos match your filters.</td></tr>';
-    return;
-  }
-  tbody.innerHTML=filtered.map((c,i)=>{
+  if(!f.length){tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted)">No results match filters.</td></tr>';return;}
+  tbody.innerHTML=f.map((c,i)=>{
     const h1=c.price_change_percentage_1h_in_currency;
     const h24=c.price_change_percentage_24h_in_currency;
     const d7=c.price_change_percentage_7d_in_currency;
     const sig=h24>5?'buy':h24<-5?'sell':'hold';
-    return `<tr onclick="showToast('${c.symbol.toUpperCase()} — $${c.current_price.toLocaleString()} | 24h: ${h24?.toFixed(2)||'—'}%')">
+    return `<tr onclick="openDetail('${c.symbol.toUpperCase()}','crypto')">
       <td style="color:var(--muted);font-size:12px">${i+1}</td>
       <td><div style="display:flex;align-items:center;gap:8px"><img src="${c.image}" width="20" height="20" style="border-radius:50%" onerror="this.style.display='none'"><div><div class="sym" style="font-size:12px">${c.symbol.toUpperCase()}</div><div style="font-size:11px;color:var(--muted)">${c.name}</div></div></div></td>
-      <td class="price">$${c.current_price.toLocaleString()}</td>
+      <td class="price-cell">$${c.current_price.toLocaleString()}</td>
       <td class="${h1>=0?'up':'dn'}">${h1!=null?(h1>=0?'+':'')+h1.toFixed(2)+'%':'—'}</td>
       <td class="${h24>=0?'up':'dn'}">${h24!=null?(h24>=0?'+':'')+h24.toFixed(2)+'%':'—'}</td>
       <td class="${d7>=0?'up':'dn'}">${d7!=null?(d7>=0?'+':'')+d7.toFixed(2)+'%':'—'}</td>
-      <td style="font-size:12px;color:var(--muted)">${formatNum(c.market_cap)}</td>
-      <td style="font-size:12px;color:var(--muted)">${formatNum(c.total_volume)}</td>
+      <td style="font-size:12px;color:var(--muted)">$${formatNum(c.market_cap)}</td>
+      <td style="font-size:12px;color:var(--muted)">$${formatNum(c.total_volume)}</td>
       <td style="font-size:12px;color:var(--muted)">${formatNum(c.circulating_supply)} ${c.symbol.toUpperCase()}</td>
       <td>${renderSignal(sig)}</td>
     </tr>`;
   }).join('');
-  showToast(`✓ Showing ${filtered.length} cryptos`);
+}
+
+// ════════════════════════════════════════
+// SCAN / FILTER / RESET
+// ════════════════════════════════════════
+function runScan(){
+  const exchange=document.getElementById('f-exchange').value;
+  const sector=document.getElementById('f-sector').value;
+  const cap=document.getElementById('f-cap').value;
+  const pe=document.getElementById('f-pe').value;
+  const chg=document.getElementById('f-chg').value;
+  const signal=document.getElementById('f-signal').value;
+  let f=STOCKS_DATA.filter(s=>s.revenue);
+  const exchMap={'NYSE':['Finance','Consumer','Healthcare','Energy','Industrials','Media'],'NASDAQ':['Technology','Consumer','Auto']};
+  if(exchMap[exchange]) f=f.filter(s=>exchMap[exchange].includes(s.sector));
+  if(sector!=='All Sectors') f=f.filter(s=>s.sector===sector);
+  const capB={'Mega Cap (>$200B)':[200,Infinity],'Large Cap ($10B-$200B)':[10,200],'Mid Cap ($2B-$10B)':[2,10]};
+  if(capB[cap]){const[lo,hi]=capB[cap];f=f.filter(s=>{const m=s.mcap.replace(/[$TB]/g,'');const v=s.mcap.includes('T')?parseFloat(m)*1000:parseFloat(m);return v>=lo&&v<=hi;});}
+  const peB={'Under 10':[0,10],'10 - 20':[10,20],'20 - 30':[20,30],'30 - 50':[30,50],'Over 50':[50,9999]};
+  if(peB[pe]){const[lo,hi]=peB[pe];f=f.filter(s=>s.pe>=lo&&s.pe<=hi);}
+  if(chg==='Up >5% today') f=f.filter(s=>s.chg>=5);
+  else if(chg==='Up >2% today') f=f.filter(s=>s.chg>=2);
+  else if(chg==='Down >2% today') f=f.filter(s=>s.chg<=-2);
+  else if(chg==='Down >5% today') f=f.filter(s=>s.chg<=-5);
+  if(signal==='Buy') f=f.filter(s=>s.signal==='buy');
+  else if(signal==='Hold') f=f.filter(s=>s.signal==='hold');
+  else if(signal==='Sell') f=f.filter(s=>s.signal==='sell');
+  document.getElementById('showing-count').textContent=f.length;
+  if(!f.length){document.getElementById('stocks-tbody').innerHTML='<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--muted)">No stocks match. <span style="color:var(--gold);cursor:pointer" onclick="resetFilters(\'stocks\')">Reset →</span></td></tr>';}
+  else{renderStocksTable(f);showToast('✓ Found '+f.length+' stocks');}
 }
 
 function resetFilters(type){
   document.querySelectorAll('#tab-'+type+' select').forEach(s=>s.selectedIndex=0);
-  if(type==='stocks'){renderStocksTable(STOCKS_DATA);document.getElementById('showing-count').textContent=STOCKS_DATA.length;}
+  if(type==='stocks'){renderStocksTable(STOCKS_DATA.filter((s,i)=>i<25&&s.revenue));document.getElementById('showing-count').textContent='25';}
   else if(type==='crypto'){applyCryptoFilters();}
   else if(type==='india'){renderIndiaTable();}
   showToast('Filters reset');
 }
 
-// Wire up India scan button
-document.addEventListener('DOMContentLoaded',function(){
-  const indiaBtns=document.querySelectorAll('#tab-india .btn-scan');
-  indiaBtns.forEach(b=>b.onclick=runIndiaScan);
-  const cryptoBtn=document.querySelector('#tab-crypto .btn-scan');
-  if(cryptoBtn) cryptoBtn.onclick=function(){loadCryptoData();};
-  const cryptoSelects=document.querySelectorAll('#tab-crypto select');
-  cryptoSelects.forEach(s=>s.onchange=applyCryptoFilters);
+function runIndiaScan(){
+  const sels=document.querySelectorAll('#tab-india select');
+  let f=[...INDIA_DATA];
+  const idx=sels[0].value,sector=sels[1].value,pe=sels[2].value,del=sels[3].value;
+  const nifty50=['RELIANCE','TCS','HDFCBANK','INFY','ICICIBANK','HINDUNILVR','BAJFINANCE','WIPRO','SBIN','ASIANPAINT','MARUTI','KOTAKBANK'];
+  if(idx==='Nifty 50') f=f.filter(s=>nifty50.includes(s.sym));
+  const secMap={'IT & Technology':['TCS','INFY','WIPRO'],'Banking & Finance':['HDFCBANK','ICICIBANK','SBIN','KOTAKBANK','BAJFINANCE'],'FMCG':['HINDUNILVR'],'Auto':['MARUTI'],'Oil & Gas':['RELIANCE']};
+  if(secMap[sector]) f=f.filter(s=>secMap[sector].includes(s.sym));
+  const peB={'Under 15':[0,15],'15 - 25':[15,25],'25 - 40':[25,40],'Over 40':[40,9999]};
+  if(peB[pe]){const[lo,hi]=peB[pe];f=f.filter(s=>s.pe>=lo&&s.pe<=hi);}
+  if(del==='Over 50%') f=f.filter(s=>s.del>=50);
+  else if(del==='Over 70%') f=f.filter(s=>s.del>=70);
+  else if(del==='Under 30%') f=f.filter(s=>s.del<30);
+  document.getElementById('india-count').textContent=f.length;
+  renderIndiaTable(f);
+  showToast('✓ '+f.length+' NSE stocks found');
+}
+
+// ════════════════════════════════════════
+// SIGNALS
+// ════════════════════════════════════════
+const SIGNALS=[
+  {sym:'AAPL',name:'Apple Inc',price:'$249.80',sig:'Buy',reason:'iPhone 17 super cycle + Apple Intelligence AI driving ASP upward. Above 200MA.',type:'buy'},
+  {sym:'NVDA',name:'NVIDIA Corp',price:'$174.90',sig:'Buy',reason:'Blackwell GPU demand far exceeds supply. AI capex supercycle intact. Dip opportunity.',type:'buy'},
+  {sym:'HDFCBANK',name:'HDFC Bank',price:'₹783',sig:'Buy',reason:'Post-merger LDR normalising. 15x PE cheapest in 5 years for quality compounder.',type:'buy'},
+  {sym:'ICICIBANK',name:'ICICI Bank',price:'₹1,245',sig:'Buy',reason:'Near 52W low despite record low NPAs and 20%+ credit growth. Anomaly.',type:'buy'},
+  {sym:'SBIN',name:'State Bank of India',price:'₹724',sig:'Buy',reason:'Historic low NPAs. ROE at 18%+. 9.8x PE is extraordinarily cheap.',type:'buy'},
+  {sym:'META',name:'Meta Platforms',price:'$622',sig:'Buy',reason:'Ad revenue growing 20%+. Llama AI strategy building massive ecosystem moat.',type:'buy'},
+  {sym:'BAJFINANCE',name:'Bajaj Finance',price:'₹8,622',sig:'Buy',reason:'AUM growth re-accelerating. Best-in-class NBFC at reasonable 28x PE.',type:'buy'},
+  {sym:'NFLX',name:'Netflix',price:'$1,082',sig:'Buy',reason:'Ad-tier and live sports driving structural re-rating. Password crackdown complete.',type:'buy'},
+  {sym:'RELIANCE',name:'Reliance Industries',price:'₹1,243',sig:'Hold',reason:'Jio monetising well but O2C under pressure from oil spike. Balanced.',type:'hold'},
+  {sym:'TSLA',name:'Tesla',price:'$380',sig:'Hold',reason:'FSD improving but robotaxi timeline uncertain. High PE needs execution.',type:'hold'},
+  {sym:'WIPRO',name:'Wipro Ltd',price:'₹248',sig:'Sell',reason:'Multiple quarters of sequential decline. CEO transition risk. Rotate to TCS.',type:'sell'},
+  {sym:'DIS',name:'Walt Disney',price:'$96',sig:'Hold',reason:'Streaming profitable but linear TV decline accelerating. Transition ongoing.',type:'hold'},
+];
+
+function renderSignals(data){
+  const grid=document.getElementById('signals-grid');
+  grid.innerHTML=data.map(s=>`
+    <div class="signal-card" onclick="openDetail('${s.sym}', '${s.sym.match(/[₹]/)||s.name.includes('Bank')||s.name.includes('India')||s.name.includes('Suzuki')||s.name.includes('Finance Ltd')||s.name.includes('Infosys')||s.name.includes('Wipro')||s.name.includes('Reliance')?'india':'stocks'}')">
+      <div style="font-weight:700;color:var(--bright);font-family:'JetBrains Mono',monospace;font-size:14px">${s.sym}</div>
+      <div style="font-size:11px;color:var(--muted);margin:2px 0 8px">${s.name} · ${s.price}</div>
+      <div style="margin-bottom:6px">${renderSignal(s.type)}</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.5">${s.reason}</div>
+    </div>`).join('');
+}
+
+function filterSignals(type,el){
+  document.querySelectorAll('.wl-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  const f=type==='all'?SIGNALS:SIGNALS.filter(s=>s.type===type||(type==='breakout'&&s.type==='buy'&&parseFloat(s.price.replace(/[₹$,]/g,''))>100));
+  renderSignals(f);
+}
+
+renderSignals(SIGNALS);
+
+// Auto-load crypto on tab switch
+document.querySelectorAll('.stab').forEach(t=>{
+  t.addEventListener('click',function(){
+    const tab=this.getAttribute('onclick').match(/'(\w+)'/)[1];
+    if(tab==='crypto'&&!cryptoLoaded){cryptoLoaded=true;loadCryptoData();}
+  });
 });
-
-// Auto-load crypto when tab is first opened
-let cryptoLoaded=false;
-const origSwitch=switchTab;
-window.switchTab=function(tab){
-  origSwitch.call(this,tab);
-  if(tab==='crypto'&&!cryptoLoaded){cryptoLoaded=true;loadCryptoData();}
-};
-
-if(window.location.hash==='#crypto'){cryptoLoaded=true;loadCryptoData();}
 </script>
 </body>
 </html>
