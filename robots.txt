@@ -1,0 +1,9 @@
+# Finance Meridian — robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://financemeridian.com/sitemap.xml
+
+# Crawl-delay for respectful bots
+Crawl-delay: 1
