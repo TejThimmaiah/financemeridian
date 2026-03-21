@@ -12,6 +12,15 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1618644195498270"
      crossorigin="anonymous"></script>
 
+<!-- ── Google Analytics GA4 ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TCSKYK6EKD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TCSKYK6EKD');
+</script>
+
 <!-- ── Open Graph / Social Sharing ── -->
 <meta property="og:title" content="Finance Meridian — India's Sharpest Financial Intelligence">
 <meta property="og:description" content="India's sharpest financial analysis. Stock market guides, crypto news, ETF screener, and personal finance for Indian investors.">
@@ -3437,7 +3446,7 @@ At 44, a ₹4 crore portfolio at 4% withdrawal provides ₹16L/year = ₹1.33L/m
       <div class="footer-col">
         <h4>Company</h4>
         <a href="#">About Us</a>
-        <a href="mailto:editor@financemeridian.com">Contact</a>
+        <a href="/cdn-cgi/l/email-protection#dcb9b8b5a8b3ae9cbab5b2bdb2bfb9b1b9aeb5b8b5bdb2f2bfb3b1">Contact</a>
         <a href="#">Advertise</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Use</a>
@@ -3445,7 +3454,7 @@ At 44, a ₹4 crore portfolio at 4% withdrawal provides ₹16L/year = ₹1.33L/m
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Finance Meridian. All rights reserved. | editor@financemeridian.com</span>
+      <span>© 2026 Finance Meridian. All rights reserved. | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2346474a574c5163454a4d424d40464e46514a474a424d0d404c4e">[email&#160;protected]</a></span>
       <span>Hosted on Cloudflare Pages · Built with ♥ in Bengaluru</span>
     </div>
     <div style="font-size:11px;color:rgba(107,130,153,0.45);margin-top:12px;line-height:1.6">
@@ -3454,7 +3463,7 @@ At 44, a ₹4 crore portfolio at 4% withdrawal provides ₹16L/year = ₹1.33L/m
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Navigation ──────────────────────────────────────────────────────────────
 function openArticle(n) {
   document.getElementById('page-home').style.display = 'none';
@@ -3516,16 +3525,4 @@ async function fetchCryptoPrices() {
       const btcChg = d.bitcoin.usd_24h_change;
       document.querySelectorAll('#tk-btc-chg').forEach(el => {
         el.textContent = (btcChg >= 0 ? '+' : '') + btcChg.toFixed(2) + '%';
-        el.className = 'tick-chg ' + (btcChg >= 0 ? 'up' : 'dn');
-      });
-    }
-    if (d.ethereum) {
-      document.querySelectorAll('#tk-eth').forEach(el => el.textContent = '$' + d.ethereum.usd.toLocaleString());
-    }
-  } catch(e) {}
-}
-fetchCryptoPrices();
-setInterval(fetchCryptoPrices, 60000);
-</script>
-</body>
-</html>
+        el.className = 'tick-chg ' + (btcC
