@@ -359,6 +359,85 @@ footer{background:var(--navy);border-top:1px solid var(--border);padding:40px 24
 .aff-item{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:6px 14px;font-size:12px;color:var(--text);white-space:nowrap;cursor:pointer;transition:all .2s;flex-shrink:0}
 .aff-item:hover{background:rgba(255,255,255,.08);color:var(--bright)}
 .aff-item span{color:var(--gold);font-weight:600}
+
+/* ═══ NOOMO INTERACTIVE EXPERIENCE ═══ */
+
+/* Custom cursor */
+#fm-cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .15s,height .15s,opacity .2s;mix-blend-mode:screen;will-change:left,top}
+#fm-cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(232,184,75,.55);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);will-change:left,top;transition:width .3s,height .3s,border-color .3s}
+body.cursor-hover #fm-cursor{width:20px;height:20px}
+body.cursor-hover #fm-cursor-ring{width:56px;height:56px;border-color:rgba(232,184,75,.9)}
+@media(hover:none){#fm-cursor,#fm-cursor-ring{display:none}}
+
+/* Spotlight */
+#fm-spotlight{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;background:radial-gradient(600px circle at -200px -200px,rgba(232,184,75,.04),transparent 60%)}
+
+/* Page transition overlay */
+#fm-transition{position:fixed;inset:0;background:linear-gradient(160deg,var(--navy) 0%,var(--night) 100%);z-index:99997;transform-origin:top;transform:scaleY(0);pointer-events:none}
+#fm-transition.t-in{animation:tWipeIn .34s cubic-bezier(.77,0,.18,1) forwards}
+#fm-transition.t-out{animation:tWipeOut .34s cubic-bezier(.77,0,.18,1) forwards}
+@keyframes tWipeIn{0%{transform:scaleY(0);transform-origin:top}100%{transform:scaleY(1);transform-origin:top}}
+@keyframes tWipeOut{0%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* Scroll progress bar */
+#scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--teal),var(--green));z-index:99999;transition:width .08s linear;border-radius:0 2px 2px 0}
+
+/* Back to top */
+#back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.35);border-radius:50%;color:var(--gold);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s,background .2s;backdrop-filter:blur(10px);font-family:'JetBrains Mono',monospace}
+#back-top.visible{opacity:1;pointer-events:auto}
+#back-top:hover{transform:translateY(-4px);background:rgba(232,184,75,.24)}
+
+/* Stats strip */
+.stats-strip{background:var(--navy);border-bottom:1px solid var(--border);padding:22px 24px;display:flex;justify-content:center;gap:64px;flex-wrap:wrap;position:relative;z-index:2}
+.stats-strip::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(232,184,75,.025) 30%,rgba(0,201,167,.02) 70%,transparent);pointer-events:none}
+.stat-item{text-align:center}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:2.1em;font-weight:700;color:var(--gold);display:block;line-height:1;letter-spacing:-.02em}
+.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;display:block;margin-top:5px}
+
+/* Card shine / 3D parallax */
+.card-shine{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;border-radius:inherit;z-index:1}
+.art-card{position:relative;overflow:hidden}
+.hero-card{position:relative;overflow:hidden}
+.side-card{position:relative;overflow:hidden}
+
+/* Section header underline */
+.section-hdr h2{position:relative;display:inline-block}
+.section-hdr h2::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:2px;transition:width .65s cubic-bezier(.25,.46,.45,.94)}
+.section-hdr.hdr-in h2::after{width:100%}
+
+/* Art card scroll reveal */
+.art-card{opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s,border-color .22s,box-shadow .22s}
+.art-card.card-vis{opacity:1;transform:translateY(0)}
+.art-card.card-vis:hover{transform:translateY(-2px)}
+
+/* Ambient orbs */
+#page-home{position:relative;overflow-x:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:orbDrift 10s ease-in-out infinite alternate}
+.orb[data-orb="1"]{width:480px;height:480px;background:rgba(232,184,75,.032);top:-80px;right:-100px;animation-duration:11s}
+.orb[data-orb="2"]{width:340px;height:340px;background:rgba(0,201,167,.025);top:600px;left:-80px;animation-duration:14s;animation-delay:-4s}
+.orb[data-orb="3"]{width:240px;height:240px;background:rgba(77,166,255,.02);top:1200px;left:45%;animation-duration:9s;animation-delay:-7s}
+@keyframes orbDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(24px,36px) scale(1.1)}}
+
+/* Grain noise overlay */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:99996;opacity:.032;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");background-size:160px;animation:grainAnim .45s steps(1) infinite}
+@keyframes grainAnim{0%{background-position:0 0}25%{background-position:-22px 12px}50%{background-position:12px -18px}75%{background-position:-8px 22px}100%{background-position:18px -8px}}
+
+/* Glass nav */
+header{background:rgba(8,12,18,.68)!important;backdrop-filter:blur(22px) saturate(1.5)!important;-webkit-backdrop-filter:blur(22px) saturate(1.5)!important}
+
+/* Gradient logo text */
+.logo-text{background:linear-gradient(110deg,#c8922a 0%,var(--gold) 40%,#f5d78e 65%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:opacity .2s}
+
+/* Magnetic nav buttons — handled by JS transform, just smooth the reset */
+nav button,nav a{will-change:transform}
+
+/* Card glow on hover */
+.art-card.card-vis:hover{border-color:rgba(232,184,75,.28)!important;box-shadow:0 0 28px rgba(232,184,75,.09),0 6px 28px rgba(0,0,0,.35)!important}
+.hero-card:hover{box-shadow:0 0 40px rgba(232,184,75,.1),0 10px 44px rgba(0,0,0,.45)!important}
+.side-card:hover{box-shadow:0 0 20px rgba(232,184,75,.07),0 4px 20px rgba(0,0,0,.3)!important}
+
+/* Footer gradient */
+footer{background:linear-gradient(180deg,var(--navy) 0%,rgba(6,9,14,1) 100%)!important}
 </style>
 
 <!-- ── FAQ Structured Data for Rich Results ── -->
@@ -421,6 +500,13 @@ footer{background:var(--navy);border-top:1px solid var(--border);padding:40px 24
 
 </head>
 <body>
+<!-- NOOMO UI ELEMENTS -->
+<div id="fm-cursor"></div>
+<div id="fm-cursor-ring"></div>
+<div id="fm-spotlight"></div>
+<div id="fm-transition"></div>
+<div id="scroll-progress"></div>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <!-- TICKER -->
 <div class="ticker-wrap">
@@ -508,6 +594,19 @@ footer{background:var(--navy);border-top:1px solid var(--border);padding:40px 24
 
 <!-- HOMEPAGE -->
 <div id="page-home">
+  <!-- AMBIENT ORBS -->
+  <div class="orb" data-orb="1"></div>
+  <div class="orb" data-orb="2"></div>
+  <div class="orb" data-orb="3"></div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-item"><span class="stat-num" id="stat-guides">0</span><span class="stat-label">In-Depth Guides</span></div>
+    <div class="stat-item"><span class="stat-num" id="stat-tools">0</span><span class="stat-label">Free Tools</span></div>
+    <div class="stat-item"><span class="stat-num" id="stat-readers">0</span><span class="stat-label">Monthly Readers</span></div>
+    <div class="stat-item"><span class="stat-num" id="stat-indep">0</span><span class="stat-label">% Independent</span></div>
+  </div>
+
   <div class="main">
     <div class="content-col">
 
@@ -6332,4 +6431,288 @@ async function fetchCryptoPrices() {
       const btcChg = d.bitcoin.usd_24h_change;
       document.querySelectorAll('#tk-btc-chg').forEach(el => {
         el.textContent = (btcChg >= 0 ? '+' : '') + btcChg.toFixed(2) + '%';
-        el.className = 'tick-chg ' + (btcC
+        el.className = 'tick-chg ' + (btcChg >= 0 ? 'up' : 'dn');
+      });
+    }
+    if (d.ethereum) {
+      document.querySelectorAll('#tk-eth').forEach(el => el.textContent = '$' + d.ethereum.usd.toLocaleString());
+    }
+  } catch(e) {}
+}
+fetchCryptoPrices();
+setInterval(fetchCryptoPrices, 60000);
+
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     NOOMO INTERACTIVE EXPERIENCE — Finance Meridian
+     Cursor · Spotlight · Transitions · Parallax · Counters
+     Grain · Momentum Scroll · Scramble · Orbs
+══════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+'use strict';
+
+// ── 1. CUSTOM CURSOR ──────────────────────────────────────
+var cur = document.getElementById('fm-cursor');
+var ring = document.getElementById('fm-cursor-ring');
+var mx = -200, my = -200, rx = -200, ry = -200;
+
+if (cur && ring && window.matchMedia('(hover:hover)').matches) {
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    cur.style.left = mx + 'px';
+    cur.style.top  = my + 'px';
+  });
+  (function animRing() {
+    rx += (mx - rx) * 0.11;
+    ry += (my - ry) * 0.11;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.addEventListener('mouseleave', function() {
+    cur.style.opacity = '0'; ring.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', function() {
+    cur.style.opacity = '1'; ring.style.opacity = '1';
+  });
+
+  // Magnetic hover enlargement
+  var hoverEls = document.querySelectorAll('button,a,.art-card,.hero-card,.side-card,.filter-btn,.header-cta');
+  hoverEls.forEach(function(el) {
+    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+  });
+}
+
+// ── 2. SPOTLIGHT ──────────────────────────────────────────
+var spotlight = document.getElementById('fm-spotlight');
+if (spotlight) {
+  document.addEventListener('mousemove', function(e) {
+    spotlight.style.background =
+      'radial-gradient(600px circle at ' + e.clientX + 'px ' + e.clientY + 'px,' +
+      'rgba(232,184,75,.042),transparent 60%)';
+  }, { passive: true });
+}
+
+// ── 3. PAGE TRANSITION ────────────────────────────────────
+var overlay = document.getElementById('fm-transition');
+function withTransition(fn) {
+  if (!overlay) { fn(); return; }
+  overlay.className = 't-in';
+  setTimeout(function() {
+    fn();
+    // small delay then wipe out
+    setTimeout(function() { overlay.className = 't-out'; }, 40);
+  }, 340);
+}
+
+var _openArticle = window.openArticle;
+var _goHome      = window.goHome;
+var _openPage    = window.openPage;
+var _filterCat   = window.filterCat;
+
+window.openArticle = function(n)  { withTransition(function() { _openArticle(n); }); };
+window.openPage    = function(id) { withTransition(function() { _openPage(id); }); };
+window.goHome      = function()   { withTransition(function() { _goHome(); }); };
+
+// filterCat uses goHome internally — bypass transition there
+window.filterCat = function(cat) {
+  var saved = window.goHome;
+  window.goHome = _goHome; // raw, no transition
+  _filterCat(cat);
+  window.goHome = saved;
+  // Ensure all visible cards have the reveal class
+  document.querySelectorAll('.art-card').forEach(function(card) {
+    if (card.style.display !== 'none') card.classList.add('card-vis');
+  });
+};
+
+// ── 4. SCROLL PROGRESS BAR ────────────────────────────────
+var progressBar = document.getElementById('scroll-progress');
+var backTop     = document.getElementById('back-top');
+
+window.addEventListener('scroll', function() {
+  // Progress
+  if (progressBar) {
+    var st = window.scrollY;
+    var dh = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
+  }
+  // Back to top
+  if (backTop) {
+    if (window.scrollY > 400) backTop.classList.add('visible');
+    else backTop.classList.remove('visible');
+  }
+}, { passive: true });
+
+// ── 5. ANIMATED COUNTERS ──────────────────────────────────
+var countersRun = false;
+var COUNTER_TARGETS = [
+  { id:'stat-guides',  val:35,  suffix:'' },
+  { id:'stat-tools',   val:5,   suffix:'' },
+  { id:'stat-readers', val:'12k+', suffix:'' },
+  { id:'stat-indep',   val:100, suffix:'%' }
+];
+
+function runCounters() {
+  if (countersRun) return;
+  countersRun = true;
+  COUNTER_TARGETS.forEach(function(s) {
+    var el = document.getElementById(s.id);
+    if (!el) return;
+    if (typeof s.val === 'string') { el.textContent = s.val; return; }
+    var start = performance.now();
+    var dur = 1600;
+    (function step(now) {
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * s.val) + s.suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = s.val + s.suffix;
+    })(start);
+  });
+}
+
+var statsEl = document.querySelector('.stats-strip');
+if (statsEl && 'IntersectionObserver' in window) {
+  new IntersectionObserver(function(entries, obs) {
+    if (entries[0].isIntersecting) { runCounters(); obs.disconnect(); }
+  }, { threshold: 0.4 }).observe(statsEl);
+} else {
+  setTimeout(runCounters, 500);
+}
+
+// ── 6. 3D CARD PARALLAX + CARD SHINE ─────────────────────
+function addShine(card) {
+  if (card.querySelector('.card-shine')) return;
+  var shine = document.createElement('div');
+  shine.className = 'card-shine';
+  card.appendChild(shine);
+
+  card.addEventListener('mousemove', function(e) {
+    var r  = card.getBoundingClientRect();
+    var x  = e.clientX - r.left;
+    var y  = e.clientY - r.top;
+    var cx = r.width / 2, cy = r.height / 2;
+    var rx2 = (x - cx) / cx;
+    var ry2 = (y - cy) / cy;
+    card.style.transform = 'perspective(700px) rotateY(' + (rx2 * 4.5) + 'deg) rotateX(' + (-ry2 * 4.5) + 'deg) translateY(-2px)';
+    shine.style.background = 'radial-gradient(360px circle at ' + x + 'px ' + y + 'px,rgba(232,184,75,.13),transparent 65%)';
+    shine.style.opacity = '1';
+  }, { passive: true });
+
+  card.addEventListener('mouseleave', function() {
+    card.style.transform = '';
+    shine.style.opacity = '0';
+  });
+}
+
+document.querySelectorAll('.art-card,.hero-card,.side-card').forEach(addShine);
+
+// ── 7. TEXT SCRAMBLE ON LOGO HOVER ───────────────────────
+var logoTextEl   = document.querySelector('.logo-text');
+var ORIG_LOGO    = logoTextEl ? logoTextEl.textContent : '';
+var SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#@$%&*012345';
+var scramTimer   = null;
+
+if (logoTextEl) {
+  logoTextEl.parentElement.addEventListener('mouseenter', function() {
+    clearInterval(scramTimer);
+    var iter = 0;
+    scramTimer = setInterval(function() {
+      logoTextEl.textContent = ORIG_LOGO.split('').map(function(ch, i) {
+        if (ch === ' ') return ' ';
+        if (i < Math.floor(iter)) return ORIG_LOGO[i];
+        return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+      }).join('');
+      if (iter >= ORIG_LOGO.length) {
+        clearInterval(scramTimer);
+        logoTextEl.textContent = ORIG_LOGO;
+      }
+      iter += 0.45;
+    }, 38);
+  });
+  logoTextEl.parentElement.addEventListener('mouseleave', function() {
+    clearInterval(scramTimer);
+    logoTextEl.textContent = ORIG_LOGO;
+  });
+}
+
+// ── 8. SECTION HEADER UNDERLINE ON SCROLL ────────────────
+if ('IntersectionObserver' in window) {
+  var hdrObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('hdr-in'); hdrObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.section-hdr').forEach(function(h) { hdrObs.observe(h); });
+}
+
+// ── 9. ART CARDS FADE + SLIDE UP ON SCROLL ───────────────
+if ('IntersectionObserver' in window) {
+  var cardObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var card = e.target;
+      var delay = parseInt(card.dataset.ndelay || '0');
+      setTimeout(function() { card.classList.add('card-vis'); }, delay);
+      cardObs.unobserve(card);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.art-card').forEach(function(card, i) {
+    card.dataset.ndelay = String((i % 2) * 90);
+    cardObs.observe(card);
+  });
+} else {
+  document.querySelectorAll('.art-card').forEach(function(c2) { c2.classList.add('card-vis'); });
+}
+
+// ── 10. MAGNETIC NAV BUTTONS ──────────────────────────────
+if (window.matchMedia('(hover:hover)').matches) {
+  document.querySelectorAll('nav button, nav a, .header-cta').forEach(function(btn) {
+    btn.addEventListener('mousemove', function(e) {
+      var r = btn.getBoundingClientRect();
+      var dx = (e.clientX - (r.left + r.width / 2)) * 0.28;
+      var dy = (e.clientY - (r.top  + r.height / 2)) * 0.28;
+      btn.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+    }, { passive: true });
+    btn.addEventListener('mouseleave', function() { btn.style.transform = ''; });
+  });
+}
+
+// ── 11. SMOOTH MOMENTUM SCROLL (desktop only) ─────────────
+if (window.matchMedia('(hover:hover)').matches && !window.matchMedia('(max-width:768px)').matches) {
+  var vel = 0, curY = 0, rafScroll = null;
+  var DAMP = 0.84;
+
+  function momentumTick() {
+    if (Math.abs(vel) < 0.5) { vel = 0; rafScroll = null; return; }
+    vel *= DAMP;
+    curY = Math.max(0, Math.min(curY + vel, document.documentElement.scrollHeight - window.innerHeight));
+    window.scrollTo(0, curY);
+    rafScroll = requestAnimationFrame(momentumTick);
+  }
+
+  window.addEventListener('wheel', function(e) {
+    // Skip on article/calc pages — let them scroll natively
+    var onArtPage = false;
+    document.querySelectorAll('.art-page').forEach(function(p) {
+      if (p.style.display === 'block') onArtPage = true;
+    });
+    if (onArtPage) return;
+
+    e.preventDefault();
+    curY = window.scrollY;
+    vel += e.deltaY * 0.38;
+    if (!rafScroll) rafScroll = requestAnimationFrame(momentumTick);
+  }, { passive: false });
+}
+
+})();
+</script>
+
+</body>
+</html>
