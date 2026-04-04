@@ -438,6 +438,38 @@ nav button,nav a{will-change:transform}
 
 /* Footer gradient */
 footer{background:linear-gradient(180deg,var(--navy) 0%,rgba(6,9,14,1) 100%)!important}
+/* ═══ DEALS / AMAZON PRODUCTS ═══ */
+.deals-section{margin-bottom:36px}
+.deals-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.deals-header h2{font-family:'Cormorant Garamond',serif;font-size:1.4em;color:var(--bright);font-weight:700;position:relative;display:inline-block}
+.deals-header h2::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:2px;transition:width .65s cubic-bezier(.25,.46,.45,.94)}
+.deals-header.hdr-in h2::after{width:100%}
+.deals-disclosure{font-size:11px;color:var(--muted);background:rgba(232,184,75,.06);border:1px solid rgba(232,184,75,.18);border-radius:4px;padding:3px 10px}
+.deals-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.deals-tab{background:none;border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;white-space:nowrap}
+.deals-tab.active,.deals-tab:hover{background:rgba(232,184,75,.1);border-color:rgba(232,184,75,.4);color:var(--gold)}
+.deals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:10px}
+@media(max-width:1000px){.deals-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.deals-grid{grid-template-columns:1fr}}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,border-color .22s,box-shadow .22s;position:relative}
+.product-card:hover{transform:translateY(-3px);border-color:rgba(232,184,75,.28);box-shadow:0 0 26px rgba(232,184,75,.09),0 6px 28px rgba(0,0,0,.35)}
+.product-img-wrap{background:linear-gradient(135deg,rgba(13,21,32,1),rgba(22,32,48,1));display:flex;align-items:center;justify-content:center;height:96px;font-size:42px;position:relative;flex-shrink:0}
+.product-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:3px;text-transform:uppercase}
+.badge-hot{background:rgba(255,77,91,.18);color:#ff4d5b;border:1px solid rgba(255,77,91,.3)}
+.badge-new{background:rgba(0,214,143,.15);color:var(--green);border:1px solid rgba(0,214,143,.3)}
+.badge-trending{background:rgba(77,166,255,.15);color:var(--blue);border:1px solid rgba(77,166,255,.3)}
+.product-body{padding:12px 14px;display:flex;flex-direction:column;flex:1}
+.product-name{font-size:13px;font-weight:600;color:var(--bright);line-height:1.35;margin-bottom:4px}
+.product-spec{font-size:11px;color:var(--muted);line-height:1.45;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:4px;flex-wrap:wrap}
+.product-price{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--bright)}
+.product-mrp{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-decoration:line-through}
+.product-disc{font-size:11px;font-weight:700;color:var(--green);background:rgba(0,214,143,.1);padding:1px 6px;border-radius:3px}
+.product-stars{font-size:11px;color:var(--gold);margin-bottom:10px;letter-spacing:.03em}
+.product-stars span{color:var(--muted);margin-left:3px}
+.product-buy-btn{display:block;text-align:center;background:linear-gradient(90deg,#c8922a,var(--gold),#f5d78e,var(--gold));background-size:200% auto;color:#000;font-size:12px;font-weight:700;padding:8px 12px;border-radius:6px;text-decoration:none;transition:background-position .4s,transform .2s;font-family:'Outfit',sans-serif;margin-top:auto;white-space:nowrap}
+.product-buy-btn:hover{background-position:right center;color:#000;transform:scale(1.02)}
+.deals-aff-note{font-size:11px;color:rgba(107,130,153,.55);line-height:1.6;padding:8px 0 0;border-top:1px solid var(--border);margin-top:4px}
 </style>
 
 <!-- ── FAQ Structured Data for Rich Results ── -->
@@ -656,6 +688,170 @@ footer{background:linear-gradient(180deg,var(--navy) 0%,rgba(6,9,14,1) 100%)!imp
           </div>
         </div>
       </div>
+
+
+      <!-- ── AMAZON ELECTRONICS DEALS ── -->
+      <div class="deals-section">
+        <div class="deals-header section-hdr">
+          <h2>🛒 Trading &amp; Finance Essentials</h2>
+          <span class="deals-disclosure">🔗 Affiliate links · Prices on Amazon.in</span>
+        </div>
+        <div class="deals-tabs">
+          <button class="deals-tab active" onclick="filterDeals('all',this)">All</button>
+          <button class="deals-tab" onclick="filterDeals('laptops',this)">💻 Laptops</button>
+          <button class="deals-tab" onclick="filterDeals('tablets',this)">📱 Tablets</button>
+          <button class="deals-tab" onclick="filterDeals('monitors',this)">🖥️ Monitors</button>
+          <button class="deals-tab" onclick="filterDeals('accessories',this)">🎧 Accessories</button>
+        </div>
+        <div class="deals-grid" id="deals-grid">
+
+          <!-- Card 1 – Lenovo IdeaPad (laptops) -->
+          <div class="product-card" data-cat="laptops">
+            <div class="product-img-wrap">💻
+              <span class="product-badge badge-hot">HOT</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Lenovo IdeaPad Slim 3</div>
+              <div class="product-spec">Intel Core i5-12th Gen · 16 GB RAM · 512 GB SSD · 15.6" FHD · Win 11</div>
+              <div class="product-price-row">
+                <span class="product-price">₹49,990</span>
+                <span class="product-mrp">₹62,990</span>
+                <span class="product-disc">−21%</span>
+              </div>
+              <div class="product-stars">★★★★☆ <span>4.2 (3,400+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=lenovo+ideapad+slim+3+i5+12th+gen&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 2 – LG Monitor (monitors) -->
+          <div class="product-card" data-cat="monitors">
+            <div class="product-img-wrap">🖥️
+              <span class="product-badge badge-new">NEW</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">LG 24MR400 24" FHD Monitor</div>
+              <div class="product-spec">1920×1080 · IPS Panel · 100 Hz · AMD FreeSync · HDMI + VGA · Eye-Care</div>
+              <div class="product-price-row">
+                <span class="product-price">₹8,999</span>
+                <span class="product-mrp">₹12,999</span>
+                <span class="product-disc">−31%</span>
+              </div>
+              <div class="product-stars">★★★★☆ <span>4.3 (6,100+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=LG+24+inch+FHD+monitor+100hz&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 3 – iPad 10th Gen (tablets) -->
+          <div class="product-card" data-cat="tablets">
+            <div class="product-img-wrap">📱
+              <span class="product-badge badge-hot">HOT</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Apple iPad 10th Generation</div>
+              <div class="product-spec">A14 Bionic chip · 64 GB · 10.9" Liquid Retina · Wi-Fi · USB-C · iPadOS 18</div>
+              <div class="product-price-row">
+                <span class="product-price">₹34,900</span>
+                <span class="product-mrp">₹44,900</span>
+                <span class="product-disc">−22%</span>
+              </div>
+              <div class="product-stars">★★★★★ <span>4.7 (12,800+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=iPad+10th+generation+64gb&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 4 – Casio FC-200V Financial Calculator (accessories) -->
+          <div class="product-card" data-cat="accessories">
+            <div class="product-img-wrap">🧮
+              <span class="product-badge badge-trending">TRENDING</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Casio FC-200V Financial Calculator</div>
+              <div class="product-spec">TVM · Cash Flow · Amortisation · Depreciation · Bond · ROI · 4-line display</div>
+              <div class="product-price-row">
+                <span class="product-price">₹1,785</span>
+                <span class="product-mrp">₹2,195</span>
+                <span class="product-disc">−19%</span>
+              </div>
+              <div class="product-stars">★★★★★ <span>4.6 (2,900+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=casio+fc-200v+financial+calculator&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 5 – Logitech MK470 (accessories) -->
+          <div class="product-card" data-cat="accessories">
+            <div class="product-img-wrap">⌨️
+              <span class="product-badge badge-new">NEW</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Logitech MK470 Slim Combo</div>
+              <div class="product-spec">Ultra-thin wireless keyboard + mouse · 2.4 GHz · 36-month battery · Silent keys</div>
+              <div class="product-price-row">
+                <span class="product-price">₹3,495</span>
+                <span class="product-mrp">₹4,495</span>
+                <span class="product-disc">−22%</span>
+              </div>
+              <div class="product-stars">★★★★☆ <span>4.4 (8,200+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=logitech+mk470+slim+wireless+keyboard+mouse&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 6 – boAt Rockerz 550 (accessories) -->
+          <div class="product-card" data-cat="accessories">
+            <div class="product-img-wrap">🎧
+              <span class="product-badge badge-hot">HOT</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">boAt Rockerz 550 Headphones</div>
+              <div class="product-spec">50 mm drivers · 20H playback · Foldable · Bluetooth 5.0 · On-ear cushioned</div>
+              <div class="product-price-row">
+                <span class="product-price">₹1,299</span>
+                <span class="product-mrp">₹2,990</span>
+                <span class="product-disc">−57%</span>
+              </div>
+              <div class="product-stars">★★★★☆ <span>4.1 (45,000+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=boat+rockerz+550+headphones&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 7 – HP 15s Ryzen (laptops) -->
+          <div class="product-card" data-cat="laptops">
+            <div class="product-img-wrap">🖥️
+              <span class="product-badge badge-trending">TRENDING</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">HP 15s Ryzen 5 Laptop</div>
+              <div class="product-spec">AMD Ryzen 5 7520U · 8 GB RAM · 512 GB SSD · 15.6" FHD · Win 11 · Thin &amp; Light</div>
+              <div class="product-price-row">
+                <span class="product-price">₹43,990</span>
+                <span class="product-mrp">₹54,999</span>
+                <span class="product-disc">−20%</span>
+              </div>
+              <div class="product-stars">★★★★☆ <span>4.2 (5,700+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=HP+15s+ryzen+5+laptop+512gb&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+          <!-- Card 8 – boAt Smartwatch (accessories) -->
+          <div class="product-card" data-cat="accessories">
+            <div class="product-img-wrap">⌚
+              <span class="product-badge badge-new">NEW</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">boAt Wave Call 3 Smartwatch</div>
+              <div class="product-spec">1.83" HD display · Bluetooth calling · SpO2 · Heart rate · 7-day battery · IP68</div>
+              <div class="product-price-row">
+                <span class="product-price">₹1,499</span>
+                <span class="product-mrp">₹6,990</span>
+                <span class="product-disc">−79%</span>
+              </div>
+              <div class="product-stars">★★★★☆ <span>4.0 (32,000+)</span></div>
+              <a class="product-buy-btn" href="https://www.amazon.in/s?k=boat+wave+call+3+smartwatch&tag=financemeridi-21" target="_blank" rel="noopener sponsored">View on Amazon →</a>
+            </div>
+          </div>
+
+        </div><!-- /deals-grid -->
+        <p class="deals-aff-note">⚡ Prices and availability shown are indicative and subject to change on Amazon.in. Finance Meridian participates in the Amazon Associates programme (Associate ID: financemeridi-21) and may earn a commission on qualifying purchases at no extra cost to you. Product selection is editorially independent.</p>
+      </div><!-- /deals-section -->
 
       <div class="section-hdr"><h2>Latest Analysis &amp; Guides</h2><span id="art-count">35 articles</span></div>
       <div class="art-grid" id="art-grid">
@@ -6710,6 +6906,16 @@ if (window.matchMedia('(hover:hover)').matches && !window.matchMedia('(max-width
     if (!rafScroll) rafScroll = requestAnimationFrame(momentumTick);
   }, { passive: false });
 }
+
+// ── filterDeals — tab filter for Amazon products ──────────────
+window.filterDeals = function(cat, btn) {
+  document.querySelectorAll('.deals-tab').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(function(card) {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+  });
+};
+
 
 })();
 </script>
